@@ -507,7 +507,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 9
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -544,6 +544,18 @@ PrefabInstance:
     - target: {fileID: 1429117225887869899, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
       propertyPath: m_Name
       value: Textbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767743919118178587, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767743919118178587, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767743919118178587, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5865605513427960845, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
       propertyPath: m_Pivot.x
@@ -628,6 +640,34 @@ PrefabInstance:
     - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ae136b792105546df9bf3c92b51bfdd7, type: 2}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -409109397795319502, guid: ae136b792105546df9bf3c92b51bfdd7, type: 2}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328658446483468781, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
