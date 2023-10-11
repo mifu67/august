@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Ink.Runtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {   
@@ -26,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     // Dialogue ends
     private void FinishDialogue() {
         Debug.Log("End of Dialogue.");
+        SceneManager.LoadScene("TitleScene");
     }
 
     // Advance through the text 
