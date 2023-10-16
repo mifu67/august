@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1191260472}
-  inkJSON: {fileID: 4900000, guid: c1f3d8718ecf242afa6ec78ca62927e7, type: 3}
+  inkJSON: {fileID: 4900000, guid: c75d5751bf385470d9deab08775e5ff3, type: 3}
 --- !u!61 &655968454
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -812,7 +812,6 @@ GameObject:
   m_Component:
   - component: {fileID: 818519733}
   - component: {fileID: 818519732}
-  - component: {fileID: 818519734}
   m_Layer: 0
   m_Name: Julian
   m_TagString: Untagged
@@ -889,51 +888,6 @@ Transform:
   - {fileID: 655968452}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &818519734
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818519731}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2166824a68b4d473a930e7e57737aca4, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.34279346, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &970637419
 GameObject:
   m_ObjectHideFlags: 0

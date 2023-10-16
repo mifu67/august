@@ -36,6 +36,8 @@ public class DialogueManager : MonoBehaviour
     private const string PORTRAIT_2_TAG = "portrait2";
 
     private const string SPEAKING_TAG = "speaking";
+
+    private const string COLOR_TAG = "color";
     private void Awake()
     {
         if (instance != null)
@@ -162,10 +164,26 @@ public class DialogueManager : MonoBehaviour
                         Debug.LogWarning("Invalid speaker: " + tagValue);
                     }
                     break;
+                case COLOR_TAG:
+                    setTextColor(tagValue);
+                    break;
                 default:
                     Debug.LogWarning("Tag came in but has no handler: " + tag);
                     break;
             }
+        }
+    }
+
+    private void setTextColor(string color)
+    {
+        switch(color)
+        {
+            case "navy":
+                dialogueText.color = new Color(0.110f, 0.217f, 0.537f);
+                break;
+            default:
+                dialogueText.color = Color.black;
+                break;
         }
     }
 }
