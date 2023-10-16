@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 35772fa8d268d44f28104129b1828e9c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - inkFile: {fileID: 4900000, guid: 104dd0bf6dd3148a190ded28688b1f5a, type: 3}
+  - textBox: {fileID: 1429117225887869899, guid: fd026f7004a90489d8eb06448f0716f3, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

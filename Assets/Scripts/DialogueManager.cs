@@ -1,45 +1,104 @@
+using System;
 using System.Collections;
-using UnityEngine;
+using System.Collections.Generic;
 using Ink.Runtime;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
-{   
-    [SerializeField]
-    private TextAsset inkFile;
+{
+    [Header("Dialogue UI")]
+    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerNameText;
 
-    [SerializeField]
-    private TextMeshProUGUI message;
-    
+    [SerializeField] private Animator portrait1Animator;
+    [SerializeField] private Animator portrait2Animator;
+
+    [SerializeField] private Image sprite1;
+    [SerializeField] private Image sprite2;
+
     [SerializeField]
     private float textSpeed;
+
+    private Story currentStory;
+    public bool dialogueIsPlaying { get; private set; }
+    private static DialogueManager instance;
+
+    private string speaker1 = "";
+    private string speaker2 = "";
     private bool isAddingRichTextTag = false;
-    static Story story;
-    // Start is called before the first frame update
-    void Start()
+    private const string SPEAKER_1_TAG = "speaker1";
+    private const string SPEAKER_2_TAG = "speaker2";
+    private const string PORTRAIT_1_TAG = "portrait1";
+
+    private const string PORTRAIT_2_TAG = "portrait2";
+
+    private const string SPEAKING_TAG = "speaking";
+    private void Awake()
     {
-        story = new Story(inkFile.text);
-        message.text = string.Empty;
-        AdvanceDialogue();
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one Input Manager in the scene.");
+        }
+        instance = this;
+        }
+    public static DialogueManager GetInstance()
+    {
+        return instance;
+    }
+    private void Start()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
     }
 
-    // Dialogue ends
-    private void FinishDialogue() {
-        Debug.Log("End of Dialogue.");
-        SceneManager.LoadScene("TitleScene");
+    private void Update()
+    {
+        if (!dialogueIsPlaying)
+        {
+            return;
+        }
+        if (InputHandler.GetInstance().GetSubmitPressed())
+        {
+            ContinueStory();
+        }
     }
 
-    // Advance through the text 
-    void AdvanceDialogue() {
-        string currentSentence = story.Continue();
-        StartCoroutine(TypeSentence(currentSentence));
+    public void EnterDialogueMode(TextAsset inkJSON) 
+    {
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        dialoguePanel.SetActive(true);
+
+        ContinueStory();
+    }
+
+    private void ExitDialogueMode()
+    {
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
+    }
+
+    private void ContinueStory()
+    {
+        if (currentStory.canContinue)
+        {
+            string currentSentence = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
+            StartCoroutine(TypeSentence(currentSentence));
+        } else 
+        {
+            ExitDialogueMode();
+        }
     }
 
     IEnumerator TypeSentence(string sentence) 
     {
-        message.text = sentence;
-        message.maxVisibleCharacters = 0;
+        dialogueText.text = sentence;
+        dialogueText.maxVisibleCharacters = 0;
         foreach (char letter in sentence.ToCharArray()) {
             if (letter == '<' || isAddingRichTextTag) {
                 isAddingRichTextTag = true;
@@ -48,21 +107,64 @@ public class DialogueManager : MonoBehaviour
                 }
             }
             else {
-                message.maxVisibleCharacters ++;
+                dialogueText.maxVisibleCharacters ++;
                 yield return new WaitForSeconds(textSpeed);
             }
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    private void HandleTags(List<string> currentTags)
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        foreach (string tag in currentTags)
         {
-            if (story.canContinue)
+            // parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
             {
-                AdvanceDialogue();
-            } else {
-                FinishDialogue();
+                Debug.LogError("Tag could not be parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            // handle the tag
+            switch (tagKey)
+            {
+                case SPEAKER_1_TAG:
+                    Debug.Log("speaker1=" + tagValue);
+                    speaker1 = tagValue;
+                    break;
+                case SPEAKER_2_TAG:
+                    Debug.Log("speaker2=" + tagValue);
+                    speaker2 = tagValue;
+                    break;
+                case PORTRAIT_1_TAG:
+                    Debug.Log("portrait1=" + tagValue);
+                    portrait1Animator.Play(tagValue);
+                    break;
+                case PORTRAIT_2_TAG:
+                    Debug.Log("portrait2=" + tagValue);
+                    portrait2Animator.Play(tagValue);
+                    break;
+                case SPEAKING_TAG:
+                    Debug.Log("speaking=" + tagValue);
+                    if (tagValue == "speaker1")
+                    {
+                        sprite1.color = Color.white;
+                        sprite2.color = Color.gray;
+                        speakerNameText.text = speaker1;
+                    } else if (tagValue == "speaker2")
+                    {
+                        sprite1.color = Color.gray;
+                        sprite2.color = Color.white;
+                        speakerNameText.text = speaker2;
+                    } else 
+                    {
+                        Debug.LogWarning("Invalid speaker: " + tagValue);
+                    }
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but has no handler: " + tag);
+                    break;
             }
         }
     }

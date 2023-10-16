@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public Vector2 MovementSpeed = new Vector2(100.0f, 100.0f);
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     Vector2 inputVector;
     void Awake()
     {
-        rigidbody2D = gameObject.AddComponent<Rigidbody2D>();
+        rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         
         rigidbody2D.angularDrag = 0.0f;
         rigidbody2D.gravityScale = 0.0f;
@@ -39,6 +40,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
         rigidbody2D.MovePosition(rigidbody2D.position + (inputVector * MovementSpeed * Time.fixedDeltaTime));
     }
 }
