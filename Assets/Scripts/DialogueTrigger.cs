@@ -49,6 +49,4 @@ public class DialogueTrigger : MonoBehaviour
             playerInRange = false;
         }
     }
-
-    
 }

@@ -1,0 +1,6 @@
+IntroSceneLoaded: 0
+    - don't load the intro scene if this is true
+TalkedToAdrian: 
+    - allow click interactions if this is true
+TaledToJulian: 2
+    - add Julian to conversations if this is true
