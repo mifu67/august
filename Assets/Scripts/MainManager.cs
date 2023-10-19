@@ -37,6 +37,12 @@ public class MainManager : MonoBehaviour
 
     public void SetFlagStatus(int index, bool status)
     {
+         if (index == -1)
+        {
+            // this means that there isn't an event flag assigned to this object
+            Debug.Log("No event flag assigned to this object.");
+            return;
+        }
         eventFlags[index] = status;
     }
 }

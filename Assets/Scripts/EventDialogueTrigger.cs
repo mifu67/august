@@ -13,9 +13,14 @@ public class EventDialogueTrigger : MonoBehaviour
     [SerializeField] int flagNumber = -1;
     private void Awake()
     {
-        if (MainManager.Instance.EventFlagTriggered(flagNumber))
+        if (MainManager.Instance)
+        // loading out of order for the intro dialogue sequence
+        // if it's our first time loading the scene, we don't need this check anyway
         {
-            gameObject.SetActive(false);
+            if (MainManager.Instance.EventFlagTriggered(flagNumber))
+            {
+                gameObject.SetActive(false);
+            }
         }
         playerInRange = false;
     }

@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: c75d5751bf385470d9deab08775e5ff3, type: 3}
-  flagNumber: -1
+  flagNumber: 0
 --- !u!1 &970637419
 GameObject:
   m_ObjectHideFlags: 0
