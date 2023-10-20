@@ -40,9 +40,11 @@ public class DialogueManager : MonoBehaviour
     private const string COLOR_TAG = "color";
     private void Awake()
     {
+
         if (instance != null)
         {
-            Debug.LogError("Found more than one Input Manager in the scene.");
+            Debug.Log("Found more than one Dialogue Manager in the scene.");
+            return;
         }
         instance = this;
         }
@@ -62,7 +64,7 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-        if (InputHandler.GetInstance().GetSubmitPressed())
+        if (InputManager.GetInstance().GetSubmitPressed())
         {
             ContinueStory();
         }

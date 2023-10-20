@@ -4,22 +4,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class InputHandler : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     private bool interactPressed = false;
     private bool submitPressed = false;
-    private static InputHandler instance;
+    private static InputManager instance;
     private Camera _mainCamera;
     private void Awake()
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one Input Manager in the scene.");
+            Destroy(gameObject);
+            Debug.Log("Found more than one Input Manager in the scene.");
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public static InputHandler GetInstance()
+    public static InputManager GetInstance()
     {
         return instance;
     }

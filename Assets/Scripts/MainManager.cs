@@ -6,8 +6,9 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
     private const int flagArrayLen = 10;
+    [Header("Event Flags")]
 
-    private bool[] eventFlags = new bool[flagArrayLen];
+    [SerializeField] private bool[] eventFlags = new bool[flagArrayLen];
     private void Awake()
     {
         if (Instance != null)
