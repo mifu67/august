@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: inkJSON
       value: 
       objectReference: {fileID: 4900000, guid: c1f3d8718ecf242afa6ec78ca62927e7, type: 3}
+    - target: {fileID: 476270512785842719, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      propertyPath: knotName
+      value: top_knot
+      objectReference: {fileID: 0}
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Name
       value: Julian

@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour
 
         if (instance != null)
         {
-            Debug.Log("Found more than one Dialogue Manager in the scene.");
+            Debug.Log("Found more than one LevelLoader in the scene.");
             return;
         }
         instance = this;

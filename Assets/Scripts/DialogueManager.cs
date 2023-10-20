@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     private const string SPEAKING_TAG = "speaking";
 
     private const string COLOR_TAG = "color";
+
     private void Awake()
     {
 
@@ -70,9 +71,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON) 
+    public void EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
     {
         currentStory = new Story(inkJSON.text);
+        if (knotName != "")
+        {
+            currentStory.ChoosePathString(knotName);
+        }
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 

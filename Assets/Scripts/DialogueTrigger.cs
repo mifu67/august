@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,11 +12,20 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
+
+    [Header("The Ink knot to load")]
+    [SerializeField] private string knotName;
     private bool playerInRange;
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+        if (!MainManager.Instance.EventFlagTriggered(2) && knotName != "") 
+        {
+            // This really only applies to the intro Larsen scenes where the player could/could not have Julian
+            // Also, not sure if this messes with anything tbh. I'll rethink this when I'm less sleep deprived.
+            knotName += "-no-julian";
+        }
     }
 
     private void Update()
@@ -25,7 +35,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName);
             }
         }
         else 

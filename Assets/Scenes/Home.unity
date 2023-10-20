@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: c75d5751bf385470d9deab08775e5ff3, type: 3}
   flagNumber: 0
+  waitTime: 1
 --- !u!1 &775071214
 GameObject:
   m_ObjectHideFlags: 0
