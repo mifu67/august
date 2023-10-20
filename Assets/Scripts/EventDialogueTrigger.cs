@@ -11,6 +11,10 @@ public class EventDialogueTrigger : MonoBehaviour
 
     [Header("Flag Number")]
     [SerializeField] int flagNumber = -1;
+
+    [Header("Time to wait before triggering dialogue")]
+    [SerializeField] float waitTime = 0f;
+
     private void Awake()
     {
         if (MainManager.Instance)
@@ -29,12 +33,17 @@ public class EventDialogueTrigger : MonoBehaviour
     private void Update()
     {
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-            Destroy(gameObject);
+        {   
+            StartCoroutine(WaitAndTalk());
         }
     }
 
+    IEnumerator WaitAndTalk()
+    {
+        yield return new WaitForSeconds(waitTime);
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        Destroy(gameObject);
+    }
         private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")

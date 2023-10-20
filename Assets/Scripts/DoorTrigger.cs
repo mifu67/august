@@ -24,8 +24,7 @@ public class DoorTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
-                // All doors lead to Larsen 
-                SceneManager.LoadScene(sceneToLoad);
+                LevelLoader.GetInstance().LoadSelected(sceneToLoad);
             }
         } else {
             visualCue.SetActive(false);
