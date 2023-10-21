@@ -20,12 +20,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerInRange = false;
         visualCue.SetActive(false);
-        if (!MainManager.Instance.EventFlagTriggered(2) && knotName != "") 
-        {
-            // This really only applies to the intro Larsen scenes where the player could/could not have Julian
-            // Also, not sure if this messes with anything tbh. I'll rethink this when I'm less sleep deprived.
-            knotName += "-no-julian";
-        }
     }
 
     private void Update()
