@@ -261,5 +261,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 293283184068937274}
-  inkJSON: {fileID: 0}
+  inkJSON: {fileID: 4900000, guid: ecb8b182aa7844c6dba95dc39eebd829, type: 3}
   knotName: 
