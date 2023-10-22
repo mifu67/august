@@ -41,12 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3129031795
-    locked: 0
   - name: GameElements
     uniqueID: 1097646241
     locked: 0
-  - name: Cues
+  - name: Clues
     uniqueID: 2250431667
     locked: 0
