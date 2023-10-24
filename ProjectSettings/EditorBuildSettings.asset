@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Larsen.unity
     guid: e295ec0fd01ea44cbac6b83e1d887288
+  - enabled: 1
+    path: Assets/Scenes/Precinct.unity
+    guid: c67fd8b907d6a4a578fdaa50b3d8d3de
   m_configObjects: {}
