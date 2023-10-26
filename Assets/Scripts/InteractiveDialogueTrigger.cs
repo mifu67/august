@@ -23,6 +23,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
+                InteractiveDialogueManager.GetInstance().EnterDialogueMode("This is my intro line", "Townsperson 1");
             }
         }
         else 
