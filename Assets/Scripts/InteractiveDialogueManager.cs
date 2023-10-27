@@ -50,7 +50,6 @@ public class InteractiveDialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-        inputField.onSubmit.AddListener(GetResponse);
         endButton.onClick.AddListener(ExitDialogueMode);
     }
 
@@ -65,10 +64,15 @@ public class InteractiveDialogueManager : MonoBehaviour
             playerTurn = true;
             ContinueStory();
         }
+        if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
+        {
+            GetResponse();
+        }
     }
 
-    public void EnterDialogueMode(string introLine, string name) // will eventually need to use ink, but this is ok for mvp
+    public IEnumerator EnterDialogueMode(string introLine, string name) // will eventually need to use ink, but this is ok for mvp
     {
+        yield return new WaitForSeconds(0.2f);
         inputField.text = "";
         npcName = name;
         speakerNameText.text = npcName;
@@ -79,8 +83,9 @@ public class InteractiveDialogueManager : MonoBehaviour
         ContinueStory();
     }
 
-    private void ExitDialogueMode()
+    public void ExitDialogueMode()
     {
+        Debug.Log("Exiting Dialogue Window");
         dialogueIsPlaying = false;
         playerTurn = false;
         dialoguePanel.SetActive(false);
@@ -88,28 +93,30 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     private void ContinueStory()
     {
+        Debug.Log(playerTurn);
+
         if (playerTurn) {
             response.text = "";
             speakerNameText.text = "Erika";
             inputFieldObject.SetActive(true);
-            inputField.text = "<i>What should I say?</i>";
         } else 
         {
+            inputField.text = "";
             inputFieldObject.SetActive(false);
             NPCTurn();
         }
     }
-    private void GetResponse(string msg)
+    public void GetResponse()
     {
         if (inputField.text.Length < 1)
         {
             return;
         }
-        Debug.Log("Player pressed submit");
         // api call would be here
         currentSentence = "This is a placeholder sentence.";
         speakerNameText.text = npcName;
         playerTurn = false;
+        ContinueStory();
     }
 
     private void NPCTurn()

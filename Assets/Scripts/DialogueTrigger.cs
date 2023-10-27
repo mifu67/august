@@ -29,7 +29,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName);
+                StartCoroutine(DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName));
             }
         }
         else 

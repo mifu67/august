@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        if (DialogueManager.GetInstance().dialogueIsPlaying || InteractiveDialogueManager.GetInstance().dialogueIsPlaying)
         {
             return;
         }

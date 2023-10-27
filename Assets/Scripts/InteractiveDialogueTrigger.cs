@@ -17,13 +17,13 @@ public class InteractiveDialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
+        if (playerInRange && !InteractiveDialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
-                InteractiveDialogueManager.GetInstance().EnterDialogueMode("This is my intro line", "Townsperson 1");
+                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode("This is my intro line", "Townsperson 1"));
             }
         }
         else 

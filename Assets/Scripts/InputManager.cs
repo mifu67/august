@@ -19,9 +19,17 @@ public class InputManager : MonoBehaviour
             return;
         }
         instance = this;
+        _mainCamera = Camera.main;
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Debug.Log("Mouse clicked!");
+        }
+    }
     public static InputManager GetInstance()
     {
         return instance;

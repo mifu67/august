@@ -71,8 +71,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
+    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
     {
+        yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
         if (knotName != "")
         {
