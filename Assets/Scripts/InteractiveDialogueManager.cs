@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using OpenAI;
 
 public class InteractiveDialogueManager : MonoBehaviour
 {
@@ -106,14 +107,37 @@ public class InteractiveDialogueManager : MonoBehaviour
             NPCTurn();
         }
     }
-    public void GetResponse()
+    public async void GetResponse()
     {
         if (inputField.text.Length < 1)
         {
             return;
         }
         // api call would be here
-        currentSentence = "This is a placeholder sentence.";
+        var openai = new OpenAIApi();
+        var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+        {
+            Model = "gpt-3.5-turbo",
+            Messages = new List<ChatMessage>
+            {
+                new ChatMessage()
+                {
+                    Role = "user",
+                    Content = "Please say: 'Hello world! This is a test.'"
+                }
+            },
+            Temperature = 0.0f,
+        });
+
+        if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+        {
+            currentSentence = completionResponse.Choices[0].Message.Content;
+        }
+        else
+        {
+            currentSentence = "This didn't work.";
+        }
+        // currentSentence = "This is a placeholder sentence.";
         speakerNameText.text = npcName;
         playerTurn = false;
         ContinueStory();
@@ -124,3 +148,4 @@ public class InteractiveDialogueManager : MonoBehaviour
         response.text = currentSentence;
     }
 }
+
