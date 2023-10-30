@@ -81,6 +81,8 @@ public class InteractiveDialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         currentSentence = introLine;
 
+        inputField.text = "";
+        inputFieldObject.SetActive(false);
         ContinueStory();
     }
 
@@ -102,8 +104,6 @@ public class InteractiveDialogueManager : MonoBehaviour
             inputFieldObject.SetActive(true);
         } else 
         {
-            inputField.text = "";
-            inputFieldObject.SetActive(false);
             NPCTurn();
         }
     }
@@ -113,7 +113,9 @@ public class InteractiveDialogueManager : MonoBehaviour
         {
             return;
         }
-        // api call would be here
+        speakerNameText.text = npcName;
+        inputField.text = "";
+        inputFieldObject.SetActive(false);
         var openai = new OpenAIApi();
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
@@ -123,10 +125,10 @@ public class InteractiveDialogueManager : MonoBehaviour
                 new ChatMessage()
                 {
                     Role = "user",
-                    Content = "Please say: 'Hello world! This is a test.'"
+                    Content = "Please say a random quote from a Shakespeare play."
                 }
             },
-            Temperature = 0.0f,
+            Temperature = 0.5f,
         });
 
         if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
