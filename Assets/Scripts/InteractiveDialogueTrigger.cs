@@ -8,6 +8,8 @@ public class InteractiveDialogueTrigger : MonoBehaviour
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
+    [SerializeField] private int flagNumber = -1;
+
     private bool playerInRange;
     private void Awake()
     {

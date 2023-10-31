@@ -41,10 +41,10 @@ public class EventDialogueTrigger : MonoBehaviour
     IEnumerator WaitAndTalk()
     {
         yield return new WaitForSeconds(waitTime);
-        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        DialogueManager.GetInstance().EnterDialogueModeEvent(inkJSON);
         Destroy(gameObject);
     }
-        private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {

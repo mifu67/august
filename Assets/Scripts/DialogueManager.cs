@@ -48,6 +48,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         instance = this;
+        Debug.Log("Initializing dialogue manager");
         }
     public static DialogueManager GetInstance()
     {
@@ -70,11 +71,11 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
-
-    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
+    // no wait times for events
+    public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "")
     {
-        yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
+        Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
             currentStory.ChoosePathString(knotName);
@@ -85,8 +86,24 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
     }
 
-    private void ExitDialogueMode()
+    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
     {
+        yield return new WaitForSeconds(0.2f);
+        currentStory = new Story(inkJSON.text);
+        // Debug.Log("Entered dialogue mode");
+        if (knotName != "")
+        {
+            currentStory.ChoosePathString(knotName);
+        }
+        dialogueIsPlaying = true;
+        dialoguePanel.SetActive(true);
+
+        ContinueStory();
+    }
+
+    private IEnumerator ExitDialogueMode()
+    {
+        yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -101,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(TypeSentence(currentSentence));
         } else 
         {
-            ExitDialogueMode();
+            StartCoroutine(ExitDialogueMode());
         }
     }
 

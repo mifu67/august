@@ -634,6 +634,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 1bcf35848bac340b09d2c09034a31a88, type: 3}
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: knotName
+      value: bed
+      objectReference: {fileID: 0}
     - target: {fileID: 1340885785856093343, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_Name
       value: Bed
@@ -994,6 +1002,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 1bcf35848bac340b09d2c09034a31a88, type: 3}
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: knotName
+      value: photo
+      objectReference: {fileID: 0}
     - target: {fileID: 1340885785856093343, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_Name
       value: Photo
@@ -1172,6 +1188,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 1bcf35848bac340b09d2c09034a31a88, type: 3}
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: knotName
+      value: scissors
+      objectReference: {fileID: 0}
     - target: {fileID: 1340885785856093343, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_Name
       value: Scissors
@@ -1722,6 +1746,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: inkJSON
+      value: 
+      objectReference: {fileID: 4900000, guid: 1bcf35848bac340b09d2c09034a31a88, type: 3}
+    - target: {fileID: 533506484887937801, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+      propertyPath: knotName
+      value: plant
+      objectReference: {fileID: 0}
     - target: {fileID: 1340885785856093343, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_Name
       value: Plant
@@ -1816,7 +1848,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 94ba84856828e41dcad3c62f515d1036, type: 3}
     - target: {fileID: 9215015943851687194, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9215015943851687194, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
       propertyPath: m_SortingLayerID
@@ -2075,7 +2107,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 707902824}
+    - targetCorrespondingSourceObject: {fileID: 1628989706849993015, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7565077887736822324}
   m_SourcePrefab: {fileID: 100100000, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+--- !u!1 &7565077887736822322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1628989706849993015, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+  m_PrefabInstance: {fileID: 7565077887736822321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7565077887736822323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7417135702037247680, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+  m_PrefabInstance: {fileID: 7565077887736822321}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7565077887736822324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565077887736822322}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a862f663c2b514b19816b85b5c029de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualCue: {fileID: 7565077887736822323}
+  flagNumber: -1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

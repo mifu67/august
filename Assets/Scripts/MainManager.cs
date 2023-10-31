@@ -9,6 +9,7 @@ public class MainManager : MonoBehaviour
     [Header("Event Flags")]
 
     [SerializeField] private bool[] eventFlags = new bool[flagArrayLen];
+
     private void Awake()
     {
         if (Instance != null)
@@ -41,7 +42,6 @@ public class MainManager : MonoBehaviour
          if (index == -1)
         {
             // this means that there isn't an event flag assigned to this object
-            Debug.Log("No event flag assigned to this object.");
             return;
         }
         eventFlags[index] = status;
