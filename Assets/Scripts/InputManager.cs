@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Debug.Log("Mouse clicked!");
+            // Debug.Log("Mouse clicked!");
         }
     }
     public static InputManager GetInstance()

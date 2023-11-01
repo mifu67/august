@@ -7,8 +7,8 @@ INCLUDE globals.ink
         -> no_julian
 }
  =no_julian
- Left handed scissors. These must be August’s. #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
-I wonder what he was cutting....
+(Left handed scissors. These must be August’s.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(I wonder what he was cutting....)
 -> END
 =julian
 Left handed scissors. These must be August’s. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
@@ -18,11 +18,11 @@ I wonder if he’s got one of those crazy pushpin boards hidden away somewhere. 
 -> END
 
 ===plant===
-This is dying. Did I overwater it? Did I forget to water it? Who knows. Nothing matters anymore. #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(This is dying. Did I overwater it? Did I forget to water it? Who knows. Nothing matters anymore.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 
 ===bed===
-I don’t know if I’ll be able to sleep tonight. I can’t close my eyes without seeing his face. #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
+(I don’t know if I’ll be able to sleep tonight. I can’t close my eyes without seeing his face.) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
 -> END
 
 ===photo===
@@ -32,7 +32,7 @@ I don’t know if I’ll be able to sleep tonight. I can’t close my eyes witho
         -> no_julian
 }
 =no_julian
-We took this at the bus stop where we first met. I can't believe that was five years ago.... #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(We took this at the bus stop where we first met. I can't believe that was five years ago....) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
 We took this at the bus stop where we first met. I can't believe that was five years ago.... #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1

@@ -96,7 +96,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     private void ContinueStory()
     {
-        Debug.Log(playerTurn);
+        // Debug.Log(playerTurn);
 
         if (playerTurn) {
             response.text = "";
