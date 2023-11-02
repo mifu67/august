@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,25 +14,32 @@ public class InteractiveDialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI response;
     [SerializeField] private GameObject inputFieldObject;
     [SerializeField] private TMP_InputField inputField;
+    [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerNameText;
 
-    [SerializeField] private Animator portrait1Animator;
-    [SerializeField] private Animator portrait2Animator;
-
-    [SerializeField] private Image sprite1;
-    [SerializeField] private Image sprite2;
+    [SerializeField] private Animator portraitAnimator;
+    [SerializeField] private Image sprite;
 
     private string npcName = "";
 
     [SerializeField]
     private float textSpeed;
 
-    // will change this to a Story later, but this is okay for now
+    private Story currentStory;
+    [SerializeField]
     private string currentSentence;
-    public bool dialogueIsPlaying { get; private set; }
+    public bool dialogueIsPlaying;
+    // public bool dialogueIsPlaying { get; private set; }
     private static InteractiveDialogueManager instance;
 
+    private bool isAddingRichTextTag = false;
+    [SerializeField]
     private bool playerTurn = false;
+    [SerializeField]
+    private bool prewrittenMode = true;
+    private const string PORTRAIT_TAG = "portrait";
+    private const string SPEAKING_TAG = "speaking";
+    private const string COLOR_TAG = "color";
 
     private void Awake()
     {
@@ -51,7 +59,6 @@ public class InteractiveDialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-        endButton.onClick.AddListener(ExitDialogueMode);
     }
 
     private void Update()
@@ -62,7 +69,10 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
         if (InputManager.GetInstance().GetSubmitPressed() && !playerTurn)
         {
-            playerTurn = true;
+            if (!prewrittenMode) 
+            {
+                playerTurn = true;
+            }
             ContinueStory();
         }
         if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
@@ -71,41 +81,81 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EnterDialogueMode(string introLine, string name) // will eventually need to use ink, but this is ok for mvp
+    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string name, string knotName = "") // will eventually need to use ink, but this is ok for mvp
     {
         yield return new WaitForSeconds(0.2f);
+        endButton.onClick.AddListener(ExitDialogueMode);
+        dialogueIsPlaying = true;
+        currentStory = new Story(inkJSON.text);
+        if (knotName != "")
+        {
+            currentStory.ChoosePathString(knotName);
+        }
         inputField.text = "";
         npcName = name;
         speakerNameText.text = npcName;
-        dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
-        currentSentence = introLine;
-
+        // begin by playing the intro ink
         inputField.text = "";
         inputFieldObject.SetActive(false);
         ContinueStory();
     }
 
+    IEnumerator TypeSentence(string sentence) 
+    {
+        dialogueText.text = sentence;
+        dialogueText.maxVisibleCharacters = 0;
+        foreach (char letter in sentence.ToCharArray()) {
+            if (letter == '<' || isAddingRichTextTag) {
+                isAddingRichTextTag = true;
+                if (letter == '>') {
+                    isAddingRichTextTag = false;
+                }
+            }
+            else {
+                dialogueText.maxVisibleCharacters ++;
+                yield return new WaitForSeconds(textSpeed);
+            }
+        }
+    }
     public void ExitDialogueMode()
     {
-        Debug.Log("Exiting Dialogue Window");
+        endButton.onClick.RemoveAllListeners();
         dialogueIsPlaying = false;
         playerTurn = false;
         dialoguePanel.SetActive(false);
+        prewrittenMode = true;
         response.text = "";
     }
     private void ContinueStory()
     {
-        // Debug.Log(playerTurn);
-
-        if (playerTurn) {
-            response.text = "";
-            speakerNameText.text = "Erika";
-            inputFieldObject.SetActive(true);
-        } else 
+        if (prewrittenMode)
         {
-            NPCTurn();
+            if (currentStory.canContinue)
+            {
+                string currentSentence = currentStory.Continue();
+                HandleTags(currentStory.currentTags);
+                StartCoroutine(TypeSentence(currentSentence));
+            } else 
+            {
+                prewrittenMode = false;
+                playerTurn = true;
+                response.text = "";
+                speakerNameText.text = "Erika";
+                inputFieldObject.SetActive(true);
+            }  
+        } else
+        {
+            if (playerTurn) {
+                response.text = "";
+                speakerNameText.text = "Erika";
+                inputFieldObject.SetActive(true);
+            } else 
+            {
+                NPCTurn();
+            }
         }
+        
     }
     public async void GetResponse()
     {
@@ -116,6 +166,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         speakerNameText.text = npcName;
         inputField.text = "";
         inputFieldObject.SetActive(false);
+        response.text = "...";
         var openai = new OpenAIApi();
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
@@ -125,10 +176,10 @@ public class InteractiveDialogueManager : MonoBehaviour
                 new ChatMessage()
                 {
                     Role = "user",
-                    Content = "Please say a random quote from a Shakespeare play."
+                    Content = "Please give me a random Star Wars quote."
                 }
             },
-            Temperature = 0.5f,
+            Temperature = 0.7f,
         });
 
         if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
@@ -148,6 +199,60 @@ public class InteractiveDialogueManager : MonoBehaviour
     private void NPCTurn()
     {
         response.text = currentSentence;
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            // parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogError("Tag could not be parsed: " + tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            // handle the tag
+            switch (tagKey)
+            {
+                case PORTRAIT_TAG:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                case SPEAKING_TAG:
+                    if (tagValue == "erika")
+                    {
+                        speakerNameText.text = "Erika";
+                    } else if (tagValue == "npc")
+                    {
+                        speakerNameText.text = npcName;
+                    } else 
+                    {
+                        Debug.LogWarning("Invalid speaker: " + tagValue);
+                    }
+                    break;
+                case COLOR_TAG:
+                    setTextColor(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but has no handler: " + tag);
+                    break;
+            }
+        }
+    }
+
+    private void setTextColor(string color)
+    {
+        switch(color)
+        {
+            case "navy":
+                dialogueText.color = new Color(0.110f, 0.217f, 0.537f);
+                break;
+            default:
+                dialogueText.color = Color.black;
+                break;
+        }
     }
 }
 

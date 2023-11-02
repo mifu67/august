@@ -8,6 +8,12 @@ public class InteractiveDialogueTrigger : MonoBehaviour
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
+    [Header("Ink JSON")]
+    [SerializeField] private TextAsset inkJSON;
+
+    [Header("The Ink knot to load")]
+    [SerializeField] private string knotName;
+    [SerializeField] private string npcName;
     [SerializeField] private int flagNumber = -1;
 
     private bool playerInRange;
@@ -25,7 +31,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
-                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode("This is my intro line", "Townsperson 1"));
+                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(inkJSON, npcName, knotName));
             }
         }
         else 

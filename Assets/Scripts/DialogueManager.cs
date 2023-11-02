@@ -75,7 +75,7 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "")
     {
         currentStory = new Story(inkJSON.text);
-        Debug.Log("Entered dialogue mode");
+        // Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
             currentStory.ChoosePathString(knotName);
