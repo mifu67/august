@@ -20,6 +20,9 @@ public class InteractiveDialogueManager : MonoBehaviour
     [SerializeField] private Animator portraitAnimator;
     [SerializeField] private Image sprite;
 
+    private List<ChatMessage> routerMessages;
+    private List<ChatMessage> conversationMessages;
+    [SerializeField] private string lastUtterance = "";
     private string npcName = "";
 
     [SerializeField]
@@ -28,15 +31,14 @@ public class InteractiveDialogueManager : MonoBehaviour
     private Story currentStory;
     [SerializeField]
     private string currentSentence;
-    public bool dialogueIsPlaying;
-    // public bool dialogueIsPlaying { get; private set; }
+    public bool dialogueIsPlaying { get; private set; }
     private static InteractiveDialogueManager instance;
 
     private bool isAddingRichTextTag = false;
-    [SerializeField]
     private bool playerTurn = false;
-    [SerializeField]
     private bool prewrittenMode = true;
+
+    private OpenAIApi openai = new OpenAIApi();
     private const string PORTRAIT_TAG = "portrait";
     private const string SPEAKING_TAG = "speaking";
     private const string COLOR_TAG = "color";
@@ -59,6 +61,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        endButton.onClick.AddListener(ExitDialogueMode);
     }
 
     private void Update()
@@ -81,12 +84,14 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string name, string knotName = "") // will eventually need to use ink, but this is ok for mvp
+    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, TextAsset inkJSON, string name, string knotName = "")
     {
         yield return new WaitForSeconds(0.2f);
-        endButton.onClick.AddListener(ExitDialogueMode);
         dialogueIsPlaying = true;
         currentStory = new Story(inkJSON.text);
+        routerMessages = thisRouterMessages;
+        conversationMessages = thisConversationMessages;
+        lastUtterance = thisLastUtterance;
         if (knotName != "")
         {
             currentStory.ChoosePathString(knotName);
@@ -120,7 +125,6 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     public void ExitDialogueMode()
     {
-        endButton.onClick.RemoveAllListeners();
         dialogueIsPlaying = false;
         playerTurn = false;
         dialoguePanel.SetActive(false);
@@ -155,8 +159,8 @@ public class InteractiveDialogueManager : MonoBehaviour
                 NPCTurn();
             }
         }
-        
     }
+
     public async void GetResponse()
     {
         if (inputField.text.Length < 1)
@@ -164,33 +168,59 @@ public class InteractiveDialogueManager : MonoBehaviour
             return;
         }
         speakerNameText.text = npcName;
+        string userInput = inputField.text;
         inputField.text = "";
         inputFieldObject.SetActive(false);
         response.text = "...";
-        var openai = new OpenAIApi();
+        // step 1: pass the user input to the router model—remember to pop from list
+        string routerInputContent = lastUtterance + "\n\n" + userInput;
+        ChatMessage routerInput = new ChatMessage()
+        {
+            Role = "user",
+            Content = routerInputContent
+        };
+        routerMessages.Add(routerInput);
+        Debug.Log(routerInputContent);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-3.5-turbo",
-            Messages = new List<ChatMessage>
-            {
-                new ChatMessage()
-                {
-                    Role = "user",
-                    Content = "Please give me a random Star Wars quote."
-                }
-            },
-            Temperature = 0.7f,
+            Model = "gpt-4", // use GPT-4 for router bc it's more powerful
+            Messages = routerMessages,
+            Temperature = 0.0f,
         });
-
-        if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+        string slot = completionResponse.Choices[0].Message.Content;
+        Debug.Log("SLOT" + slot);
+        if (slot != "none")
         {
-            currentSentence = completionResponse.Choices[0].Message.Content;
-        }
-        else
+            // step 2: if the user input matches a prewritten response, add the correct response to messageList and 
+            // play the prewritten conversation
+            // at this step, add the correct input to the set; quit early if all required paths explored
+            currentSentence = "We'll be doing some routing here.";
+        } 
+        else 
         {
-            currentSentence = "This didn't work.";
+            // if the user input doesn't match a prewritten response, pass the user utterance to the convo model
+            ChatMessage convoInput = new ChatMessage()
+            {
+                Role = "user",
+                Content = userInput
+            };
+            conversationMessages.Add(convoInput);
+            completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                Model = "gpt-3.5-turbo", 
+                Messages = conversationMessages,
+                Temperature = 0.0f,
+            });
+            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+            {
+                currentSentence = completionResponse.Choices[0].Message.Content;
+            }
+            else
+            {
+                currentSentence = "Sorry, could you say that again?";
+            }
         }
-        // currentSentence = "This is a placeholder sentence.";
+        // going to have to rework this section 
         speakerNameText.text = npcName;
         playerTurn = false;
         ContinueStory();

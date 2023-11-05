@@ -216,9 +216,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 2084052585}
   inkJSON: {fileID: 4900000, guid: 5058c90440e8d4feca33c0f4b495aa62, type: 3}
+  messagesJSON: {fileID: 4900000, guid: e68f55d26114843c9b008dec70571a60, type: 3}
   knotName: townsperson_1
   npcName: Townsperson
   flagNumber: -1
+  lastUtterance: 
 --- !u!1 &56205619
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Townsperson3
       objectReference: {fileID: 0}
+    - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1089,6 +1095,10 @@ PrefabInstance:
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Name
       value: Townsperson4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite
@@ -1968,9 +1978,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1865546930}
   inkJSON: {fileID: 0}
+  messagesJSON: {fileID: 0}
   knotName: 
   npcName: 
   flagNumber: -1
+  lastUtterance: 
 --- !u!1001 &547080853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2314,9 +2326,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1501982864}
   inkJSON: {fileID: 0}
+  messagesJSON: {fileID: 0}
   knotName: 
   npcName: 
   flagNumber: -1
+  lastUtterance: 
 --- !u!1 &703943594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,11 +2683,9 @@ MonoBehaviour:
   speakerNameText: {fileID: 303566678}
   portraitAnimator: {fileID: 1388041655}
   sprite: {fileID: 1388041654}
+  lastUtterance: 
   textSpeed: 0.05
   currentSentence: 
-  dialogueIsPlaying: 0
-  playerTurn: 0
-  prewrittenMode: 1
 --- !u!4 &786288659
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,9 +3281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1761216267}
   inkJSON: {fileID: 0}
+  messagesJSON: {fileID: 0}
   knotName: 
   npcName: 
   flagNumber: -1
+  lastUtterance: 
 --- !u!1 &1055303354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6142,6 +6156,10 @@ PrefabInstance:
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Name
       value: Townsperson2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite

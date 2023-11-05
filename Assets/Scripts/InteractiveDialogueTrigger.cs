@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OpenAI;
+using Ink.Runtime;
 
-// will probably have to add a lot of stuff here later
 public class InteractiveDialogueTrigger : MonoBehaviour
 {
     [Header("Visual Cue")]
@@ -11,16 +12,26 @@ public class InteractiveDialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
+    [Header("Intro messages file")]
+    [SerializeField] private TextAsset messagesJSON;
+
     [Header("The Ink knot to load")]
     [SerializeField] private string knotName;
     [SerializeField] private string npcName;
     [SerializeField] private int flagNumber = -1;
+
+    [SerializeField] private string lastUtterance;
+    private List<ChatMessage> ConversationMessages = new List<ChatMessage>();
+
+    private List<ChatMessage> RouterMessages = new List<ChatMessage>();
 
     private bool playerInRange;
     private void Awake()
     {
         playerInRange = false;
         visualCue.SetActive(false);
+        PopulateMessageList(messagesJSON, RouterMessages, "initial_router");
+        PopulateMessageList(messagesJSON, ConversationMessages, "initial_character");
     }
 
     private void Update()
@@ -31,7 +42,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
-                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(inkJSON, npcName, knotName));
+                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, ConversationMessages, lastUtterance, inkJSON, npcName, knotName));
             }
         }
         else 
@@ -40,6 +51,25 @@ public class InteractiveDialogueTrigger : MonoBehaviour
         }
     }
 
+    private void PopulateMessageList(TextAsset messageJSON, List<ChatMessage> messageList, string knotName)
+    {
+        Story messages = new Story(messageJSON.text);
+        messages.ChoosePathString(knotName);
+        while (messages.canContinue)
+        {
+            string content = messages.Continue();
+            string role = messages.currentTags[0];
+            // Debug.Log(role);
+            // Debug.Log(content);
+            messageList.Add(
+                new ChatMessage()
+                {
+                    Role = role,
+                    Content = content
+                }
+            );
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
