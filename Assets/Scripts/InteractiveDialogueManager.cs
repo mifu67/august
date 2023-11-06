@@ -20,8 +20,11 @@ public class InteractiveDialogueManager : MonoBehaviour
     [SerializeField] private Animator portraitAnimator;
     [SerializeField] private Image sprite;
 
+    private HashSet<string> explored_topics = new HashSet<string>();
+    private int maxTopics = 0;
     private List<ChatMessage> routerMessages;
     private List<ChatMessage> conversationMessages;
+    // will probably deserialize this field once I'm done debugging
     [SerializeField] private string lastUtterance = "";
     private string npcName = "";
     private string knotName = "";
@@ -85,7 +88,8 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, TextAsset inkJSON, string name, string thisKnotName = "")
+    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, 
+                                         TextAsset inkJSON, string name, int numTopics, string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = true;
@@ -94,6 +98,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         conversationMessages = thisConversationMessages;
         lastUtterance = thisLastUtterance;
         knotName = thisKnotName;
+        maxTopics = numTopics;
         if (thisKnotName != "")
         {
             currentStory.ChoosePathString(thisKnotName);
@@ -128,6 +133,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     public void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
+        explored_topics = new HashSet<string>();
         playerTurn = false;
         dialoguePanel.SetActive(false);
         prewrittenMode = true;
@@ -144,11 +150,17 @@ public class InteractiveDialogueManager : MonoBehaviour
                 StartCoroutine(TypeSentence(currentSentence));
             } else 
             {
-                prewrittenMode = false;
-                playerTurn = true;
-                response.text = "";
-                speakerNameText.text = "Erika";
-                inputFieldObject.SetActive(true);
+                if (explored_topics.Count == maxTopics)
+                {
+                    ExitDialogueMode();
+                } else 
+                {
+                    prewrittenMode = false;
+                    playerTurn = true;
+                    response.text = "";
+                    speakerNameText.text = "Erika";
+                    inputFieldObject.SetActive(true);
+                }
             }  
         } else
         {
@@ -182,20 +194,25 @@ public class InteractiveDialogueManager : MonoBehaviour
             Content = routerInputContent
         };
         routerMessages.Add(routerInput);
-        Debug.Log(routerInputContent);
+        // Debug.Log(routerInputContent);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
             Model = "gpt-4", // use GPT-4 for router bc it's more powerful
             Messages = routerMessages,
             Temperature = 0.0f,
         });
+        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
         string slot = completionResponse.Choices[0].Message.Content;
-        Debug.Log("SLOT" + slot);
+        Debug.Log("SLOT: " + slot);
         if (slot != "none")
         {
             // step 2: if the user input matches a prewritten response, add the correct response to messageList and 
             // play the prewritten conversation
-            // at this step, add the correct input to the set; quit early if all required paths explored
+            // at this step, add the correct input to the set
+            if (slot.Substring(0, 5) != "bonus") 
+            {
+                explored_topics.Add(slot);
+            }
             prewrittenMode = true;
             string currTopic = (knotName != "") ? knotName + "." + slot : slot;
             currentStory.ChoosePathString(currTopic);
@@ -218,6 +235,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
             {
                 currentSentence = completionResponse.Choices[0].Message.Content;
+                lastUtterance = currentSentence;
             }
             else
             {

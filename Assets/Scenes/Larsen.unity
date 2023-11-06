@@ -222,6 +222,7 @@ MonoBehaviour:
   flagNumber: -1
   lastUtterance: "Erika, I heard the news. I\u2019m so sorry, sweetheart. Let me
     know if there\u2019s anything I can do for you."
+  numTopics: 1
 --- !u!1 &56205619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,6 +2111,7 @@ MonoBehaviour:
   npcName: 
   flagNumber: -1
   lastUtterance: 
+  numTopics: 0
 --- !u!1001 &547080853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,6 +2460,7 @@ MonoBehaviour:
   npcName: 
   flagNumber: -1
   lastUtterance: 
+  numTopics: 0
 --- !u!1 &669166709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3652,6 +3655,7 @@ MonoBehaviour:
   npcName: 
   flagNumber: -1
   lastUtterance: 
+  numTopics: 0
 --- !u!1 &1055303354
 GameObject:
   m_ObjectHideFlags: 0

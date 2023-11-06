@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using OpenAI;
 using Ink.Runtime;
+using System;
 
 public class InteractiveDialogueTrigger : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
     [SerializeField] private int flagNumber = -1;
 
     [SerializeField] private string lastUtterance;
+    [SerializeField] private int numTopics;
     private List<ChatMessage> ConversationMessages = new List<ChatMessage>();
 
     private List<ChatMessage> RouterMessages = new List<ChatMessage>();
@@ -42,7 +44,8 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
-                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, ConversationMessages, lastUtterance, inkJSON, npcName, knotName));
+                StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, 
+                ConversationMessages, lastUtterance, inkJSON, npcName, numTopics, knotName));
             }
         }
         else 
