@@ -228,7 +228,9 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private void NPCTurn()
     {
-        response.text = currentSentence;
+        // response.text = currentSentence;
+        Debug.Log(currentSentence);
+        StartCoroutine(TypeSentence(currentSentence));
     }
 
     private void HandleTags(List<string> currentTags)
