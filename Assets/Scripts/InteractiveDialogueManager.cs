@@ -24,6 +24,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     private List<ChatMessage> conversationMessages;
     [SerializeField] private string lastUtterance = "";
     private string npcName = "";
+    private string knotName = "";
 
     [SerializeField]
     private float textSpeed;
@@ -84,7 +85,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, TextAsset inkJSON, string name, string knotName = "")
+    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, TextAsset inkJSON, string name, string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = true;
@@ -92,9 +93,10 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages = thisRouterMessages;
         conversationMessages = thisConversationMessages;
         lastUtterance = thisLastUtterance;
-        if (knotName != "")
+        knotName = thisKnotName;
+        if (thisKnotName != "")
         {
-            currentStory.ChoosePathString(knotName);
+            currentStory.ChoosePathString(thisKnotName);
         }
         inputField.text = "";
         npcName = name;
@@ -194,7 +196,9 @@ public class InteractiveDialogueManager : MonoBehaviour
             // step 2: if the user input matches a prewritten response, add the correct response to messageList and 
             // play the prewritten conversation
             // at this step, add the correct input to the set; quit early if all required paths explored
-            currentSentence = "We'll be doing some routing here.";
+            prewrittenMode = true;
+            string currTopic = (knotName != "") ? knotName + "." + slot : slot;
+            currentStory.ChoosePathString(currTopic);
         } 
         else 
         {
@@ -219,9 +223,9 @@ public class InteractiveDialogueManager : MonoBehaviour
             {
                 currentSentence = "Sorry, could you say that again?";
             }
+            speakerNameText.text = npcName;
         }
         // going to have to rework this section 
-        speakerNameText.text = npcName;
         playerTurn = false;
         ContinueStory();
     }

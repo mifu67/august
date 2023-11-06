@@ -5,6 +5,12 @@
  Thank you. #speaking:erika
  -> END
  
+ =topic_1
+ I don't know. I'm sorry, sweetheart. #speaking:npc
+ The last time I saw August was on Thursday. I asked him to help me move my TV next week, and he said that he would be happy to help.
+ That's very helpful. Thank you. #speaking:erika
+ -> END
+ 
  ===townsperson_2===
  =intro
  Hello, I'm Erika. #speaking:erika
