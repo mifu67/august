@@ -2107,11 +2107,11 @@ MonoBehaviour:
   visualCue: {fileID: 1865546930}
   inkJSON: {fileID: 0}
   messagesJSON: {fileID: 0}
-  knotName: 
-  npcName: 
+  knotName: townsperson_4
+  npcName: Townsperson
   flagNumber: -1
   lastUtterance: 
-  numTopics: 0
+  numTopics: 2
 --- !u!1001 &547080853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2456,11 +2456,11 @@ MonoBehaviour:
   visualCue: {fileID: 1501982864}
   inkJSON: {fileID: 0}
   messagesJSON: {fileID: 0}
-  knotName: 
-  npcName: 
+  knotName: townsperson_2
+  npcName: Townsperson
   flagNumber: -1
-  lastUtterance: 
-  numTopics: 0
+  lastUtterance: Can I help you?
+  numTopics: 2
 --- !u!1 &669166709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3651,11 +3651,11 @@ MonoBehaviour:
   visualCue: {fileID: 1761216267}
   inkJSON: {fileID: 0}
   messagesJSON: {fileID: 0}
-  knotName: 
-  npcName: 
+  knotName: townsperson_3
+  npcName: Townsperson
   flagNumber: -1
   lastUtterance: 
-  numTopics: 0
+  numTopics: 1
 --- !u!1 &1055303354
 GameObject:
   m_ObjectHideFlags: 0
