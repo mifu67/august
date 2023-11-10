@@ -68,7 +68,7 @@ Yeah. You'd always be left wondering what went wrong. #speaking:speaker1 #portra
 (Why, August? What happened to you?) #color:navy
 -> END
 
-===bobblehead===
+===dino===
 {   talked_to_julian:
         -> julian
     - else:

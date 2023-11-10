@@ -5,6 +5,8 @@ using Ink.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField]
     private float textSpeed;
+
+    [SerializeField]
+    private string sceneToLoad = "";
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -86,10 +91,11 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
     }
 
-    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "") 
+    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "") 
     {
         yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
+        sceneToLoad = thisSceneToLoad;
         // Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
@@ -107,6 +113,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
+        if (sceneToLoad != "")
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     private void ContinueStory()
