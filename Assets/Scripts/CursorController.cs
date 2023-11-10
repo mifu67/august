@@ -25,8 +25,28 @@ public class CursorController : MonoBehaviour
         controls.Mouse.click.started += _ => StartedClick();
         controls.Mouse.click.performed += _ => EndedClick();
     }
+
+    private void Update()
+    {
+        DetectObject();
+    }
     
     private void DetectObject()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(controls.Mouse.position.ReadValue<Vector2>());
+        // Debug.Log(controls.Mouse.position.ReadValue<Vector2>());
+
+        RaycastHit2D hits2D = Physics2D.GetRayIntersection(ray);
+        if (hits2D.collider != null)
+        {
+            ChangeCursor(cursorClicked);
+        } else 
+        {
+            ChangeCursor(cursor);
+        }
+    }
+
+    private void DetectObjectClicked()
     {
         Ray ray = mainCamera.ScreenPointToRay(controls.Mouse.position.ReadValue<Vector2>());
         // Debug.Log(controls.Mouse.position.ReadValue<Vector2>());
@@ -44,14 +64,14 @@ public class CursorController : MonoBehaviour
     }
     private void StartedClick()
     {
-        ChangeCursor(cursorClicked);
+        // ChangeCursor(cursorClicked);
     }
 
     private void EndedClick()
     {
-        ChangeCursor(cursor);
+        // ChangeCursor(cursor);
 
-        DetectObject();
+        DetectObjectClicked();
     }
     private void OnEnable() 
     {
