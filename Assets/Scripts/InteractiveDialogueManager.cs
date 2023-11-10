@@ -5,9 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using OpenAI;
-
 public class InteractiveDialogueManager : MonoBehaviour
 {
+    const int ERIKA = 0;
+    const int NPC = 1;
     [SerializeField] private Button endButton;
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
@@ -25,7 +26,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     private List<ChatMessage> routerMessages;
     private List<ChatMessage> conversationMessages;
     // will probably deserialize this field once I'm done debugging
-    [SerializeField] private string lastUtterance = "";
+    [SerializeField] private Queue<string> lastTurns = new Queue<string>();
     private string npcName = "";
     private string knotName = "";
 
@@ -88,7 +89,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
-    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, string thisLastUtterance, 
+    public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, List<string> thisLastTurns, 
                                          TextAsset inkJSON, string name, int numTopics, string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
@@ -96,7 +97,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         routerMessages = thisRouterMessages;
         conversationMessages = thisConversationMessages;
-        lastUtterance = thisLastUtterance;
+        lastTurns = new Queue<string>(thisLastTurns);
         knotName = thisKnotName;
         maxTopics = numTopics;
         if (thisKnotName != "")
@@ -147,6 +148,13 @@ public class InteractiveDialogueManager : MonoBehaviour
             {
                 string currentSentence = currentStory.Continue();
                 HandleTags(currentStory.currentTags);
+                if (speakerNameText.text == "Erika")
+                {
+                    UpdateLastTurns(ERIKA, currentSentence);
+                } else
+                {
+                    UpdateLastTurns(NPC, currentSentence);
+                }
                 StartCoroutine(TypeSentence(currentSentence));
             } else 
             {
@@ -175,6 +183,31 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 
+    private string QueueToString(Queue<string> turns)
+    {
+        string context = "";
+        foreach (string turn in turns)
+        {
+            context += turn;
+            if (context[context.Length - 1] != '\n')
+            {
+                context += "\n";
+            }
+        }
+        return context;
+    }
+
+    private void UpdateLastTurns(int speaker, string sentence)
+    {
+        string tag = speaker == ERIKA ? "E: " : "N: ";
+        string turn = tag + sentence;
+        if (lastTurns.Count >= 3)
+        {
+            lastTurns.Dequeue();
+        }
+        lastTurns.Enqueue(turn);
+    }
+
     public async void GetResponse()
     {
         if (inputField.text.Length < 1)
@@ -187,14 +220,15 @@ public class InteractiveDialogueManager : MonoBehaviour
         inputFieldObject.SetActive(false);
         response.text = "...";
         // step 1: pass the user input to the router model—remember to pop from list
-        string routerInputContent = lastUtterance + "\n\n" + userInput;
+        string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
+        Debug.Log("CONTEXT: " + routerInputContent);
+        UpdateLastTurns(ERIKA, userInput);
         ChatMessage routerInput = new ChatMessage()
         {
             Role = "user",
             Content = routerInputContent
         };
         routerMessages.Add(routerInput);
-        // Debug.Log(routerInputContent);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
             Model = "gpt-4", // use GPT-4 for router bc it's more powerful
@@ -235,7 +269,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
             {
                 currentSentence = completionResponse.Choices[0].Message.Content;
-                lastUtterance = currentSentence;
+                UpdateLastTurns(NPC, currentSentence);
             }
             else
             {

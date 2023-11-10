@@ -220,8 +220,9 @@ MonoBehaviour:
   knotName: townsperson_1
   npcName: Townsperson
   flagNumber: -1
-  lastUtterance: "Erika, I heard the news. I\u2019m so sorry, sweetheart. Let me
-    know if there\u2019s anything I can do for you."
+  lastTurnsList:
+  - 'N: Erika, I heard the news. I''m so sorry, sweetheart. Let me know if there''s
+    anything I can do for you.'
   numTopics: 1
 --- !u!1 &56205619
 GameObject:
@@ -736,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite
@@ -1100,7 +1101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite
@@ -2105,12 +2106,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1865546930}
-  inkJSON: {fileID: 0}
-  messagesJSON: {fileID: 0}
+  inkJSON: {fileID: 4900000, guid: 5058c90440e8d4feca33c0f4b495aa62, type: 3}
+  messagesJSON: {fileID: 4900000, guid: 63cf3abfcc3ce4c7fa2459d793563e71, type: 3}
   knotName: townsperson_4
   npcName: Townsperson
   flagNumber: -1
-  lastUtterance: 
+  lastTurnsList:
+  - 'E: Hello, I''m Erika.'
+  - 'N: Erika? Oh, you''re the detective''s... ah. I''m so sorry for your loss.'
   numTopics: 2
 --- !u!1001 &547080853
 PrefabInstance:
@@ -2454,12 +2457,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1501982864}
-  inkJSON: {fileID: 0}
-  messagesJSON: {fileID: 0}
+  inkJSON: {fileID: 4900000, guid: 5058c90440e8d4feca33c0f4b495aa62, type: 3}
+  messagesJSON: {fileID: 4900000, guid: 1aabac0dbd17646daa690e419a970d45, type: 3}
   knotName: townsperson_2
   npcName: Townsperson
   flagNumber: -1
-  lastUtterance: Can I help you?
+  lastTurnsList:
+  - 'N: Can I help you?'
   numTopics: 2
 --- !u!1 &669166709
 GameObject:
@@ -3052,7 +3056,6 @@ MonoBehaviour:
   speakerNameText: {fileID: 303566678}
   portraitAnimator: {fileID: 1388041655}
   sprite: {fileID: 1388041654}
-  lastUtterance: 
   textSpeed: 0.05
   currentSentence: 
 --- !u!4 &786288659
@@ -3649,12 +3652,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualCue: {fileID: 1761216267}
-  inkJSON: {fileID: 0}
-  messagesJSON: {fileID: 0}
+  inkJSON: {fileID: 4900000, guid: 5058c90440e8d4feca33c0f4b495aa62, type: 3}
+  messagesJSON: {fileID: 4900000, guid: c4079a69d910d4b8ebc4880594d35262, type: 3}
   knotName: townsperson_3
   npcName: Townsperson
   flagNumber: -1
-  lastUtterance: 
+  lastTurnsList:
+  - 'E: Hello, I''m Erika.'
+  - 'N: Hello, Erika. What''s this about?'
   numTopics: 1
 --- !u!1 &1055303354
 GameObject:
@@ -6641,7 +6646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250087290414505039, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite

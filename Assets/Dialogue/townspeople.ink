@@ -20,7 +20,7 @@
  =topic_1
 Oh, you mean the detective? #speaking:npc
 No, I don’t know anything. Sorry. I wish I could be more helpful. 
-It’s okay. Thank you. #speaking:npc
+It’s okay. Thank you. #speaking:erika
 
  -> END
  
@@ -42,8 +42,14 @@ It’s okay. Thank you. #speaking:npc
  -> END
  
  =topic_1
+ { topic_1 > 1:
+    -> visited
+ }
 He came to the bar where I work last night. He was with a younger man. His brother, I think? #speaking:npc
 He ordered a whiskey on the rocks and left around midnight. #speaking:npc
+ -> END
+ =visited
+ Sorry, that's all I know. I didn't see him that much last night.... #speaking:npc
  -> END
  
  =topic_2

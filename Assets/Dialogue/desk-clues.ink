@@ -109,7 +109,7 @@ Let's open this, shall we? #speaker1:Erika #speaker2:Julian #portrait1:erika-neu
 }
 =no_julian
 (...) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
-(Oh, August. I would have said yes a million times.)
+(August... I would have said yes a million times.)
 (I wish we could've grown old together.)
 -> END
 =julian
