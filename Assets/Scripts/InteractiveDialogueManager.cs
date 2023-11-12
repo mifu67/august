@@ -42,6 +42,9 @@ public class InteractiveDialogueManager : MonoBehaviour
     private bool isAddingRichTextTag = false;
     private bool playerTurn = false;
     private bool prewrittenMode = true;
+    private bool hasOutro = false;
+
+    [SerializeField] private bool outroPlayed = false;
 
     private OpenAIApi openai = new OpenAIApi();
     private const string PORTRAIT_TAG = "portrait";
@@ -66,7 +69,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
-        endButton.onClick.AddListener(ExitDialogueMode);
+        endButton.onClick.AddListener(EndConversation);
     }
 
     private void Update()
@@ -90,7 +93,8 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
 
     public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, List<string> thisLastTurns, 
-                                         TextAsset inkJSON, string name, int numTopics, string thisKnotName = "")
+                                         TextAsset inkJSON, string name, int numTopics, 
+                                         bool thisHasOutro, string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = true;
@@ -100,9 +104,13 @@ public class InteractiveDialogueManager : MonoBehaviour
         lastTurns = new Queue<string>(thisLastTurns);
         knotName = thisKnotName;
         maxTopics = numTopics;
+        hasOutro = thisHasOutro;
         if (thisKnotName != "")
         {
             currentStory.ChoosePathString(thisKnotName);
+        } else 
+        {
+            currentStory.ChoosePathString("intro");
         }
         inputField.text = "";
         npcName = name;
@@ -131,6 +139,20 @@ public class InteractiveDialogueManager : MonoBehaviour
             }
         }
     }
+    public void EndConversation()
+    {
+        if (hasOutro && !outroPlayed)
+        {
+            currentStory.ChoosePathString("outro");
+            string currentSentence = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
+            StartCoroutine(TypeSentence(currentSentence));
+        } else 
+        {
+            ExitDialogueMode();
+        }
+        outroPlayed = true;
+    }
     public void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
@@ -158,9 +180,13 @@ public class InteractiveDialogueManager : MonoBehaviour
                 StartCoroutine(TypeSentence(currentSentence));
             } else 
             {
-                if (explored_topics.Count == maxTopics)
+                if (outroPlayed)
                 {
                     ExitDialogueMode();
+                }
+                if (explored_topics.Count == maxTopics)
+                {
+                    EndConversation();
                 } else 
                 {
                     prewrittenMode = false;
@@ -221,7 +247,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         response.text = "...";
         // step 1: pass the user input to the router model—remember to pop from list
         string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
-        Debug.Log("CONTEXT: " + routerInputContent);
+        // Debug.Log("CONTEXT: " + routerInputContent);
         UpdateLastTurns(ERIKA, userInput);
         ChatMessage routerInput = new ChatMessage()
         {
@@ -285,7 +311,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     private void NPCTurn()
     {
         // response.text = currentSentence;
-        Debug.Log(currentSentence);
+        // Debug.Log(currentSentence);
         StartCoroutine(TypeSentence(currentSentence));
     }
 

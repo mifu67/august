@@ -109,14 +109,14 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator ExitDialogueMode()
     {
-        yield return new WaitForSeconds(0.2f);
-        dialogueIsPlaying = false;
-        dialoguePanel.SetActive(false);
-        dialogueText.text = "";
         if (sceneToLoad != "")
         {
             SceneManager.LoadScene(sceneToLoad);
         }
+        yield return new WaitForSeconds(0.2f);
+        dialogueIsPlaying = false;
+        dialoguePanel.SetActive(false);
+        dialogueText.text = "";
     }
 
     private void ContinueStory()

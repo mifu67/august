@@ -15,6 +15,9 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("The Ink knot to load")]
     [SerializeField] private string knotName;
+
+    [Header("Scene to Load")]
+    [SerializeField] private string sceneToLoad;
     private bool playerInRange;
     private void Awake()
     {
@@ -29,7 +32,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
-                StartCoroutine(DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName));
+                StartCoroutine(DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName, sceneToLoad));
             }
         }
         else 

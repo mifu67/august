@@ -23,6 +23,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
 
     [SerializeField] private List<string> lastTurnsList = new List<string>();
     [SerializeField] private int numTopics;
+    [SerializeField] private bool hasOutro = false;
     private List<ChatMessage> ConversationMessages = new List<ChatMessage>();
 
     private List<ChatMessage> RouterMessages = new List<ChatMessage>();
@@ -45,7 +46,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             {
                 // enter dialogue mode
                 StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, 
-                ConversationMessages, lastTurnsList, inkJSON, npcName, numTopics, knotName));
+                ConversationMessages, lastTurnsList, inkJSON, npcName, numTopics, hasOutro, knotName));
             }
         }
         else 
