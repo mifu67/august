@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Runtime;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
     private const int flagArrayLen = 10;
+    [SerializeField] private TextAsset globalsInkJSON;
+    private Story globals;
+
     [Header("Event Flags")]
 
     [SerializeField] private bool[] eventFlags = new bool[flagArrayLen];
@@ -20,6 +24,8 @@ public class MainManager : MonoBehaviour
         // we can call MainManager.Instance now
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        globals = new Story(globalsInkJSON.text);
+
         for (int i = 0; i < flagArrayLen; i++)
         {
             eventFlags[i] = false;
@@ -45,5 +51,11 @@ public class MainManager : MonoBehaviour
             return;
         }
         eventFlags[index] = status;
+        // not general, but it's okay at this point
+        if (index == 2)
+        {
+            Debug.Log("Set Julian flag");
+            globals.variablesState["talked_to_julian"] = true;
+        }
     }
 }

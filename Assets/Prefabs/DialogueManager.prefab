@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 0}
+  loadGlobalsJSON: {fileID: 4900000, guid: 8d2752e37bf784eed9a98babec7e8f69, type: 3}
   dialogueText: {fileID: 0}
   speakerNameText: {fileID: 0}
   portrait1Animator: {fileID: 0}
@@ -52,3 +53,4 @@ MonoBehaviour:
   sprite1: {fileID: 0}
   sprite2: {fileID: 0}
   textSpeed: 0.05
+  sceneToLoad: 

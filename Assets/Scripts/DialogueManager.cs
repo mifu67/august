@@ -6,12 +6,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.AI;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
+     
+    [Header("Load Globals JSON")]
+    [SerializeField] private TextAsset loadGlobalsJSON;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private TextMeshProUGUI speakerNameText;
 
@@ -44,6 +46,8 @@ public class DialogueManager : MonoBehaviour
 
     private const string COLOR_TAG = "color";
 
+    // private DialogueVariables dialogueVariables;
+
     private void Awake()
     {
 
@@ -54,6 +58,7 @@ public class DialogueManager : MonoBehaviour
         }
         instance = this;
         Debug.Log("Initializing dialogue manager");
+        // dialogueVariables = new DialogueVariables(loadGlobalsJSON);
         }
     public static DialogueManager GetInstance()
     {
@@ -96,6 +101,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
         sceneToLoad = thisSceneToLoad;
+        // dialogueVariables.StartListening(currentStory);
         // Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
@@ -114,6 +120,7 @@ public class DialogueManager : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
         }
         yield return new WaitForSeconds(0.2f);
+        // dialogueVariables.StopListening(currentStory);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -167,23 +174,23 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey)
             {
                 case SPEAKER_1_TAG:
-                    Debug.Log("speaker1=" + tagValue);
+                    // Debug.Log("speaker1=" + tagValue);
                     speaker1 = tagValue;
                     break;
                 case SPEAKER_2_TAG:
-                    Debug.Log("speaker2=" + tagValue);
+                    // Debug.Log("speaker2=" + tagValue);
                     speaker2 = tagValue;
                     break;
                 case PORTRAIT_1_TAG:
-                    Debug.Log("portrait1=" + tagValue);
+                    // Debug.Log("portrait1=" + tagValue);
                     portrait1Animator.Play(tagValue);
                     break;
                 case PORTRAIT_2_TAG:
-                    Debug.Log("portrait2=" + tagValue);
+                    // Debug.Log("portrait2=" + tagValue);
                     portrait2Animator.Play(tagValue);
                     break;
                 case SPEAKING_TAG:
-                    Debug.Log("speaking=" + tagValue);
+                    // Debug.Log("speaking=" + tagValue);
                     if (tagValue == "speaker1")
                     {
                         sprite1.color = Color.white;

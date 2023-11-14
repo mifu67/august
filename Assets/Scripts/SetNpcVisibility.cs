@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class SetNpcVisibility : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<GameObject> npcs = new List<GameObject>();
+    private void Awake()
     {
-        gameObject.SetActive(false);
-
+        foreach (GameObject npc in npcs)
+        {
+            npc.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf)
+        if (npcs[0].activeSelf)
         {
+            // all NPCs have been activated
             return;
         }
 
         if (MainManager.Instance.EventFlagTriggered(1))
         {
-            gameObject.SetActive(true);
+            foreach (GameObject npc in npcs)
+            {
+                npc.SetActive(true);
+            }
         }
     }
 }
