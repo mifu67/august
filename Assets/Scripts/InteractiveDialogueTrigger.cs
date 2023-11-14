@@ -46,7 +46,7 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             {
                 // enter dialogue mode
                 StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, 
-                ConversationMessages, lastTurnsList, inkJSON, npcName, numTopics, hasOutro, knotName));
+                ConversationMessages, lastTurnsList, inkJSON, npcName, numTopics, hasOutro, flagNumber, knotName));
             }
         }
         else 

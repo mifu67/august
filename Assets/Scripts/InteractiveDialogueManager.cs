@@ -30,6 +30,8 @@ public class InteractiveDialogueManager : MonoBehaviour
     private string npcName = "";
     private string knotName = "";
 
+    private int flagNumber = -1;
+
     [SerializeField]
     private float textSpeed;
 
@@ -94,7 +96,7 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, List<string> thisLastTurns, 
                                          TextAsset inkJSON, string name, int numTopics, 
-                                         bool thisHasOutro, string thisKnotName = "")
+                                         bool thisHasOutro, int thisFlagNumber, string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = true;
@@ -105,6 +107,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         knotName = thisKnotName;
         maxTopics = numTopics;
         hasOutro = thisHasOutro;
+        flagNumber = thisFlagNumber;
         if (thisKnotName != "")
         {
             currentStory.ChoosePathString(thisKnotName);
@@ -159,6 +162,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         explored_topics = new HashSet<string>();
         playerTurn = false;
         dialoguePanel.SetActive(false);
+        MainManager.Instance.SetFlagStatus(flagNumber, true);
         prewrittenMode = true;
         response.text = "";
     }

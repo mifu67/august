@@ -72,7 +72,7 @@ Okay. I’ve got that all down. #speaking:npc
 Thank you, Erika.
 Adrian.... #speaking:erika
 I don't think I'm ever going to be okay again.
-I know. #speaking:adrian #portrait:adrian-angry
+I know. #speaking:npc #portrait:adrian-angry
 I'm so sorry.
 ... Can I go now? #speaking:erika
 Yeah. That's all I needed. #speaking:npc #portrait:adrian-neutral

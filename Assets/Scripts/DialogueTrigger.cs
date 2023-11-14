@@ -27,6 +27,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        if (!MainManager.Instance.EventFlagTriggered(1))
+        {
+            // Player hasn't talked to Adrian yet
+            return;
+        }
+        
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
