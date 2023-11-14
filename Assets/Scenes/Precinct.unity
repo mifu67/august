@@ -2619,6 +2619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Adrian
       objectReference: {fileID: 0}
+    - target: {fileID: 7880102106930266076, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8810467036798909300, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2663,7 +2667,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7880102106930266076, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1628989706849993015, guid: d09d80531e05d4aff845a77e2a9f098a, type: 3}
     m_AddedGameObjects:
