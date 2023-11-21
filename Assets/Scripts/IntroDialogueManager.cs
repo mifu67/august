@@ -27,7 +27,7 @@ public class IntroDialogueManager : MonoBehaviour
     // Dialogue ends
     private void FinishDialogue() {
         Debug.Log("End of intro dialogue.");
-        SceneManager.LoadScene("TitleScene");
+        LevelLoader.GetInstance().LoadSelected("TitleScene");
     }
 
     // Advance through the text 

@@ -15,8 +15,10 @@ public class LevelLoader : MonoBehaviour
         if (instance != null)
         {
             Debug.Log("Found more than one LevelLoader in the scene.");
+            Destroy(gameObject);
             return;
         }
+        // DontDestroyOnLoad(gameObject);
         instance = this;
         }
     public static LevelLoader GetInstance()
@@ -26,6 +28,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadSelected(string sceneToLoad)
     {
+        Debug.Log("Loading scene");
         StartCoroutine(LoadSelectedCoroutine(sceneToLoad));
     }
     IEnumerator LoadSelectedCoroutine(string sceneToLoad)

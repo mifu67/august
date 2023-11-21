@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drawer.unity
     guid: c9fb6aade7f70494b84a2d9e5eb5c23a
+  - enabled: 1
+    path: Assets/Scenes/SceneZero.unity
+    guid: c5d5df5d38e8540829cb6db9884f5662
   m_configObjects: {}
