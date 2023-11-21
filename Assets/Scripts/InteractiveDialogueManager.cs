@@ -23,6 +23,11 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private HashSet<string> explored_topics = new HashSet<string>();
     private int maxTopics = 0;
+    private bool convinced = false;
+    private bool gettingAnswer = true;
+    private bool deductionMode = false;
+    private bool shouldDestroy = false;
+    private GameObject npc;
     private List<ChatMessage> routerMessages;
     private List<ChatMessage> conversationMessages;
     // will probably deserialize this field once I'm done debugging
@@ -36,6 +41,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     private float textSpeed;
 
     private Story currentStory;
+    private Story currentMessages;
     [SerializeField]
     private string currentSentence;
     public bool dialogueIsPlaying { get; private set; }
@@ -90,17 +96,30 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
         if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
         {
-            GetResponse();
+            if (deductionMode)
+            {
+                if (gettingAnswer)
+                {
+                    GetMysteryAnswer();
+                }
+                GetResponseDeductionMode();
+            } 
+            else 
+            {
+                GetResponse();
+            }
         }
     }
 
     public IEnumerator EnterDialogueMode(List<ChatMessage> thisRouterMessages, List<ChatMessage> thisConversationMessages, List<string> thisLastTurns, 
-                                         TextAsset inkJSON, string name, int numTopics, 
-                                         bool thisHasOutro, int thisFlagNumber, string thisKnotName = "")
+                                         TextAsset inkJSON, TextAsset messagesJSON, GameObject thisNpc, bool thisShouldDestroy, string name, int numTopics, 
+                                         bool thisHasOutro, int thisFlagNumber, bool thisDeductionMode, 
+                                         string thisKnotName = "")
     {
         yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = true;
         currentStory = new Story(inkJSON.text);
+        currentMessages = new Story(messagesJSON.text);
         routerMessages = thisRouterMessages;
         conversationMessages = thisConversationMessages;
         lastTurns = new Queue<string>(thisLastTurns);
@@ -108,6 +127,14 @@ public class InteractiveDialogueManager : MonoBehaviour
         maxTopics = numTopics;
         hasOutro = thisHasOutro;
         flagNumber = thisFlagNumber;
+        shouldDestroy = thisShouldDestroy;
+        npc = thisNpc;
+
+        if (thisDeductionMode)
+        {
+            convinced = false;
+        }
+        deductionMode = thisDeductionMode;
         if (thisKnotName != "")
         {
             currentStory.ChoosePathString(thisKnotName);
@@ -142,11 +169,24 @@ public class InteractiveDialogueManager : MonoBehaviour
             }
         }
     }
-    public void EndConversation()
+    public void EndConversation() 
     {
         if (hasOutro && !outroPlayed)
         {
-            currentStory.ChoosePathString("outro");
+            // this is pretty hacky lol
+            if (deductionMode && gettingAnswer)
+            {
+                // we do a little hardcoding
+                currentStory.ChoosePathString("yes_suicide");
+            }
+            else if (deductionMode && !convinced)
+            {
+                currentStory.ChoosePathString("bad_outro");
+            }
+            else 
+            {
+                currentStory.ChoosePathString("outro");
+            }
             string currentSentence = currentStory.Continue();
             HandleTags(currentStory.currentTags);
             StartCoroutine(TypeSentence(currentSentence));
@@ -159,6 +199,10 @@ public class InteractiveDialogueManager : MonoBehaviour
     public void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
+        if (shouldDestroy)
+        {
+            Destroy(npc);
+        }
         explored_topics = new HashSet<string>();
         playerTurn = false;
         dialoguePanel.SetActive(false);
@@ -188,10 +232,16 @@ public class InteractiveDialogueManager : MonoBehaviour
                 {
                     ExitDialogueMode();
                 }
+                if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
+                {
+                    convinced = true;
+                    EndConversation();
+                }
                 if (explored_topics.Count == maxTopics)
                 {
                     EndConversation();
-                } else 
+                } 
+                else 
                 {
                     prewrittenMode = false;
                     playerTurn = true;
@@ -237,7 +287,51 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
         lastTurns.Enqueue(turn);
     }
-
+    public async void GetMysteryAnswer()
+    {
+        if (inputField.text.Length < 1)
+        {
+            return;
+        }
+        speakerNameText.text = npcName;
+        string userInput = inputField.text;
+        inputField.text = "";
+        inputFieldObject.SetActive(false);
+        response.text = "...";
+        ChatMessage routerInput = new ChatMessage()
+        {
+            Role = "user",
+            Content = userInput
+        };
+        routerMessages.Add(routerInput);
+        var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+        {
+            Model = "gpt-3.5-turbo", 
+            Messages = routerMessages,
+            Temperature = 0.0f,
+        });
+        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
+        string slot = completionResponse.Choices[0].Message.Content;
+        if (slot == "none")
+        {
+            currentSentence = "I'm sorry, but that doesn't really answer the question. I'll ask again: did August Laurier commit suicide?";
+        } 
+        else 
+        {
+            prewrittenMode = true;
+            currentStory.ChoosePathString(slot);
+            // if we should continue, overwrite the router messages
+            if (slot == "no_suicide")
+            {
+                routerMessages = new List<ChatMessage>();
+                PopulateMessageList(routerMessages, "router_2");
+                gettingAnswer = false;
+            }
+            // otherwise, end the conversation with the bad ending
+        }
+        playerTurn = false;
+        ContinueStory();
+    }
     public async void GetResponse()
     {
         if (inputField.text.Length < 1)
@@ -261,7 +355,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-4", // use GPT-4 for router bc it's more powerful
+            Model = "gpt-4-1106-preview", // use GPT-4 for router bc it's more powerful
             Messages = routerMessages,
             Temperature = 0.0f,
         });
@@ -273,13 +367,14 @@ public class InteractiveDialogueManager : MonoBehaviour
             // step 2: if the user input matches a prewritten response, add the correct response to messageList and 
             // play the prewritten conversation
             // at this step, add the correct input to the set
-            if (slot.Substring(0, 5) != "bonus") 
+            if (slot[..5] != "bonus") 
             {
                 explored_topics.Add(slot);
             }
             prewrittenMode = true;
             string currTopic = (knotName != "") ? knotName + "." + slot : slot;
             currentStory.ChoosePathString(currTopic);
+            PopulateMessageList(conversationMessages, currTopic);
         } 
         else 
         {
@@ -307,7 +402,75 @@ public class InteractiveDialogueManager : MonoBehaviour
             }
             speakerNameText.text = npcName;
         }
-        // going to have to rework this section 
+        playerTurn = false;
+        ContinueStory();
+    }
+
+    public async void GetResponseDeductionMode()
+    {
+        if (inputField.text.Length < 1)
+        {
+            return;
+        }
+        speakerNameText.text = npcName;
+        string userInput = inputField.text;
+        inputField.text = "";
+        inputFieldObject.SetActive(false);
+        response.text = "...";
+
+        ChatMessage routerInput = new ChatMessage()
+        {
+            Role = "user",
+            Content = userInput
+        };
+        routerMessages.Add(routerInput);
+        var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+        {
+            Model = "gpt-3.5-turbo", 
+            Messages = routerMessages,
+            Temperature = 0.0f,
+        });
+        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
+        string routed = completionResponse.Choices[0].Message.Content;
+        Debug.Log("ROUTED MESSAGE: " + routed);
+        if (routed[..6] == "Reason" || routed[..11] == "Red Herring")
+        {
+            string slot = routed.Replace(' ', '_').ToLower();
+            Debug.Log("SLOT: " + slot);
+            if (slot[..11] != "red_herring")
+            {
+                explored_topics.Add(slot);
+                Debug.Log(explored_topics);
+            }
+            prewrittenMode = true;
+            currentStory.ChoosePathString(slot);
+            PopulateMessageList(conversationMessages, slot);
+        }
+        else 
+        {
+            ChatMessage convoInput = new ChatMessage()
+            {
+                Role = "user",
+                Content = userInput
+            };
+            conversationMessages.Add(convoInput);
+            completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+            {
+                Model = "gpt-3.5-turbo", 
+                Messages = conversationMessages,
+                Temperature = 0.0f,
+            });
+            if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
+            {
+                currentSentence = completionResponse.Choices[0].Message.Content;
+                UpdateLastTurns(NPC, currentSentence);
+            }
+            else
+            {
+                currentSentence = "Sorry, could you say that again?";
+            }
+            speakerNameText.text = npcName;
+        }
         playerTurn = false;
         ContinueStory();
     }
@@ -317,6 +480,25 @@ public class InteractiveDialogueManager : MonoBehaviour
         // response.text = currentSentence;
         // Debug.Log(currentSentence);
         StartCoroutine(TypeSentence(currentSentence));
+    }
+
+    private void PopulateMessageList(List<ChatMessage> messageList, string knotName)
+    {
+        currentMessages.ChoosePathString(knotName);
+        while (currentMessages.canContinue)
+        {
+            string content = currentMessages.Continue();
+            string role = currentMessages.currentTags[0];
+            // Debug.Log(role);
+            // Debug.Log(content);
+            messageList.Add(
+                new ChatMessage()
+                {
+                    Role = role,
+                    Content = content
+                }
+            );
+        }
     }
 
     private void HandleTags(List<string> currentTags)

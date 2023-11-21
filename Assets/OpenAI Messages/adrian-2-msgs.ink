@@ -1,7 +1,19 @@
 VAR num_reasons_explored = 0
 
 ===initial_router===
-You will be annotating user statements about a murder case. \n\nHere are the facts of the case:\n=====\n- Victim: August Laurier. Age: 27. Occupation: Detective.\n- Time of death: around 1:00 A.M.\n- Victim's body was found outside, slumped against a tree.\n- Cause of death: gunshot wound to the right temple. \n- Entrance wound is consistent with a close range or near contact shot by a 0.44 caliber handgun. \n- Powder residue found on the victim’s right glove and near the entrance round.\n- The footprints in the snow suggest that there was no one else around.\n=====\n\nHere is a list of valid reasons used to argue that August was murdered:\n=====\n- 1: August is left handed, but he was shot in the right side of his head.\n- 2: August's gun was found in his desk drawer. He did not have it with him when he died.\n- 3: August died in the exact same manner as Karen Wang, a supposed suicide victim in a case that he was investigating.\n- 4: August had made future plans with Julian, his brother, and Mr. Palomino, his neighbor, on the day that he died.\n=====\n\nHere is a list of red herrings:\n=====\n1. There was a wedding ring found in August's desk. He was probably planning to propose in the near future.\n=====\n\nHere is a list of clues available to the user:\n=====\n- The facts of the case.\n- A pair of left handed scissors belonging to August Laurier.\n- August's revolver, found in his desk drawer.\n- A list of suicides on August's desk with three names highlighted. He was investigating suicides in Larsen.\n- A case file for Karen Wang, one of the highlighted names on the suicide list. It details her cause of death: a near contact shot to the right temple by a 0.44 caliber handgun.\n\nFinally, here are your instructions:\n=====\n- If the user's input partially or fully matches one of the valid reasons used to argue that August was murdered, output the reason number. \n- If the user's output matches multiple valid reasons used to argue that August was murdered, output all reason numbers.\n- If the user's output matches a red herring, output the red herring number.\n- If the user's input matches something in the clue list, add [CLUE] to the beginning of the user's statement. \n- If the user's input contradicts a fact of the case, add [CONTRADICTION] to the beginning of the user's statement.\n- If the user's input is a question, output the user input verbatim. Do not annotate it. Do not answer the question. \n- Otherwise, output the user's input verbatim. Do not annotate it. #system
+Respond 'yes_suicide' if the user's input matches the phrase 'yes, August Laurier killed himself'. Respond 'no_suicide' if the user's input matches the phrase 'no, August Laurier didn't kill himself'. Respond 'none' otherwise. #system
+August was killed #user
+no_suicide #assistant
+Yes #user
+yes_suicide #assistant
+No, he didn't commit suicide #user
+no_suicide #assistant
+I like bananas #user
+none #assistant
+-> END
+
+===router_2===
+You will be annotating user statements about a murder case. \n\nHere are the facts of the case:\n=====\n- Victim: August Laurier. Age: 27. Occupation: Detective.\n- Time of death: around 1:00 A.M.\n- Victim's body was found outside, slumped against a tree.\n- Cause of death: gunshot wound to the right temple. \n- Entrance wound is consistent with a close range or near contact shot by a 0.44 caliber handgun. \n- Powder residue found on the victim’s right glove and near the entrance round.\n- The footprints in the snow suggest that there was no one else around.\n=====\n\nHere is a list of valid reasons used to argue that August was murdered:\n=====\n- 1: August is left handed, but he was shot in the right side of his head.\n- 2: August's gun was found in his desk drawer. He did not have it with him when he died.\n- 3: August died in the exact same manner as Karen Wang, a supposed suicide victim in a case that he was investigating.\n- 4: August had made future plans with Julian, his brother, and Mr. Palomino, his neighbor, on the day that he died.\n=====\n\nHere is a list of red herrings:\n=====\n1. There was a wedding ring found in August's desk. He was probably planning to propose in the near future.\n=====\n\nHere is a list of clues available to the user:\n=====\n- The facts of the case.\n- A pair of left handed scissors belonging to August Laurier.\n- August's revolver, found in his desk drawer.\n- A list of suicides on August's desk with three names highlighted. He was investigating suicides in Larsen.\n- A case file for Karen Wang, one of the highlighted names on the suicide list. It details her cause of death: a near contact shot to the right temple by a 0.44 caliber handgun.\n\nFinally, here are your instructions:\n=====\n- If the user's input partially or fully matches one of the valid reasons used to argue that August was murdered, output the reason number. \n- If the user's output matches multiple valid reasons used to argue that August was murdered, output all reason numbers.\n- If the user's output matches a red herring, output the red herring number.\n- If the user's input matches something in the clue list, add [CLUE] to the beginning of the user's statement. \n- If the user's input contradicts a fact of the case, add [CONTRADICTION] to the beginning of the user's statement.\n- If the user's input is a question, output the user's input verbatim. Do not answer the question. Do not annotate it. \n- Otherwise, output the user's input verbatim. Do not annotate it. #system
 What was August's cause of death? #user
 What was August's cause of death? #assistant
 There was obviously another person at the scene. #user
@@ -25,6 +37,13 @@ Your name is Adrian Richter. You are a detective of the 27th Precinct of the Lar
 So tell me. Did August commit suicide? #assistant
 No. Someone killed him and framed his death to look like a suicide. #user
 F*ck. I had a suspicion that was the case. God damn it. What did you find? #assistant
+-> END
+
+===yes_suicide===
+-> END
+
+===no_suicide===
+F*ck. I had a suspicion that was the case. What did you find? #assistant
 -> END
 
 ===reason_1===
@@ -67,4 +86,8 @@ Karen Wang… that sounds familiar. Let me look at her file. Okay, here it is. �
 Hmm. It is suspicious that he would make plans if he knew he would be dead. Couple that with the fact that none of us thought that August was suicidal....\n\nIt’s troubling, but that argument alone isn’t enough for me to disobey the chief’s orders against investigating his death. Have you discovered anything else that suggests that August didn’t commit suicide?
 }
 It is suspicious that he would make plans if he knew he would be dead. Couple that with the fact that none of us thought that August was suicidal….\n\nI suppose there's a possibility that he deceived us all, but with the other information you've given me, it's all too strange.\n\nI believe you, Erika. I think that someone shot August at close range and manipulated the scene to make it look like a suicide.
+-> END
+
+===red_herring_1===
+There is supposed to be content here.
 -> END

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SetNpcVisibility : MonoBehaviour
 {
+    private bool activated = false;
     [SerializeField] private List<GameObject> npcs = new List<GameObject>();
     private void Awake()
     {
@@ -16,18 +17,23 @@ public class SetNpcVisibility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (npcs[0].activeSelf)
+        if (activated)
         {
-            // all NPCs have been activated
             return;
         }
 
+        // a little hardcoding
         if (MainManager.Instance.EventFlagTriggered(1))
         {
             foreach (GameObject npc in npcs)
             {
+                if (npc == null)
+                {
+                    continue;
+                }
                 npc.SetActive(true);
             }
+            activated = true;
         }
     }
 }

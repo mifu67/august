@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     private const int flagArrayLen = 10;
     [SerializeField] private TextAsset globalsInkJSON;
-    private Story globals;
+    public Story globals;
 
     [Header("Event Flags")]
 

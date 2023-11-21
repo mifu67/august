@@ -100,6 +100,12 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
+        // some hardcoding here
+        if ((bool) MainManager.Instance.globals.variablesState["talked_to_julian"] && 
+        ! (bool) currentStory.variablesState["talked_to_julian"])
+        {
+            currentStory.variablesState["talked_to_julian"] = true;
+        }
         sceneToLoad = thisSceneToLoad;
         // dialogueVariables.StartListening(currentStory);
         // Debug.Log("Entered dialogue mode");

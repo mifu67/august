@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &112741655
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 112741657}
-  - component: {fileID: 112741656}
-  m_Layer: 0
-  m_Name: NpcVisibilityHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &112741656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112741655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d80d42074dd3a4bf19218c7a14bc3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcs:
-  - {fileID: 707902821}
---- !u!4 &112741657
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112741655}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.761685, y: -4.2255073, z: -9.8637495}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &135860551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,7 +2097,7 @@ PrefabInstance:
     - target: {fileID: 1095279259052844563, guid: d9731c5a1ef074067b3c4f960c0146b0, type: 3}
       propertyPath: globalsInkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 83a1d38d9cc6841a4827f0342108af03, type: 3}
+      objectReference: {fileID: 4900000, guid: 8d2752e37bf784eed9a98babec7e8f69, type: 3}
     - target: {fileID: 3457274123881146537, guid: d9731c5a1ef074067b3c4f960c0146b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1284.6262
@@ -2588,6 +2542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a862f663c2b514b19816b85b5c029de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npc: {fileID: 707902821}
   visualCue: {fileID: 7565077887736822323}
   inkJSON: {fileID: 4900000, guid: a9df92c8ab34f4f389b31620040770ac, type: 3}
   messagesJSON: {fileID: 4900000, guid: f81b23df098624544a7a92d7a913493a, type: 3}
@@ -2596,12 +2551,75 @@ MonoBehaviour:
   flagNumber: 2
   lastTurnsList:
   - "E: You\u2014 you know what happened, right?"
-  - "N:eah. Adrian called me. I\u2019m supposed to give a statement tomorrow about
+  - "N: Yeah. Adrian called me. I\u2019m supposed to give a statement tomorrow about
     the hours leading up to his death. Because apparently, I\u2019m the last person
     who saw him alive before he walked over to a park and blew his brains out.  F*cking
     hell. Suicide. I don\u2019t believe it for a f*cking instant."
   numTopics: 6
   hasOutro: 1
+  deductionMode: 0
+  destroyAfterConversation: 1
+--- !u!1001 &7568695436686321873
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 475248898603537884, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_Name
+      value: NpcVisibilityHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730043411230475958, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: npcs.Array.data[0]
+      value: 
+      objectReference: {fileID: 707902821}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.761685
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.2255073
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.8637495
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6323292775862975246, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 447229e2cf1c34419a77142379fd71d5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2623,4 +2641,4 @@ SceneRoots:
   - {fileID: 1834047958}
   - {fileID: 1969191961}
   - {fileID: 200779214}
-  - {fileID: 112741657}
+  - {fileID: 7568695436686321873}

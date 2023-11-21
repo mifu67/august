@@ -89,3 +89,7 @@ It is suspicious that he would make plans if he knew he would be dead. Couple th
 I suppose there's a possibility that he deceived us all, but with the other information you've given me, it's all too strange. 
 I believe you, Erika. I think that someone shot August at close range and manipulated the scene to make it look like a suicide. #portrait:adrian-angry
 -> END
+
+===red_herring_1===
+There is supposed to be content here.
+-> END

@@ -7,6 +7,9 @@ using System;
 
 public class InteractiveDialogueTrigger : MonoBehaviour
 {
+    [Header("Associated NPC")]
+    [SerializeField] private GameObject npc;
+
     [Header("Visual Cue")]
     [SerializeField] private GameObject visualCue;
 
@@ -24,6 +27,8 @@ public class InteractiveDialogueTrigger : MonoBehaviour
     [SerializeField] private List<string> lastTurnsList = new List<string>();
     [SerializeField] private int numTopics;
     [SerializeField] private bool hasOutro = false;
+    [SerializeField] private bool deductionMode = false;
+    [SerializeField] private bool destroyAfterConversation = false;
     private List<ChatMessage> ConversationMessages = new List<ChatMessage>();
 
     private List<ChatMessage> RouterMessages = new List<ChatMessage>();
@@ -45,8 +50,10 @@ public class InteractiveDialogueTrigger : MonoBehaviour
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 // enter dialogue mode
+                // this is so disgusting
                 StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, 
-                ConversationMessages, lastTurnsList, inkJSON, npcName, numTopics, hasOutro, flagNumber, knotName));
+                ConversationMessages, lastTurnsList, inkJSON, messagesJSON, npc, destroyAfterConversation, npcName, 
+                numTopics, hasOutro, flagNumber, deductionMode, knotName));
             }
         }
         else 
