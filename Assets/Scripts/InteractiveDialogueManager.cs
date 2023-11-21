@@ -171,6 +171,11 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     public void EndConversation() 
     {
+        // in case we need to
+        prewrittenMode = true;
+        playerTurn = false;
+        inputFieldObject.SetActive(false);
+        inputField.text = "";
         if (hasOutro && !outroPlayed)
         {
             // this is pretty hacky lol

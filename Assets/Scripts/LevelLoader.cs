@@ -28,7 +28,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadSelected(string sceneToLoad)
     {
-        Debug.Log("Loading scene");
+        // Debug.Log("Loading scene");
         StartCoroutine(LoadSelectedCoroutine(sceneToLoad));
     }
     IEnumerator LoadSelectedCoroutine(string sceneToLoad)

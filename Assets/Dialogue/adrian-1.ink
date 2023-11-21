@@ -11,7 +11,7 @@ It's so f*cking sh*tty.
 You know, he always got into work before me. I half expected that I’d see him at his desk when I got in today, just like always. And I saw his goddamn body last night.
 I’m gonna miss him like hell.
 ... #speaking:erika
-Yeah. Me too. #speaking:npc
+Yeah. Me too. 
 I have to take a statement from you about the hours leading up to his death. I know it's a lot, but it's protocol... anyway. I'll answer your questions first. #speaking:npc #portrait:adrian-angry
 -> END
 
