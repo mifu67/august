@@ -8,7 +8,11 @@ public class NotebookScript : MonoBehaviour
 {
     [SerializeField] private Button openNotebookButton;
     [SerializeField] private Button closeNotebookButton;
+    [SerializeField] private Button notesButton;
+    [SerializeField] private Button profilesButton;
     [SerializeField] private GameObject notebook;
+    [SerializeField] private GameObject profiles;
+    [SerializeField] private GameObject notes;
     public static NotebookScript Instance;
     private void Awake()
     {
@@ -26,6 +30,8 @@ public class NotebookScript : MonoBehaviour
         notebook.SetActive(false);
         openNotebookButton.onClick.AddListener(OpenNotebook);
         closeNotebookButton.onClick.AddListener(CloseNotebook);
+        notesButton.onClick.AddListener(OpenNotes);
+        profilesButton.onClick.AddListener(OpenProfiles);
     }
 
     private void OpenNotebook()
@@ -36,5 +42,17 @@ public class NotebookScript : MonoBehaviour
     private void CloseNotebook()
     {
         notebook.SetActive(false);
+    }
+
+    private void OpenNotes()
+    {
+        profiles.SetActive(false);
+        notes.SetActive(true);
+    }
+
+    private void OpenProfiles()
+    {
+        notes.SetActive(false);
+        profiles.SetActive(true);
     }
 }
