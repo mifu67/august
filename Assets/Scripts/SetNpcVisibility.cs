@@ -6,6 +6,8 @@ public class SetNpcVisibility : MonoBehaviour
 {
     private bool activated = false;
     [SerializeField] private List<GameObject> npcs = new List<GameObject>();
+
+    [SerializeField] private List<GameObject> npcsToHide = new List<GameObject>();
     private void Awake()
     {
         foreach (GameObject npc in npcs)
@@ -34,6 +36,18 @@ public class SetNpcVisibility : MonoBehaviour
                 npc.SetActive(true);
             }
             activated = true;
+        }
+
+        if (MainManager.Instance.EventFlagTriggered(1))
+        {
+            foreach (GameObject npc in npcsToHide)
+            {
+                if (npc == null)
+                {
+                    continue;
+                }
+                npc.SetActive(false);
+            }
         }
     }
 }

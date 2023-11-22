@@ -85,7 +85,6 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "")
     {
         currentStory = new Story(inkJSON.text);
-        // Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
             currentStory.ChoosePathString(knotName);
@@ -107,8 +106,6 @@ public class DialogueManager : MonoBehaviour
             currentStory.variablesState["talked_to_julian"] = true;
         }
         sceneToLoad = thisSceneToLoad;
-        // dialogueVariables.StartListening(currentStory);
-        // Debug.Log("Entered dialogue mode");
         if (knotName != "")
         {
             currentStory.ChoosePathString(knotName);

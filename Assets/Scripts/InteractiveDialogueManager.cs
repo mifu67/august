@@ -23,9 +23,9 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private HashSet<string> explored_topics = new HashSet<string>();
     private int maxTopics = 0;
-    private bool convinced = false;
-    private bool gettingAnswer = true;
-    private bool deductionMode = false;
+    [SerializeField] private bool convinced = false;
+    [SerializeField] private bool gettingAnswer = true;
+    [SerializeField] private bool deductionMode = false;
     private bool shouldDestroy = false;
     private GameObject npc;
     private List<ChatMessage> routerMessages;
@@ -48,9 +48,9 @@ public class InteractiveDialogueManager : MonoBehaviour
     private static InteractiveDialogueManager instance;
 
     private bool isAddingRichTextTag = false;
-    private bool playerTurn = false;
-    private bool prewrittenMode = true;
-    private bool hasOutro = false;
+    [SerializeField] private bool playerTurn = false;
+    [SerializeField] private bool prewrittenMode = true;
+    [SerializeField] private bool hasOutro = false;
 
     [SerializeField] private bool outroPlayed = false;
 
@@ -171,6 +171,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     public void EndConversation() 
     {
+        Debug.Log("Entered EndConversation");
         // in case we need to
         prewrittenMode = true;
         playerTurn = false;
@@ -195,25 +196,26 @@ public class InteractiveDialogueManager : MonoBehaviour
             string currentSentence = currentStory.Continue();
             HandleTags(currentStory.currentTags);
             StartCoroutine(TypeSentence(currentSentence));
+            outroPlayed = true;
         } else 
         {
             ExitDialogueMode();
         }
-        outroPlayed = true;
     }
-    public void ExitDialogueMode()
+    private void ExitDialogueMode()
     {
         dialogueIsPlaying = false;
-        if (shouldDestroy)
-        {
-            Destroy(npc);
-        }
         explored_topics = new HashSet<string>();
         playerTurn = false;
+        outroPlayed = false;
         dialoguePanel.SetActive(false);
         MainManager.Instance.SetFlagStatus(flagNumber, true);
         prewrittenMode = true;
         response.text = "";
+        if (shouldDestroy)
+        {
+            Destroy(npc);
+        }
     }
     private void ContinueStory()
     {
@@ -331,8 +333,11 @@ public class InteractiveDialogueManager : MonoBehaviour
                 routerMessages = new List<ChatMessage>();
                 PopulateMessageList(routerMessages, "router_2");
                 gettingAnswer = false;
+            } else 
+            {
+                // otherwise, end the conversation with the bad ending
+                EndConversation();
             }
-            // otherwise, end the conversation with the bad ending
         }
         playerTurn = false;
         ContinueStory();
