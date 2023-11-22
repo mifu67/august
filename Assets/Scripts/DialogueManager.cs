@@ -82,7 +82,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
     // no wait times for events
-    public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "")
+    public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "")
     {
         currentStory = new Story(inkJSON.text);
         if (knotName != "")
@@ -91,6 +91,7 @@ public class DialogueManager : MonoBehaviour
         }
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        sceneToLoad = thisSceneToLoad;
 
         ContinueStory();
     }

@@ -204,6 +204,11 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     private void ExitDialogueMode()
     {
+        // a little hardcoding
+        if (deductionMode)
+        {
+            LevelLoader.GetInstance().LoadSelected("Ending");
+        }
         dialogueIsPlaying = false;
         explored_topics = new HashSet<string>();
         playerTurn = false;
@@ -242,6 +247,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
                 {
                     convinced = true;
+                    MainManager.Instance.mysterySolved = true;
                     EndConversation();
                 }
                 if (explored_topics.Count == maxTopics)
@@ -293,6 +299,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             lastTurns.Dequeue();
         }
         lastTurns.Enqueue(turn);
+        Debug.Log("LAST TURNS:" + QueueToString(lastTurns));
     }
     public async void GetMysteryAnswer()
     {
@@ -330,8 +337,10 @@ public class InteractiveDialogueManager : MonoBehaviour
             // if we should continue, overwrite the router messages
             if (slot == "no_suicide")
             {
+                UpdateLastTurns(ERIKA, "No. He was killed.");
                 routerMessages = new List<ChatMessage>();
                 PopulateMessageList(routerMessages, "router_2");
+                Debug.Log(routerMessages[0].Content);
                 gettingAnswer = false;
             } else 
             {
@@ -428,10 +437,13 @@ public class InteractiveDialogueManager : MonoBehaviour
         inputFieldObject.SetActive(false);
         response.text = "...";
 
+        string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
+        Debug.Log("CONTENT: " + routerInputContent);
+
         ChatMessage routerInput = new ChatMessage()
         {
             Role = "user",
-            Content = userInput
+            Content = routerInputContent
         };
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
@@ -447,7 +459,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         {
             string slot = routed.Replace(' ', '_').ToLower();
             Debug.Log("SLOT: " + slot);
-            if (slot[..11] != "red_herring")
+            if (slot.Length < 11) // if it's not red_herring
             {
                 explored_topics.Add(slot);
                 Debug.Log(explored_topics);
@@ -458,11 +470,26 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
         else 
         {
-            ChatMessage convoInput = new ChatMessage()
+            // For the deduction presentations, if the reason kind of matches,
+            // we just have Erika say it
+            UpdateLastTurns(ERIKA, userInput);
+            ChatMessage convoInput;
+            if (routed == "[CLUE]" || routed == "[CONTRADICTION]")
             {
-                Role = "user",
-                Content = userInput
-            };
+                convoInput = new ChatMessage()
+                {
+                    Role = "user",
+                    Content = routed + userInput
+                };
+            }
+            else
+            {
+                convoInput = new ChatMessage()
+                {
+                    Role = "user",
+                    Content = userInput
+                };
+            }
             conversationMessages.Add(convoInput);
             completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
@@ -473,6 +500,12 @@ public class InteractiveDialogueManager : MonoBehaviour
             if (completionResponse.Choices != null && completionResponse.Choices.Count > 0)
             {
                 currentSentence = completionResponse.Choices[0].Message.Content;
+                // if LLM doesn't listen to me
+                if (currentSentence[0] == '[')
+                {
+                    int idx = currentSentence.IndexOf(']');
+                    currentSentence = currentSentence.Substring(idx + 2);
+                }
                 UpdateLastTurns(NPC, currentSentence);
             }
             else

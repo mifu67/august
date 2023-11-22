@@ -10,6 +10,9 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TextAsset globalsInkJSON;
     public Story globals;
 
+    // In the future, this would be a list of bools. But for now, this will suffice.
+    public bool mysterySolved = false;
+
     [Header("Event Flags")]
 
     [SerializeField] private bool[] eventFlags = new bool[flagArrayLen];
