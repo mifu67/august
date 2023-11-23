@@ -2209,7 +2209,7 @@ MonoBehaviour:
   numTopics: 2
   hasOutro: 0
   deductionMode: 0
-  destroyAfterConversation: 1
+  destroyAfterConversation: 0
 --- !u!1001 &547080853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3724,7 +3724,7 @@ MonoBehaviour:
   numTopics: 1
   hasOutro: 0
   deductionMode: 0
-  destroyAfterConversation: 0
+  destroyAfterConversation: 1
 --- !u!1 &1055303354
 GameObject:
   m_ObjectHideFlags: 0

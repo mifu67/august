@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying || InteractiveDialogueManager.GetInstance().dialogueIsPlaying || NotebookScript.Instance.getNotebookOpen())
+        // if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
         // DIRECTION ENUM: down = 0, up = 1, left = 2, right = 3
         inputVector.x = Input.GetAxisRaw("Horizontal");
         inputVector.y = Input.GetAxisRaw("Vertical");
@@ -40,11 +45,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying || InteractiveDialogueManager.GetInstance().dialogueIsPlaying)
-        // if (DialogueManager.GetInstance().dialogueIsPlaying)
-        {
-            return;
-        }
         rigidbody2D.MovePosition(rigidbody2D.position + (inputVector * MovementSpeed * Time.fixedDeltaTime));
     }
 }

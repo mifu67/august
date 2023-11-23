@@ -14,6 +14,8 @@ public class NotebookScript : MonoBehaviour
     [SerializeField] private GameObject profiles;
     [SerializeField] private GameObject notes;
     public static NotebookScript Instance;
+    private bool notebookOpen = false;
+
     private void Awake()
     {
         if (Instance != null)
@@ -34,14 +36,20 @@ public class NotebookScript : MonoBehaviour
         profilesButton.onClick.AddListener(OpenProfiles);
     }
 
+    public bool getNotebookOpen()
+    {
+        return notebookOpen;
+    }
     private void OpenNotebook()
     {
         notebook.SetActive(true);
+        notebookOpen = true;
     }
 
     private void CloseNotebook()
     {
         notebook.SetActive(false);
+        notebookOpen = false;
     }
 
     private void OpenNotes()

@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35772fa8d268d44f28104129b1828e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkFile: {fileID: 4900000, guid: c1f3d8718ecf242afa6ec78ca62927e7, type: 3}
+  inkFile: {fileID: 4900000, guid: 104dd0bf6dd3148a190ded28688b1f5a, type: 3}
   message: {fileID: 1569049734}
   textSpeed: 0.05
 --- !u!4 &1201989692
