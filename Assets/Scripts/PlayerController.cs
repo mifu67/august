@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying || InteractiveDialogueManager.GetInstance().dialogueIsPlaying || NotebookScript.Instance.getNotebookOpen())
+        
+        if (DialogueManager.GetInstance().dialogueIsPlaying || InteractiveDialogueManager.GetInstance().dialogueIsPlaying || (NotebookScript.Instance != null && NotebookScript.Instance.getNotebookOpen()))
         // if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
             return;
