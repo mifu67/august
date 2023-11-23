@@ -12,7 +12,7 @@ Why wouldn’t I be? #speaking:speaker1
 I had the worst dream. #speaking:speaker2 #portrait2:erika-sad
 You were murdered, August.
 I didn’t know what to do with myself. I was so lost.
-I’m so sorry. That’s horrible. #speaking:speaker1 
+I’m so sorry. That’s horrible. #speaking:speaker1 #portrait1:august-sad
 But you’re not going anywhere, are you? #speaking:speaker2 #portrait2:erika-neutral
 Of course not, love. Don’t worry. #speaking:speaker1
 I’ll be with you forever. #portrait1:august-dead

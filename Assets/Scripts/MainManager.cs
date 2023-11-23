@@ -13,6 +13,8 @@ public class MainManager : MonoBehaviour
     // In the future, this would be a list of bools. But for now, this will suffice.
     public bool mysterySolved = false;
 
+    public string lastScene = "";
+
     [Header("Event Flags")]
 
     [SerializeField] private bool[] eventFlags = new bool[flagArrayLen];
