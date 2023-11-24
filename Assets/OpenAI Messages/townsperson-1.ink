@@ -14,7 +14,8 @@ Hello, Mr. Palomino. #user
 Erika, I heard the news. I’m so sorry, sweetheart. Let me know if there’s anything I can do for you. #assistant
 -> END
 
-===topic_1===
+===townsperson_1===
+=topic_1
 I don't know. I'm sorry, sweetheart.\n\nThe last time I saw August was on Thursday. I asked him to help me move my TV next week, and he said that he would be happy to help. #assistant
 That's very helpful. Thank you. #user
 -> END

@@ -923,7 +923,7 @@ MonoBehaviour:
   messagesJSON: {fileID: 4900000, guid: a52ae965787114bfe8a9aa7707b6b243, type: 3}
   knotName: 
   npcName: Adrian
-  flagNumber: 1
+  flagNumber: -1
   lastTurnsList: []
   numTopics: 2
   hasOutro: 1

@@ -36,7 +36,10 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         Debug.Log("LAST SCENE: " + SceneManager.GetActiveScene().name);
-        MainManager.Instance.lastScene = SceneManager.GetActiveScene().name;
+        if (MainManager.Instance != null)
+        {
+            MainManager.Instance.lastScene = SceneManager.GetActiveScene().name;
+        }
         SceneManager.LoadScene(sceneToLoad);
     }
 }

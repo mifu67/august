@@ -10,7 +10,8 @@ Hello, I'm Erika. #user
 Can I help you? #assistant
 -> END
 
-===topic_1===
+===townsperson_2===
+=topic_1
 Oh, you mean the detective? No, I don’t know anything. Sorry. I wish I could be more helpful. #assistant
 It’s okay. Thank you. #user
 -> END

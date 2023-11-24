@@ -1,19 +1,19 @@
  ===townsperson_1===
  =intro
- Good morning, Mr. Palomino. #speaking:erika
+ Good morning, Mr. Palomino. #speaking:erika #color:black
  Erika, I heard the news. I'm so sorry, sweetheart. Let me know if there's anything I can do for you. #speaking:npc
  Thank you. #speaking:erika
  -> END
  
  =topic_1
- I don't know. I'm sorry, sweetheart. #speaking:npc
+ I don't know. I'm sorry, sweetheart. #speaking:npc 
  The last time I saw August was on Thursday. I asked him to help me move my TV next week, and he said that he would be happy to help.
  That's very helpful. Thank you. #speaking:erika
  -> END
  
  ===townsperson_2===
  =intro
- Hello, I'm Erika. #speaking:erika
+ Hello, I'm Erika. #speaking:erika #color:black
  Can I help you? #speaking:npc
  -> END
  
@@ -26,18 +26,18 @@ It’s okay. Thank you. #speaking:erika
  
  ===townsperson_3===
  =intro
- Hello, I'm Erika. #speaking:erika
+ Hello, I'm Erika. #speaking:erika #color:black
  Hello, Erika. What's this about? #speaking:npc
  -> END
  
  =topic_1
  August Laurier? No. Sorry. #speaking:npc
- (What? He just left in the middle of our conversation.) #speaking:erika
+ (What? He just left in the middle of our conversation.) #speaking:erika #color:navy
  -> END
  
  ===townsperson_4===
  =intro
- Hello, I'm Erika. #speaking:erika
+ Hello, I'm Erika. #speaking:erika #color:black
  Erika? Oh, you're the detective's... ah. I'm so sorry for your loss. #speaking:npc
  -> END
  
@@ -57,5 +57,5 @@ Suicidal? I don’t know. I’m sorry, Erika. I work in the back of the house, s
 But a guy like that? Young, handsome, and a detective? My hunch is that there’s more to this story than meets the eye. We in the true crime community are definitely trying to figure it out. 
 I'm gonna be talking about this on my podcast this week. Let me know if you want to be interviewed, or if you learn anything that you think could be relevant.
 Uh… okay. Thanks. #speaking:erika
-(Ugh. They’re like vultures.)
+(Ugh. They’re like vultures.) #color:navy
 -> END

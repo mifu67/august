@@ -6,6 +6,8 @@ August was killed #user
 no_suicide #assistant
 Yes #user
 yes_suicide #assistant
+No #user
+no_suicide #assistant
 No, he didn't commit suicide #user
 no_suicide #assistant
 I like bananas #user

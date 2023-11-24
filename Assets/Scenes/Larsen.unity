@@ -2560,7 +2560,7 @@ MonoBehaviour:
   flagNumber: -1
   lastTurnsList:
   - 'N: Can I help you?'
-  numTopics: 2
+  numTopics: 1
   hasOutro: 0
   deductionMode: 0
   destroyAfterConversation: 0

@@ -37,6 +37,13 @@ public class PlayerController : MonoBehaviour
                 setPlayerPosition(9.8f, -5f);
             }
         }
+        else if (currentScene == "Precinct")
+        {
+            if(MainManager.Instance.lastScene == "Desk")
+            {
+                setPlayerPosition(-2f, -2.5f);
+            }
+        }
     }
     // Update is called once per frame
     void Update()

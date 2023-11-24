@@ -196,7 +196,8 @@ public class InteractiveDialogueManager : MonoBehaviour
             {
                 currentStory.ChoosePathString("outro");
             }
-            string currentSentence = currentStory.Continue();
+            currentSentence = currentStory.Continue();
+            Debug.Log("CURRENT SENTENCE:" +  currentSentence);
             HandleTags(currentStory.currentTags);
             StartCoroutine(TypeSentence(currentSentence));
             outroPlayed = true;
@@ -205,6 +206,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             ExitDialogueMode();
         }
     }
+    
     private void ExitDialogueMode()
     {
         // a little hardcoding
@@ -247,13 +249,13 @@ public class InteractiveDialogueManager : MonoBehaviour
                 {
                     ExitDialogueMode();
                 }
-                if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
+                else if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
                 {
                     convinced = true;
                     MainManager.Instance.mysterySolved = true;
                     EndConversation();
                 }
-                if (explored_topics.Count == maxTopics)
+                else if (explored_topics.Count == maxTopics)
                 {
                     EndConversation();
                 } 
@@ -302,7 +304,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             lastTurns.Dequeue();
         }
         lastTurns.Enqueue(turn);
-        Debug.Log("LAST TURNS:" + QueueToString(lastTurns));
+        // Debug.Log("LAST TURNS:" + QueueToString(lastTurns));
     }
     public async void GetMysteryAnswer()
     {
@@ -323,12 +325,13 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-3.5-turbo", 
+            Model = "gpt-4-1106-preview", 
             Messages = routerMessages,
             Temperature = 0.0f,
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
         string slot = completionResponse.Choices[0].Message.Content;
+        // Debug.Log("SLOT:" + slot);
         if (slot == "none")
         {
             currentSentence = "I'm sorry, but that doesn't really answer the question. I'll ask again: did August Laurier commit suicide?";
@@ -343,7 +346,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 UpdateLastTurns(ERIKA, "No. He was killed.");
                 routerMessages = new List<ChatMessage>();
                 PopulateMessageList(routerMessages, "router_2");
-                Debug.Log(routerMessages[0].Content);
+                // Debug.Log(routerMessages[0].Content);
                 gettingAnswer = false;
             } else 
             {
@@ -383,7 +386,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
         string slot = completionResponse.Choices[0].Message.Content;
-        Debug.Log("SLOT: " + slot);
+        // Debug.Log("SLOT: " + slot);
         if (slot != "none")
         {
             // step 2: if the user input matches a prewritten response, add the correct response to messageList and 
@@ -441,7 +444,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         response.text = "...";
 
         string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
-        Debug.Log("CONTENT: " + routerInputContent);
+        // Debug.Log("CONTENT: " + routerInputContent);
 
         ChatMessage routerInput = new ChatMessage()
         {
@@ -457,15 +460,14 @@ public class InteractiveDialogueManager : MonoBehaviour
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
         string routed = completionResponse.Choices[0].Message.Content;
-        Debug.Log("ROUTED MESSAGE: " + routed);
-        if (routed[..6] == "Reason" || routed[..11] == "Red Herring")
+        // Debug.Log("ROUTED MESSAGE: " + routed);
+        if (routed.Length >= 6 && (routed[..6] == "Reason" || routed[..11] == "Red Herring"))
         {
             string slot = routed.Replace(' ', '_').ToLower();
-            Debug.Log("SLOT: " + slot);
+            // Debug.Log("SLOT: " + slot);
             if (slot.Length < 11) // if it's not red_herring
             {
                 explored_topics.Add(slot);
-                Debug.Log(explored_topics);
             }
             prewrittenMode = true;
             currentStory.ChoosePathString(slot);

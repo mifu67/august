@@ -10,6 +10,7 @@ Hello, I'm Erika. #user
 Hello, Erika. What's this about? #assistant
 -> END
 
-===topic_1===
+===townsperson_3===
+=topic_1
 August Laurier? No. Sorry. #assistant
 -> END
