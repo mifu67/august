@@ -203,17 +203,18 @@ public class InteractiveDialogueManager : MonoBehaviour
             outroPlayed = true;
         } else 
         {
-            ExitDialogueMode();
+            StartCoroutine(ExitDialogueMode());
         }
     }
-    
-    private void ExitDialogueMode()
+
+    private IEnumerator ExitDialogueMode()
     {
         // a little hardcoding
         if (deductionMode)
         {
             LevelLoader.GetInstance().LoadSelected("Ending");
         }
+        yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = false;
         explored_topics = new HashSet<string>();
         playerTurn = false;
@@ -247,7 +248,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             {
                 if (outroPlayed)
                 {
-                    ExitDialogueMode();
+                    StartCoroutine(ExitDialogueMode());
                 }
                 else if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
                 {

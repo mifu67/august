@@ -54,10 +54,6 @@ public class InteractiveDialogueTrigger : MonoBehaviour
                 StartCoroutine(InteractiveDialogueManager.GetInstance().EnterDialogueMode(RouterMessages, 
                 ConversationMessages, lastTurnsList, inkJSON, messagesJSON, npc, destroyAfterConversation, npcName, 
                 numTopics, hasOutro, flagNumber, deductionMode, knotName));
-                if (destroyAfterConversation)
-                {
-                    Destroy(gameObject);
-                }
             }
         }
         else 
