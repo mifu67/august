@@ -11,14 +11,14 @@ INCLUDE globals.ink
 (I wonder what he was cutting....)
 -> END
 =julian
-Left handed scissors. These must be August’s. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+Left handed scissors. These must be August’s. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 What was he cutting?
 Probably red string. You know, like the detectives do in the movies? #speaking:speaker2
 I wonder if he’s got one of those crazy pushpin boards hidden away somewhere. #portrait2:julian-happy
 -> END
 
 ===plant===
-(This is dying. Did I overwater it? Did I forget to water it? Who knows. Nothing matters anymore.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(This is dying. Did I overwater it? Did I forget to water it? Who knows. Nothing matters anymore.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy 
 -> END
 
 ===bed===
@@ -35,5 +35,5 @@ I wonder if he’s got one of those crazy pushpin boards hidden away somewhere. 
 (We took this at the bus stop where we first met. I can't believe that was five years ago....) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
-We took this at the bus stop where we first met. I can't believe that was five years ago.... #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+We took this at the bus stop where we first met. I can't believe that was five years ago.... #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 -> END

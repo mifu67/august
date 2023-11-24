@@ -10,7 +10,7 @@ INCLUDE globals.ink
 (So this is August's desk.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
-So this is August's desk. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+So this is August's desk. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 You know, it's messier than I thought it would be. #speaking:speaker2 #portrait2:julian-happy
 I always thought that he was a neat freak. 
 Heh. #speaking:speaker1 #portrait1:erika-happy
@@ -34,7 +34,7 @@ Let's take a look, shall we? #portrait1:erika-neutral
 (Hmm.)
 -> END
 =julian
-This is a list of suicides in Larsen over the past six months. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+This is a list of suicides in Larsen over the past six months. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 F*ck. There are so many. #speaking:speaker2
 Maybe the sh*tty weather here just makes everyone want to kill themselves. 
 ... #speaking:speaker1
@@ -54,12 +54,12 @@ Interesting.
         -> no_julian
 }
 =no_julian
-(A case file. I shouldn't look, but... well. I'm going to look.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(A case file. I shouldn't look, but... well. I'm going to look.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy 
 (“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.”)
 (“Notes: victim suffered from depression. According to mother, she was taking medication and seemed to be getting better. Wang’s mother says her daughter’s suicide was completely unexpected.”)
 -> END
 =julian
-This is a case file. We shouldn't look, but— #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+This is a case file. We shouldn't look, but— #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 Let's open it. #speaking:speaker2
 “Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.” #speaking:speaker1
 “Notes: victim suffered from depression. According to mother, she was taking medication and seemed to be getting better. Wang’s mother says her daughter’s suicide was completely unexpected.”
@@ -79,7 +79,7 @@ Yeah. You'd always be left wondering what went wrong. #speaking:speaker1 #portra
 (I didn't even know that he had this. It's so cute.)
 -> END
 =julian
-This is so cute. I didn't even know that he had this. #speaker1:Erika #speaker2:Julian #portrait1:erika-happy #portrait2:julian-neutral #speaking:speaker1
+This is so cute. I didn't even know that he had this. #speaker1:Erika #speaker2:Julian #portrait1:erika-happy #portrait2:julian-neutral #speaking:speaker1 #color:black
 ... #speaking:speaker2
 August's favorite dinosaur is the plesiosaurus.
 It is? #speaking:speaker1 #portrait1:erika-neutral
@@ -98,7 +98,7 @@ Now I wish that I had. #portrait1:erika-sad
 (Let's open this, shall we?) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
-Let's open this, shall we? #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+Let's open this, shall we? #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 -> END
 
 ===ring===
@@ -113,7 +113,7 @@ Let's open this, shall we? #speaker1:Erika #speaker2:Julian #portrait1:erika-neu
 (I wish we could've grown old together.)
 -> END
 =julian
-...#speaker1:Erika #speaker2:Julian #portrait1:erika-sad #portrait2:julian-neutral #speaking:speaker1
+...#speaker1:Erika #speaker2:Julian #portrait1:erika-sad #portrait2:julian-neutral #speaking:speaker1 #color:black
 Maybe this is what he wanted to show me yesterday. #speaking:speaker2
 I'm so sorry.
 Of course I would have said yes. #speaking:speaker1
@@ -135,7 +135,7 @@ Why did he have to f*cking die, Erika?
 (This must be August's gun. But what is it doing here?) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
-This must be August's gun. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+This must be August's gun. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 What is it doing here? I thought he shot himself in the head. #speaking:speaker2 #portrait2:julian-angry
 He—he did. #speaking:speaker1 #portrait1:erika-sad
 -> END
@@ -150,5 +150,5 @@ He—he did. #speaking:speaker1 #portrait1:erika-sad
 (It's still stained with yesterday's dregs.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
 -> END
 =julian
-It's still stained with yesterday's dregs. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1
+It's still stained with yesterday's dregs. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 -> END
