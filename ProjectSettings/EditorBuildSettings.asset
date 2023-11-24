@@ -30,9 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneZero.unity
     guid: c5d5df5d38e8540829cb6db9884f5662
   - enabled: 1
-    path: Assets/Scenes/Ending.unity
-    guid: b9b8ce5c3f9614ecebffda8a3f1c1b20
-  - enabled: 1
     path: Assets/Scenes/Feedback.unity
     guid: e87b597ade3ae4fb69a7d3785a1c7f74
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: b9b8ce5c3f9614ecebffda8a3f1c1b20
   m_configObjects: {}

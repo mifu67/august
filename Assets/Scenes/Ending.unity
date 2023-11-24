@@ -304,6 +304,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 5172882500148955410, guid: bc31479ea10764f0881c449ead1ee2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5172882500148955410, guid: bc31479ea10764f0881c449ead1ee2e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9184054440665036863, guid: bc31479ea10764f0881c449ead1ee2e8, type: 3}
       propertyPath: transition
       value: 
@@ -848,5 +856,5 @@ SceneRoots:
   - {fileID: 1625300209}
   - {fileID: 306592282}
   - {fileID: 231759286}
-  - {fileID: 1753713905}
   - {fileID: 272184203}
+  - {fileID: 1753713905}
