@@ -12,6 +12,9 @@ public class EventDialogueTrigger : MonoBehaviour
     [Header("Flag Number")]
     [SerializeField] int flagNumber = -1;
 
+    [Header("Trigger this flag after conversation")]
+    [SerializeField] int postConvoFlagNumber = -1;
+
     [Header("Time to wait before triggering dialogue")]
     [SerializeField] float waitTime = 0f;
 
@@ -41,7 +44,7 @@ public class EventDialogueTrigger : MonoBehaviour
     IEnumerator WaitAndTalk()
     {
         yield return new WaitForSeconds(waitTime);
-        DialogueManager.GetInstance().EnterDialogueModeEvent(inkJSON);
+        DialogueManager.GetInstance().EnterDialogueModeEvent(inkJSON, "", "", postConvoFlagNumber);
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collider)

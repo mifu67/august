@@ -46,6 +46,8 @@ public class DialogueManager : MonoBehaviour
 
     private const string COLOR_TAG = "color";
 
+    private int flagNumber = -1;
+
     // private DialogueVariables dialogueVariables;
 
     private void Awake()
@@ -82,7 +84,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
     // no wait times for events
-    public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "")
+    public void EnterDialogueModeEvent(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "", int thisFlagNumber = -1)
     {
         currentStory = new Story(inkJSON.text);
         if (knotName != "")
@@ -92,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
         sceneToLoad = thisSceneToLoad;
+        flagNumber = thisFlagNumber;
 
         ContinueStory();
     }
@@ -124,7 +127,7 @@ public class DialogueManager : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
         }
         yield return new WaitForSeconds(0.2f);
-        // dialogueVariables.StopListening(currentStory);
+        MainManager.Instance.SetFlagStatus(flagNumber, true);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";

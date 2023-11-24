@@ -57,6 +57,10 @@ public class MainManager : MonoBehaviour
         }
         eventFlags[index] = status;
         // not general, but it's okay at this point
+        if (index == 3)
+        {
+            TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys.");
+        }
         if (index == 2)
         {
             Debug.Log("Set Julian flag");
