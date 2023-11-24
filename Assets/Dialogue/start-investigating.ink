@@ -1,1 +1,1 @@
-(I should talk to the townspeople. Also, I should figure out where Julian went. Maybe he knows something.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+(I should ask the townspeople if they know anything about August's death. Also, I should figure out where Julian went. Maybe he knows something.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy

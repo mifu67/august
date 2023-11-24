@@ -80,3 +80,7 @@ August probably left some things that you might want in his desk. It's not stric
 Anyway.
 Just remember what I said. Goodbye, Erika.
 -> END
+
+===bonus_2===
+Honestly? I can't remember. But that would be a good thing to figure out... hey, shouldn't you know that? #speaking:npc #portrait:adrian-neutral
+-> END

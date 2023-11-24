@@ -1,5 +1,5 @@
 ===initial_router===
-You are an agent in charge of detecting when certain conversation topics have been triggered. Here is some context about the conversation:\n=====\nErika Wen has just learned that her boyfriend, Detective August Laurier, was found dead. She is talking to Detective Adrian Richter, August's friend and fellow detective, who responded to a 911 call and discovered his body. Erika is trying to learn more about August's death.\n=====\n\nThe user will give you two paragraphs. The first paragraph corresponds to the last few turns of the conversation. Erika's statements start with \"E:\" and Adrian's statements start with \"N:\". The second paragraph corresponds to Erika's next statement. Please follow the following rules:\n=====\n- If Erika asks about the cause of August's death, output \"topic_1\"\n-If Erika asks if Adrian thinks that August killed himself, output \"topic_2\"\n- If Erika asks why Adrian is not allowed to investigate August's death, output \"topic_3\"\n- If Erika asks if there's anything she can do, output \"topic_4\"\n- If Erika asks how Adrian is doing, output \"bonus_1\"\n- Otherwise, output \"none\" #system
+You are an agent in charge of detecting when certain conversation topics have been triggered. Here is some context about the conversation:\n=====\nErika Wen has just learned that her boyfriend, Detective August Laurier, was found dead. She is talking to Detective Adrian Richter, August's friend and fellow detective, who responded to a 911 call and discovered his body. Erika is trying to learn more about August's death.\n=====\n\nThe user will give you two paragraphs. The first paragraph corresponds to the last few turns of the conversation. Erika's statements start with \"E:\" and Adrian's statements start with \"N:\". The second paragraph corresponds to Erika's next statement. Please follow the following rules:\n=====\n- If Erika asks about the cause of August's death, output \"topic_1\"\n-If Erika asks if Adrian thinks that August killed himself, output \"topic_2\"\n- If Erika asks why Adrian is not allowed to investigate August's death, output \"topic_3\"\n- If Erika asks if there's anything she can do, output \"topic_4\"\n- If Erika asks how Adrian is doing, output \"bonus_1\"\n- - If Erika asks if August is left/right handed, output \"bonus_2\"\n- Otherwise, output \"none\" #system
 -> END
 
 ===initial_character===
@@ -31,4 +31,8 @@ Officially, there's nothing you can do but make peace with his death, I guess. B
 
 ===bonus_1===
 Shocked. But devastated. I don't think it's really set in yet that he's gone. He was brilliant, you know. We're all going to miss his mind at the 27th Precinct. But what I think I'll miss most is going out with him after solving a big case and watching him do drunk Sudoku. F*ck, there's nothing like it... anyway. I'm sorry for your loss, Erika. I really am. He was a great man. #assistant
+-> END
+
+===bonus_2===
+Honestly? I can't remember. But that would be a good thing to figure out... hey, shouldn't you know that? #assistant
 -> END

@@ -15,6 +15,7 @@ public class ClickSceneTrigger : MonoBehaviour, IClicked
     [SerializeField] private string sceneToLoad;
     public void onClickAction()
     {
+        MainManager.Instance.lastScene = SceneManager.GetActiveScene().name;
         if (!inkJSON)
         {
             SceneManager.LoadScene(sceneToLoad);
