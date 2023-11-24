@@ -86,27 +86,30 @@ public class InteractiveDialogueManager : MonoBehaviour
         {
             return;
         }
-        if (InputManager.GetInstance().GetSubmitPressed() && !playerTurn)
+        if (NotebookScript.Instance == null || NotebookScript.Instance.getNotebookOpen() == false)
         {
-            if (!prewrittenMode) 
+            if (InputManager.GetInstance().GetSubmitPressed() && !playerTurn)
             {
-                playerTurn = true;
-            }
-            ContinueStory();
-        }
-        if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
-        {
-            if (deductionMode)
-            {
-                if (gettingAnswer)
+                if (!prewrittenMode) 
                 {
-                    GetMysteryAnswer();
+                    playerTurn = true;
                 }
-                GetResponseDeductionMode();
-            } 
-            else 
+                ContinueStory();
+            }
+            if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
             {
-                GetResponse();
+                if (deductionMode)
+                {
+                    if (gettingAnswer)
+                    {
+                        GetMysteryAnswer();
+                    }
+                    GetResponseDeductionMode();
+                } 
+                else 
+                {
+                    GetResponse();
+                }
             }
         }
     }

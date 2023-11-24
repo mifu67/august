@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-        if (InputManager.GetInstance().GetSubmitPressed())
+        if (InputManager.GetInstance().GetSubmitPressed() && (NotebookScript.Instance == null || NotebookScript.Instance.getNotebookOpen() == false))
         {
             ContinueStory();
         }

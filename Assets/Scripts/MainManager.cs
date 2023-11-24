@@ -61,6 +61,10 @@ public class MainManager : MonoBehaviour
         {
             TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys.");
         }
+        if (index == 1)
+        {
+            TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook.");
+        }
         if (index == 2)
         {
             Debug.Log("Set Julian flag");

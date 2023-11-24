@@ -1,0 +1,1 @@
+(I should talk to the townspeople. Also, I should figure out where Julian went. Maybe he knows something.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
