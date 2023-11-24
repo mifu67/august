@@ -174,7 +174,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     }
     public void EndConversation() 
     {
-        Debug.Log("Entered EndConversation");
+        // Debug.Log("Entered EndConversation");
         // in case we need to
         prewrittenMode = true;
         playerTurn = false;
@@ -197,24 +197,41 @@ public class InteractiveDialogueManager : MonoBehaviour
                 currentStory.ChoosePathString("outro");
             }
             currentSentence = currentStory.Continue();
-            Debug.Log("CURRENT SENTENCE:" +  currentSentence);
+            // Debug.Log("CURRENT SENTENCE:" +  currentSentence);
             HandleTags(currentStory.currentTags);
             StartCoroutine(TypeSentence(currentSentence));
             outroPlayed = true;
         } else 
         {
-            StartCoroutine(ExitDialogueMode());
+            // StartCoroutine(ExitDialogueMode());
+            ExitDialogueMode();
         }
     }
 
-    private IEnumerator ExitDialogueMode()
+    private void ExitDialogueModeButton()
+    {
+        dialogueIsPlaying = false;
+        explored_topics = new HashSet<string>();
+        playerTurn = false;
+        outroPlayed = false;
+        dialoguePanel.SetActive(false);
+        MainManager.Instance.SetFlagStatus(flagNumber, true);
+        prewrittenMode = true;
+        response.text = "";
+        if (shouldDestroy)
+        {
+            Destroy(npc);
+        }
+    }
+
+    private void ExitDialogueMode()
     {
         // a little hardcoding
         if (deductionMode)
         {
             LevelLoader.GetInstance().LoadSelected("Ending");
         }
-        yield return new WaitForSeconds(0.2f);
+        // yield return new WaitForSeconds(0.2f);
         dialogueIsPlaying = false;
         explored_topics = new HashSet<string>();
         playerTurn = false;
@@ -248,7 +265,8 @@ public class InteractiveDialogueManager : MonoBehaviour
             {
                 if (outroPlayed)
                 {
-                    StartCoroutine(ExitDialogueMode());
+                    // StartCoroutine(ExitDialogueMode());
+                    ExitDialogueMode();
                 }
                 else if (deductionMode && explored_topics.Contains("reason_1") || deductionMode && explored_topics.Count == maxTopics)
                 {
