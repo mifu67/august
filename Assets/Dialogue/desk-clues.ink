@@ -15,8 +15,7 @@ You know, it's messier than I thought it would be. #speaking:speaker2 #portrait2
 I always thought that he was a neat freak. 
 Heh. #speaking:speaker1 #portrait1:erika-happy
 He usually is, but when he's busy...
-Or, he was neat, I guess. He's dead now. #portrait1:erika-neutral
-... #portrait1:erika-sad
+Or, he was neat, I guess. He's dead now. #portrait1:erika-sad
 Let's take a look, shall we? #portrait1:erika-neutral
 -> END
 
@@ -28,8 +27,7 @@ Let's take a look, shall we? #portrait1:erika-neutral
 }
 =no_julian
 (This is a list of suicides in Larsen over the past six months.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
-(I guess they'll put August on this list.) #portrait1:erika-sad
-(...)
+(I guess they'll put August on this list.)
 (Three names are highlighted. Karen Wang, Lily Samuelsen, and Anna Arvin.) #portrait1:erika-neutral
 (Hmm.)
 -> END
@@ -65,7 +63,6 @@ Let's open it. #speaking:speaker2
 “Notes: victim suffered from depression. According to mother, she was taking medication and seemed to be getting better. Wang’s mother says her daughter’s suicide was completely unexpected.”
 God damn. Her poor mother. For your daughter to be getting better, and then.... #speaking:speaker2 #portrait2:julian-angry
 Yeah. You'd always be left wondering what went wrong. #speaking:speaker1 #portrait1:erika-sad
-(Why, August? What happened to you?) #color:navy
 -> END
 
 ===dino===
@@ -108,9 +105,7 @@ Let's open this, shall we? #speaker1:Erika #speaker2:Julian #portrait1:erika-neu
         -> no_julian
 }
 =no_julian
-(...) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
-(August... I would have said yes a million times.)
-(I wish we could've grown old together.)
+(August... I would have said yes a million times.) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
 -> END
 =julian
 ...#speaker1:Erika #speaker2:Julian #portrait1:erika-sad #portrait2:julian-neutral #speaking:speaker1 #color:black
@@ -137,7 +132,8 @@ Why did he have to f*cking die, Erika?
 =julian
 This must be August's gun. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 What is it doing here? I thought he shot himself in the head. #speaking:speaker2 #portrait2:julian-angry
-He—he did. #speaking:speaker1 #portrait1:erika-sad
+That's what the police are saying. #speaking:speaker1 #portrait1:erika-sad
+(Hmm....) #portrait1:erika-neutral #color:navy
 -> END
 
 ===mug===
