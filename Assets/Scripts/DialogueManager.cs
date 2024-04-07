@@ -36,6 +36,9 @@ public class DialogueManager : MonoBehaviour
     private string speaker1 = "";
     private string speaker2 = "";
     private bool isAddingRichTextTag = false;
+
+    private bool canContinueToNextLine = false;
+    private bool submitButtonPressedThisFrame = false;
     private const string SPEAKER_1_TAG = "speaker1";
     private const string SPEAKER_2_TAG = "speaker2";
     private const string PORTRAIT_1_TAG = "portrait1";
@@ -78,8 +81,16 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-        if (InputManager.GetInstance().GetSubmitPressed() && (NotebookScript.Instance == null || NotebookScript.Instance.getNotebookOpen() == false))
+        if (InputManager.GetInstance().GetSubmitPressed())
         {
+            if (NotebookScript.Instance == null || !NotebookScript.Instance.getNotebookOpen()) 
+            {
+                submitButtonPressedThisFrame = true; 
+            }
+        }
+        if (canContinueToNextLine && submitButtonPressedThisFrame && (NotebookScript.Instance == null || !NotebookScript.Instance.getNotebookOpen()))
+        {
+            submitButtonPressedThisFrame = false;
             ContinueStory();
         }
     }
@@ -148,9 +159,16 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence) 
     {
+        canContinueToNextLine = false;
         dialogueText.text = sentence;
         dialogueText.maxVisibleCharacters = 0;
         foreach (char letter in sentence.ToCharArray()) {
+            if (submitButtonPressedThisFrame) {
+                Debug.Log("Skip to end of line.");
+                submitButtonPressedThisFrame = false;
+                dialogueText.maxVisibleCharacters = sentence.Length;
+                break;
+            }
             if (letter == '<' || isAddingRichTextTag) {
                 isAddingRichTextTag = true;
                 if (letter == '>') {
@@ -162,6 +180,7 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(textSpeed);
             }
         }
+        canContinueToNextLine = true;
     }
 
     private void HandleTags(List<string> currentTags)
