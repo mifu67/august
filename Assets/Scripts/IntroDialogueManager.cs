@@ -16,6 +16,22 @@ public class IntroDialogueManager : MonoBehaviour
 
     [SerializeField]
     private SignalSentenceEnd signal;
+
+    [SerializeField]
+    private AudioClip dialogueTypingSoundClip;
+
+    [SerializeField]
+    private AudioClip NextLineSoundClip;
+    [Range(1, 5)]
+
+    [SerializeField]
+    private int frequency = 2;
+    // [Range(-3, 3)]
+    // [SerializeField] private float minPitch = 0.5f;
+
+    // [Range(-3, 3)]
+    // [SerializeField] private float maxPitch = 3f;
+    private AudioSource audioSource;
     private bool isAddingRichTextTag = false;
     private bool canContinueToNextLine = false;
     private Coroutine displayLineCoroutine;
@@ -30,6 +46,9 @@ public class IntroDialogueManager : MonoBehaviour
         AdvanceDialogue();
     }
 
+    private void Awake() {
+        audioSource = gameObject.AddComponent<AudioSource>();
+    }
     // Dialogue ends
     private void FinishDialogue() {
         Debug.Log("End of intro dialogue.");
@@ -46,9 +65,10 @@ public class IntroDialogueManager : MonoBehaviour
         string currentSentence = story.Continue();
         displayLineCoroutine = StartCoroutine(TypeSentence(currentSentence));
     }
-
+    
     IEnumerator TypeSentence(string sentence) 
     {
+        yield return new WaitForSeconds(0.6f);
         canContinueToNextLine = false;
         message.text = sentence;
         message.maxVisibleCharacters = 0;
@@ -66,12 +86,22 @@ public class IntroDialogueManager : MonoBehaviour
                 }
             }
             else {
+                PlayDialogueSound(message.maxVisibleCharacters);
                 message.maxVisibleCharacters ++;
                 yield return new WaitForSeconds(textSpeed);
             }
         }
         signal.ShowSignal();
         canContinueToNextLine = true;
+    }
+
+    private void PlayDialogueSound(int currentDisplayedCharacterCount)
+    {
+        if (currentDisplayedCharacterCount % frequency == 0) 
+        {
+            // audioSource.pitch = Random.Range(minPitch, maxPitch);
+            audioSource.PlayOneShot(dialogueTypingSoundClip);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -85,10 +115,16 @@ public class IntroDialogueManager : MonoBehaviour
         {
             if (canContinueToNextLine && submitButtonPressedThisFrame) {
                 submitButtonPressedThisFrame = false;
+                // audioSource.pitch = 1.0f;
+                audioSource.PlayOneShot(NextLineSoundClip);
                 AdvanceDialogue();
             }
         } else {
-            FinishDialogue();
+            if (submitButtonPressedThisFrame) {
+                submitButtonPressedThisFrame = false;
+                audioSource.PlayOneShot(NextLineSoundClip);
+                FinishDialogue();
+            }
         }
     }
 }
