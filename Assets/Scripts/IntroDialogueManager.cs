@@ -13,6 +13,9 @@ public class IntroDialogueManager : MonoBehaviour
     
     [SerializeField]
     private float textSpeed;
+
+    [SerializeField]
+    private SignalSentenceEnd signal;
     private bool isAddingRichTextTag = false;
     private bool canContinueToNextLine = false;
     private Coroutine displayLineCoroutine;
@@ -39,6 +42,7 @@ public class IntroDialogueManager : MonoBehaviour
         {
             StopCoroutine(displayLineCoroutine);
         }
+        signal.HideSignal();
         string currentSentence = story.Continue();
         displayLineCoroutine = StartCoroutine(TypeSentence(currentSentence));
     }
@@ -66,6 +70,7 @@ public class IntroDialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(textSpeed);
             }
         }
+        signal.ShowSignal();
         canContinueToNextLine = true;
     }
     // Update is called once per frame

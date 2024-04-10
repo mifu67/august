@@ -48,6 +48,8 @@ public class InteractiveDialogueManager : MonoBehaviour
     private static InteractiveDialogueManager instance;
 
     private bool isAddingRichTextTag = false;
+    private bool canContinueToNextLine = false;
+    private bool submitButtonPressedThisFrame = false;
     [SerializeField] private bool playerTurn = false;
     [SerializeField] private bool prewrittenMode = true;
     [SerializeField] private bool hasOutro = false;
@@ -88,12 +90,16 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
         if (NotebookScript.Instance == null || NotebookScript.Instance.getNotebookOpen() == false)
         {
-            if (InputManager.GetInstance().GetSubmitPressed() && !playerTurn)
+            if (InputManager.GetInstance().GetSubmitPressed()) {
+                submitButtonPressedThisFrame = true;
+            }
+            if (submitButtonPressedThisFrame && canContinueToNextLine && !playerTurn)
             {
                 if (!prewrittenMode) 
                 {
                     playerTurn = true;
                 }
+                submitButtonPressedThisFrame = false;
                 ContinueStory();
             }
             if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
@@ -157,9 +163,16 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence) 
     {
+        canContinueToNextLine = false;
         dialogueText.text = sentence;
         dialogueText.maxVisibleCharacters = 0;
         foreach (char letter in sentence.ToCharArray()) {
+            if (submitButtonPressedThisFrame) {
+                Debug.Log("Skip to end of line.");
+                submitButtonPressedThisFrame = false;
+                dialogueText.maxVisibleCharacters = sentence.Length;
+                break;
+            }
             if (letter == '<' || isAddingRichTextTag) {
                 isAddingRichTextTag = true;
                 if (letter == '>') {
@@ -171,6 +184,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(textSpeed);
             }
         }
+        canContinueToNextLine = true;
     }
     public void EndConversation() 
     {
