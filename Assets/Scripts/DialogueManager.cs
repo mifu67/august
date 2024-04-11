@@ -35,6 +35,21 @@ public class DialogueManager : MonoBehaviour
 
     private string speaker1 = "";
     private string speaker2 = "";
+
+    [SerializeField]
+    private SignalSentenceEnd signal;
+
+    [SerializeField]
+    private AudioClip dialogueTypingSoundClip;
+
+    [SerializeField]
+    private AudioClip NextLineSoundClip;
+    [Range(1, 5)]
+
+    [SerializeField]
+    private int frequency = 2;
+
+    private AudioSource audioSource;
     private bool isAddingRichTextTag = false;
 
     private bool canContinueToNextLine = false;
@@ -55,13 +70,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (instance != null)
         {
             Debug.Log("Found more than one Dialogue Manager in the scene.");
             return;
         }
         instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         Debug.Log("Initializing dialogue manager");
         // dialogueVariables = new DialogueVariables(loadGlobalsJSON);
         }
@@ -176,11 +191,20 @@ public class DialogueManager : MonoBehaviour
                 }
             }
             else {
+                PlayDialogueSound(dialogueText.maxVisibleCharacters);
                 dialogueText.maxVisibleCharacters ++;
                 yield return new WaitForSeconds(textSpeed);
             }
         }
         canContinueToNextLine = true;
+    }
+
+    private void PlayDialogueSound(int currentDisplayedCharacterCount)
+    {
+        if (currentDisplayedCharacterCount % frequency == 0) 
+        {
+            audioSource.PlayOneShot(dialogueTypingSoundClip);
+        }
     }
 
     private void HandleTags(List<string> currentTags)

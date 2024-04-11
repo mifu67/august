@@ -26,11 +26,7 @@ public class IntroDialogueManager : MonoBehaviour
 
     [SerializeField]
     private int frequency = 2;
-    // [Range(-3, 3)]
-    // [SerializeField] private float minPitch = 0.5f;
 
-    // [Range(-3, 3)]
-    // [SerializeField] private float maxPitch = 3f;
     private AudioSource audioSource;
     private bool isAddingRichTextTag = false;
     private bool canContinueToNextLine = false;
@@ -99,7 +95,6 @@ public class IntroDialogueManager : MonoBehaviour
     {
         if (currentDisplayedCharacterCount % frequency == 0) 
         {
-            // audioSource.pitch = Random.Range(minPitch, maxPitch);
             audioSource.PlayOneShot(dialogueTypingSoundClip);
         }
     }
@@ -115,7 +110,6 @@ public class IntroDialogueManager : MonoBehaviour
         {
             if (canContinueToNextLine && submitButtonPressedThisFrame) {
                 submitButtonPressedThisFrame = false;
-                // audioSource.pitch = 1.0f;
                 audioSource.PlayOneShot(NextLineSoundClip);
                 AdvanceDialogue();
             }
