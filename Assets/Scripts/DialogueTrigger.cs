@@ -18,6 +18,9 @@ public class DialogueTrigger : MonoBehaviour
 
     [Header("Scene to Load")]
     [SerializeField] private string sceneToLoad;
+
+    [Header("-1 if there is no associated piece of evidence")]
+    [SerializeField] private int evidenceIndex = -1;
     private bool playerInRange;
     private void Awake()
     {
@@ -38,7 +41,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
-                StartCoroutine(DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName, sceneToLoad));
+                StartCoroutine(DialogueManager.GetInstance().EnterDialogueMode(inkJSON, knotName, sceneToLoad, evidenceIndex));
             }
         }
         else 

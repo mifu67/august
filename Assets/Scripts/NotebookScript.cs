@@ -19,6 +19,11 @@ public class NotebookScript : MonoBehaviour
     public static NotebookScript Instance;
     private bool notebookOpen = false;
 
+    // I'm thinking that we can just hardcode some indices
+    // Evidence variables here
+    [SerializeField] private List<GameObject> discoveredEvidence = new List<GameObject>();
+    [SerializeField] private GameObject emptyEvidence;
+
     private void Awake()
     {
         if (Instance != null)
@@ -28,6 +33,12 @@ public class NotebookScript : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        emptyEvidence.SetActive(true);
+        foreach (GameObject clue in discoveredEvidence)
+        {
+            clue.SetActive(false);
+        }
     }
 
     private void Start()
@@ -75,5 +86,21 @@ public class NotebookScript : MonoBehaviour
         notes.SetActive(false);
         profiles.SetActive(false);
         evidence.SetActive(true);
+    }
+
+    public void AddEvidence(int index)
+    {
+        if (index == -1)
+        {
+            return;
+        }
+        
+        if (emptyEvidence.activeSelf) {
+            emptyEvidence.SetActive(false);
+        }
+        if (!discoveredEvidence[index].activeSelf)
+        {
+            discoveredEvidence[index].SetActive(true);
+        }
     }
 }

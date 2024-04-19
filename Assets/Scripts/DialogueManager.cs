@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
     private const string COLOR_TAG = "color";
 
     private int flagNumber = -1;
-
+    private int evidenceIndex = -1;
     // private DialogueVariables dialogueVariables;
 
     private void Awake()
@@ -125,10 +125,11 @@ public class DialogueManager : MonoBehaviour
         ContinueStory();
     }
 
-    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "") 
+    public IEnumerator EnterDialogueMode(TextAsset inkJSON, string knotName = "", string thisSceneToLoad = "", int thisEvidenceIndex = -1) 
     {
         yield return new WaitForSeconds(0.2f);
         currentStory = new Story(inkJSON.text);
+        evidenceIndex = thisEvidenceIndex;
         // some hardcoding here
         if ((bool) MainManager.Instance.globals.variablesState["talked_to_julian"] && 
         ! (bool) currentStory.variablesState["talked_to_julian"])
@@ -154,6 +155,7 @@ public class DialogueManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         MainManager.Instance.SetFlagStatus(flagNumber, true);
+        NotebookScript.Instance.AddEvidence(evidenceIndex);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
