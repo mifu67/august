@@ -22,7 +22,7 @@ I wonder if he’s got one of those crazy pushpin boards hidden away somewhere. 
 -> END
 
 ===bed===
-(I don’t know if I’ll be able to sleep tonight. I can’t close my eyes without seeing his face.) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
+(I don’t think I’ll be able to sleep tonight.) #speaker1:Erika #portrait1:erika-sad #speaking:speaker1 #color:navy
 -> END
 
 ===photo===

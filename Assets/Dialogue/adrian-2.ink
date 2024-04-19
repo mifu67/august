@@ -22,7 +22,7 @@ Of course. Goodbye, Erika. #speaking:npc
 -> END
 
 ===no_suicide===
-F*ck. I had a suspicion that was the case. #speaking:npc #portrait:adrian-angry
+Damn it. I had a suspicion that was the case. #speaking:npc #portrait:adrian-angry
 What did you find?
 -> END
 
@@ -30,11 +30,10 @@ What did you find?
 {reason_1 <= 1:
     ~ num_reasons_explored += 1
 }
-August is left handed, but he died of a gunshot wound to the right side of his head. #speaking:erika
-Oh my God. You’re right. He is left handed. He wears his watch on his right wrist, he always has a huge ink smudge on the left side of his left hand, I’ve seen him writing a billion f*cking times…I didn’t even notice. #speaking:npc #portrait:adrian-angry
-I’ve been up since 2… I must have been so tired that I missed it.
-One moment—let me consult the report—yes, here it is. "He was found with the gun in his right hand".
-So that settles it. Not knowing that he was left handed, someone shot August at close range and manipulated the scene to make it look like a suicide.
+August is left handed, but the report says he died of a gunshot wound to the right side of his head. #speaking:erika
+What? The wound was on the right side of his head? Let me see that. #speaking:npc #portrait:adrian-angry
+Oh my God. You’re right. 
+This has to have been intentional. Not knowing that he was left handed, someone shot August at close range and manipulated the scene to make it look like a suicide.
 -> END
 
 ===reason_2===
@@ -65,13 +64,13 @@ I believe you, Erika. I think that someone shot August at close range and manipu
 { num_reasons_explored == 1:
 August was investigating the suicide of a woman named Karen Wang. He died in the same manner as her. #speaking:erika #portrait:adrian-neutral
 Karen Wang... that sounds familiar. Let me look at her file.... Okay, here it is. #speaking:npc
-“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.” Damn. This exactly matches the way that August died. #portrait:adrian-angry
+“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.” #portrait:adrian-angry
 It’s troubling, but that argument alone isn’t enough for me to disobey the chief’s orders against investigating his death. 0.44 caliber pistols are the most common make used by the Larsen Police Force—we can’t rule out sheer coincidence here. 
 Have you discovered anything else that suggests that August didn’t commit suicide? #portrait:adrian-neutral
 - else:
 August was investigating the suicide of a woman named Karen Wang. He died in the same manner as her. #speaking:erika #portrait:adrian-neutral
 Karen Wang... that sounds familiar. Let me look at her file.... Okay, here it is. #speaking:npc
-“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.” Damn. This exactly matches the way that August died. #portrait:adrian-angry
+“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.”  #portrait:adrian-angry
 I suppose it could have been sheer coincidence, but with the other information you've given me, it's too suspicious.
 I believe you, Erika. I think that someone shot August at close range and manipulated the scene to make it look like a suicide.
 }
@@ -104,8 +103,7 @@ If you learned about any plans with a concrete timeframe, that could be helpful.
 ===bad_outro===
 I'm sorry, Erika. But I just don't have enough evidence to conclusively say that August didn't commit suicide. #speaking:npc #portrait:adrian-angry
 I'll try to persuade the chief to open an investigation. But if she says no, there's not much I can do....
-... #speaking:erika
-I understand. Goodbye, Adrian.
+...I understand. Goodbye, Adrian. #speaking:erika
 -> END
 
 ===outro===

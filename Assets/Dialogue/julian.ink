@@ -53,7 +53,7 @@ Jules… #speaking:erika
 ===outro===
 I'm really sorry, Jules. #speaking:erika
 Yeah. I'm sorry, too. #speaking:npc #portrait:julian-neutral
-It must be harder for you. I mean, you guys were so in love—everyone could see it—and… anyway. I’m sorry. I wish I could have done something. 
+I wish I could have done something. 
 Actually... #speaking:erika
 I’ve been trying to figure out what really happened. Something just doesn’t feel right to me about all of this.
 Can you help me?
