@@ -18,7 +18,7 @@ I wonder if he’s got one of those crazy pushpin boards hidden away somewhere. 
 -> END
 
 ===plant===
-(This is dying. Did I overwater it? Did I forget to water it? Who knows. Nothing matters anymore.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy 
+(This is dying. Did I overwater it? Did I forget to water it? Who knows.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy 
 -> END
 
 ===bed===
