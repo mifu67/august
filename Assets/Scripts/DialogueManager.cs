@@ -36,15 +36,15 @@ public class DialogueManager : MonoBehaviour
     private string speaker1 = "";
     private string speaker2 = "";
 
-    [SerializeField]
-    private SignalSentenceEnd signal;
+    // [SerializeField]
+    // private SignalSentenceEnd signal;
 
     [SerializeField]
     private AudioClip dialogueTypingSoundClip;
 
-    [SerializeField]
-    private AudioClip NextLineSoundClip;
-    [Range(1, 5)]
+    // [SerializeField]
+    // private AudioClip NextLineSoundClip;
+    // [Range(1, 5)]
 
     [SerializeField]
     private int frequency = 2;
