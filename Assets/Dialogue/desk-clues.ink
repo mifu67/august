@@ -16,7 +16,7 @@ I always thought that he was a neat freak.
 Heh. #speaking:speaker1 #portrait1:erika-happy
 He usually is, but when he's busy...
 Or, he was neat, I guess. He's dead now. #portrait1:erika-sad
-Let's take a look, shall we? #portrait1:erika-neutral
+... Let's take a look, shall we? #portrait1:erika-neutral
 -> END
 
 ===papers===
@@ -147,4 +147,29 @@ That's what the police are saying. #speaking:speaker1 #portrait1:erika-sad
 -> END
 =julian
 It's still stained with yesterday's dregs. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
+-> END
+
+===notes===
+{   talked_to_julian:
+        -> julian
+    - else:
+        -> no_julian
+}
+=no_julian
+(Hmm? What's this?) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+("Victim: Laurier, August Jean. Sex: M. Age: 28.")
+(The case notes for August's death? Did someone drop them here?)
+(Wait...)
+(Something about this report... I should save this and take a closer look at it later.)
+<b>Police report added to evidence.</b #color:black
+-> END
+=julian
+Hmm? What's this? #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
+"Victim: Laurier, August Jean. Sex: M. Age:28."
+The case notes for August's death? Did someone drop them here?
+We should just take them. I mean, they were on the floor, so it's not like we're stealing classified information, right? #speaking:speaker2
+Okay. Wait a second... #speaking:speaker1
+What? Everything good? #speaking:speaker2
+Somthing about this report... we should take a closer look at it later. #speaking:speaker1
+<b>Police report added to evidence.</b> #color:black
 -> END
