@@ -157,15 +157,15 @@ It's still stained with yesterday's dregs. #speaker1:Erika #speaker2:Julian #por
 }
 =no_julian
 (Hmm? What's this?) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
-("Victim: Laurier, August Jean. Sex: M. Age: 28.")
+("Victim: August J. Laurier. Sex: M. Age: 28.")
 (The case notes for August's death? Did someone drop them here?)
 (Wait...)
 (Something about this report... I should save this and take a closer look at it later.)
-<b>Police report added to evidence.</b #color:black
+<b>Police report added to evidence.</b> #color:black
 -> END
 =julian
 Hmm? What's this? #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
-"Victim: Laurier, August Jean. Sex: M. Age:28."
+"Victim: August J. Laurier. Sex: M. Age:28."
 The case notes for August's death? Did someone drop them here?
 We should just take them. I mean, they were on the floor, so it's not like we're stealing classified information, right? #speaking:speaker2
 Okay. Wait a second... #speaking:speaker1

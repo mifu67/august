@@ -3771,6 +3771,10 @@ PrefabInstance:
       propertyPath: portraitAnimator
       value: 
       objectReference: {fileID: 1640975161}
+    - target: {fileID: 7869483303065481366, guid: 07ed1861b87a8487e92a9722c567c22b, type: 3}
+      propertyPath: dialogueTypingSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4edd3dd9bff5049a6a04d24d138dfe2a, type: 3}
     - target: {fileID: 8011736750985535914, guid: 07ed1861b87a8487e92a9722c567c22b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -53.784584

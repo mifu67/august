@@ -20,8 +20,8 @@ public class IntroDialogueManager : MonoBehaviour
     [SerializeField]
     private AudioClip dialogueTypingSoundClip;
 
-    [SerializeField]
-    private AudioClip NextLineSoundClip;
+    // [SerializeField]
+    // private AudioClip NextLineSoundClip;
     [Range(1, 5)]
 
     [SerializeField]
@@ -64,7 +64,7 @@ public class IntroDialogueManager : MonoBehaviour
     
     IEnumerator TypeSentence(string sentence) 
     {
-        yield return new WaitForSeconds(0.6f);
+        // yield return new WaitForSeconds(0.6f);
         canContinueToNextLine = false;
         message.text = sentence;
         message.maxVisibleCharacters = 0;
@@ -110,13 +110,13 @@ public class IntroDialogueManager : MonoBehaviour
         {
             if (canContinueToNextLine && submitButtonPressedThisFrame) {
                 submitButtonPressedThisFrame = false;
-                audioSource.PlayOneShot(NextLineSoundClip);
+                // audioSource.PlayOneShot(NextLineSoundClip);
                 AdvanceDialogue();
             }
         } else {
             if (submitButtonPressedThisFrame) {
                 submitButtonPressedThisFrame = false;
-                audioSource.PlayOneShot(NextLineSoundClip);
+                // audioSource.PlayOneShot(NextLineSoundClip);
                 FinishDialogue();
             }
         }

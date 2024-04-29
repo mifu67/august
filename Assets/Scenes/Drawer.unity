@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 31b505d779df04c15b19a79e558eb50f, type: 3}
   knotName: ring
+  evidenceIndex: -1
 --- !u!60 &319617830
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -447,6 +448,10 @@ PrefabInstance:
       propertyPath: portrait2Animator
       value: 
       objectReference: {fileID: 2116651211}
+    - target: {fileID: 76615275203787443, guid: 3947971e8852d4eb193c3cf599855652, type: 3}
+      propertyPath: dialogueTypingSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4edd3dd9bff5049a6a04d24d138dfe2a, type: 3}
     - target: {fileID: 1440424568870996166, guid: 3947971e8852d4eb193c3cf599855652, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7728069
@@ -528,6 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 31b505d779df04c15b19a79e558eb50f, type: 3}
   knotName: gun
+  evidenceIndex: 1
 --- !u!60 &1052446908
 PolygonCollider2D:
   m_ObjectHideFlags: 0

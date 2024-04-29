@@ -56,6 +56,14 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     [SerializeField] private bool outroPlayed = false;
 
+    [SerializeField]
+    private AudioClip dialogueTypingSoundClip;
+
+    [SerializeField]
+    private int frequency = 2;
+
+    private AudioSource audioSource;
+
     private OpenAIApi openai = new OpenAIApi();
     private const string PORTRAIT_TAG = "portrait";
     private const string SPEAKING_TAG = "speaking";
@@ -70,6 +78,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             return;
         }
         instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         }
     public static InteractiveDialogueManager GetInstance()
     {
@@ -160,6 +169,13 @@ public class InteractiveDialogueManager : MonoBehaviour
         inputFieldObject.SetActive(false);
         ContinueStory();
     }
+    private void PlayDialogueSound(int currentDisplayedCharacterCount)
+    {
+        if (currentDisplayedCharacterCount % frequency == 0) 
+        {
+            audioSource.PlayOneShot(dialogueTypingSoundClip);
+        }
+    }
 
     IEnumerator TypeSentence(string sentence) 
     {
@@ -180,6 +196,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 }
             }
             else {
+                PlayDialogueSound(dialogueText.maxVisibleCharacters);
                 dialogueText.maxVisibleCharacters ++;
                 yield return new WaitForSeconds(textSpeed);
             }
