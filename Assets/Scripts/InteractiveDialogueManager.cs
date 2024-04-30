@@ -26,6 +26,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     [SerializeField] private bool convinced = false;
     [SerializeField] private bool gettingAnswer = true;
     [SerializeField] private bool deductionMode = false;
+    [SerializeField] private bool tutorialMode = false;
     private bool shouldDestroy = false;
     private GameObject npc;
     private List<ChatMessage> routerMessages;
@@ -113,6 +114,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             }
             if (InputManager.GetInstance().GetInteractPressed() && playerTurn)
             {
+                submitButtonPressedThisFrame = false; // submit and interact have overlap
                 if (deductionMode)
                 {
                     if (gettingAnswer)
@@ -123,7 +125,13 @@ public class InteractiveDialogueManager : MonoBehaviour
                 } 
                 else 
                 {
-                    GetResponse();
+                    if (tutorialMode)
+                    {
+                        GetTutorialAnswer();
+                    } else
+                    {
+                        GetResponse();
+                    }
                 }
             }
         }
@@ -184,7 +192,6 @@ public class InteractiveDialogueManager : MonoBehaviour
         dialogueText.maxVisibleCharacters = 0;
         foreach (char letter in sentence.ToCharArray()) {
             if (submitButtonPressedThisFrame) {
-                Debug.Log("Skip to end of line.");
                 submitButtonPressedThisFrame = false;
                 dialogueText.maxVisibleCharacters = sentence.Length;
                 break;
@@ -286,6 +293,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 HandleTags(currentStory.currentTags);
                 if (speakerNameText.text == "Erika")
                 {
+                    // TODO: need to make a "do not add" tag for stuff that we shouldn't add to the last turns
                     UpdateLastTurns(ERIKA, currentSentence);
                 } else
                 {
@@ -366,7 +374,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         string userInput = inputField.text;
         inputField.text = "";
         inputFieldObject.SetActive(false);
-        response.text = "...";
+        response.text = "(thinking)";
         ChatMessage routerInput = new ChatMessage()
         {
             Role = "user",
@@ -407,6 +415,47 @@ public class InteractiveDialogueManager : MonoBehaviour
         playerTurn = false;
         ContinueStory();
     }
+
+    public async void GetTutorialAnswer ()
+    {
+        // TODO: if a help text object exists, display it.
+        if (inputField.text.Length < 1)
+        {
+            return;
+        }
+        speakerNameText.text = npcName;
+        string userInput = inputField.text;
+        inputField.text = "";
+        inputFieldObject.SetActive(false);
+        response.text = "(thinking)";
+        ChatMessage routerInput = new ChatMessage()
+        {
+            Role = "user",
+            Content = userInput
+        };
+        routerMessages.Add(routerInput);
+        var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
+        {
+            Model = "gpt-4-1106-preview", 
+            Messages = routerMessages,
+            Temperature = 0.0f,
+        });
+        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
+        string slot = completionResponse.Choices[0].Message.Content;
+        Debug.Log("SLOT:" + slot);
+        prewrittenMode = true;
+        currentStory.ChoosePathString(slot);
+        if (slot == "topic_0")
+        {
+            UpdateLastTurns(ERIKA, userInput);
+            routerMessages = new List<ChatMessage>();
+            PopulateMessageList(routerMessages, "router_2");
+            tutorialMode = false;
+        }
+        playerTurn = false;
+        ContinueStory();
+    }
+    // create another method for tutorial mode
     public async void GetResponse()
     {
         if (inputField.text.Length < 1)
@@ -417,7 +466,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         string userInput = inputField.text;
         inputField.text = "";
         inputFieldObject.SetActive(false);
-        response.text = "...";
+        response.text = "(thinking)";
         // step 1: pass the user input to the router model—remember to pop from list
         string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
         // Debug.Log("CONTEXT: " + routerInputContent);
@@ -491,7 +540,7 @@ public class InteractiveDialogueManager : MonoBehaviour
         string userInput = inputField.text;
         inputField.text = "";
         inputFieldObject.SetActive(false);
-        response.text = "...";
+        response.text = "(thinking)";
 
         string routerInputContent = QueueToString(lastTurns) + "\n" + userInput;
         // Debug.Log("CONTENT: " + routerInputContent);

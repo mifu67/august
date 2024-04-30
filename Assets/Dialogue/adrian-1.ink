@@ -10,10 +10,15 @@ You know, he always got into work before me. I half expected that I’d see him 
 I’m gonna miss him like hell.
 Yeah. Me too. #speaking:erika
 I have to take a statement from you about the hours leading up to his death. I know it's a lot, but it's protocol... anyway. I'll answer your questions first. #speaking:npc #portrait:adrian-angry
+(First things first. I have to ask him how August died.) #speaking:erika #color:navy
+-> END
+
+===wrong_question===
+(No, that’s not the right thing to ask right now. I should ask him how August died...) #speaking:erika #color:navy
 -> END
 
 ===topic_0===
-According to the chief, he committed suicide. #speaking:npc #portrait:adrian-neutral
+According to the chief, he committed suicide. #speaking:npc #portrait:adrian-neutral #color:black
 Suicide? #speaking:erika
 I don't believe it. August wasn't suicidal.
 I didn't want to believe it either. But that's what she told me. #speaking:npc

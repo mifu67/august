@@ -181,7 +181,6 @@ public class DialogueManager : MonoBehaviour
         dialogueText.maxVisibleCharacters = 0;
         foreach (char letter in sentence.ToCharArray()) {
             if (submitButtonPressedThisFrame) {
-                Debug.Log("Skip to end of line.");
                 submitButtonPressedThisFrame = false;
                 dialogueText.maxVisibleCharacters = sentence.Length;
                 break;

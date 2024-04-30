@@ -59,11 +59,11 @@ public class MainManager : MonoBehaviour
         // not general, but it's okay at this point
         if (index == 3)
         {
-            TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys.");
+            StartCoroutine(TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys."));
         }
         if (index == 1)
         {
-            TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook.");
+            StartCoroutine(TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook."));
         }
         if (index == 2)
         {

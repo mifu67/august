@@ -1,5 +1,13 @@
 ===initial_router===
-You are an agent in charge of detecting when certain conversation topics have been triggered. Here is some context about the conversation:\n=====\nErika Wen has just learned that her boyfriend, Detective August Laurier, was found dead. She is talking to Detective Adrian Richter, August's friend and fellow detective. Erika is trying to learn more about August's death.\n=====\n\nThe user will give you two paragraphs. The first paragraph corresponds to the last few turns of the conversation. Erika's statements start with \"E:\" and Adrian's statements start with \"N:\". The second paragraph corresponds to Erika's next statement. Please follow the following rules:\n=====\n- If Erika asks about the cause of August's death, output \"topic_1\"\n-If Erika asks if Adrian thinks that August killed himself, output \"topic_2\"\n- If Erika asks why Adrian is not allowed to investigate August's death, output \"topic_3\"\n- If Erika asks if there's anything she can do, output \"topic_4\"\n- If Erika asks how Adrian is doing, output \"bonus_1\"\n- - If Erika asks if August is left/right handed, output \"bonus_2\"\n- Otherwise, output \"none\" #system
+Respond 'topic_0' if the user's input matches the phrase 'how did August Laurier die?'. Respond 'wrong_question' otherwise. #system
+How did August die? #user
+topic_0 #assistant
+Where did you find his body? #user
+wrong_question #assistant
+-> END
+
+===router_2===
+You are an agent in charge of detecting when certain conversation topics have been triggered. Here is some context about the conversation:\n=====\nErika Wen has just learned that her boyfriend, Detective August Laurier, was found dead. She is talking to Detective Adrian Richter, August's friend and fellow detective. Erika is trying to learn more about August's death.\n=====\n\nThe user will give you two paragraphs. The first paragraph corresponds to the last few turns of the conversation. Erika's statements start with \"E:\" and Adrian's statements start with \"N:\". The second paragraph corresponds to Erika's next statement. Please follow the following rules:\n=====\n- If Erika asks about the cause of August's death, or if Erika asks for more information, output \"topic_1\"\n-If Erika asks if Adrian thinks that August killed himself, output \"topic_2\"\n- If Erika asks why Adrian is not allowed to investigate August's death, output \"topic_3\"\n- If Erika asks if there's anything she can do, output \"topic_4\"\n- If Erika asks how Adrian is doing, output \"bonus_1\"\n- - If Erika asks if August is left/right handed, output \"bonus_2\"\n- Otherwise, output \"none\" #system
 -> END
 
 ===initial_character===
@@ -9,10 +17,14 @@ Hey, Erika. I'd ask you how you're doing, but.... Well. It's so f*cking sh*tty. 
 I have to take a statement from you about the hours leading up to his death. I know it's a lot, but it's protocol… anyway. I'll answer your questions first. #assistant
 -> END
 
-===topic_1===
+===topic_0===
 According to the chief, he committed suicide. #assistant
 Suicide? I don't believe it. August wasn't suicidal. #user
 I didn't want to believe it either. But that's what she told me. #assistant
+-> END
+
+===topic_1===
+The only thing that the chief told me is that it was an obvious suicide—gunshot wound to the head with no evidence of another person at the scene. I haven’t seen her report, so I don’t know anything else. The chief thinks that this is an open and shut case, so we’re not investigating it. As his friend… it’s frustrating, to be honest. #assistant
 -> END
 
 ===topic_2===

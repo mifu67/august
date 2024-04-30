@@ -26,16 +26,13 @@ public class TooltipScript : MonoBehaviour
     private void Start()
     {
         tooltip.SetActive(false);
-        closeTooltipButton.onClick.AddListener(CloseTooltip);
     }
 
-    public void openTooltip(string text)
+    public IEnumerator openTooltip(string text)
     {
         TooltipText.text = text;
         tooltip.SetActive(true);
-    }
-    private void CloseTooltip()
-    {
+        yield return new WaitForSeconds(3);
         tooltip.SetActive(false);
     }
 }
