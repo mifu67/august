@@ -26,29 +26,29 @@ I didn't want to believe it either. But that's what she told me. #speaking:npc
 ->END
 
 ===topic_1===
-The only thing that the chief told me is that it was an obvious suicide—gunshot wound to the head with no evidence of another person at the scene. #speaking:npc #portrait:adrian-neutral
+The only thing that the chief told me is that it was an obvious suicide—gunshot wound to the head with no evidence of another person at the scene. #speaking:npc #portrait:adrian-neutral #color:black
 I haven’t seen her report, so I don’t know anything else.
 The chief thinks that this is an open and shut case, so we’re not investigating it. As his friend… it’s frustrating, to be honest.
 ->END
 ===topic_2===
-Honestly? No. #speaking:npc #portrait:adrian-neutral
+Honestly? No. #speaking:npc #portrait:adrian-neutral #color:black
 I spent at least forty hours a week with this guy. Not once did I ever think he was suicidal.
 But the chief thinks it's suicide, and I can't make any other conclusions without investigation. Which I'm not allowed to do. So my hands are tied. #portrait:adrian-angry
 -> END
 
 ===topic_3===
-We're too busy. The chief says we don't have time to waste on obvious suicides. #speaking:npc #portrait:adrian-angry
+We're too busy. The chief says we don't have time to waste on obvious suicides. #speaking:npc #portrait:adrian-angry #color:black
 It pains me to say this, but on some level, I have to agree with her. 
 -> END
 
 ===topic_4===
-Officially, there's nothing you can do but make peace with his death, I guess. #speaking:npc #portrait:adrian-angry
+Officially, there's nothing you can do but make peace with his death, I guess. #speaking:npc #portrait:adrian-angry #color:black
 But unofficially.... #portrait:adrian-neutral
 Look around. Ask around. You might find something. 
 -> END
 
 ===bonus_1===
-Shocked. But devastated. I don't think it's really set in yet that he's gone. #speaking:npc #portrait:adrian-angry
+Shocked. But devastated. I don't think it's really set in yet that he's gone. #speaking:npc #portrait:adrian-angry #color:black
 He was brilliant, you know. We're all going to miss his mind at the 27th Precinct.
 But what I think I'll miss most is going out with him after solving a big case and watching him do drunk Sudoku. F*ck, there's nothing like it... anyway. 
 I'm sorry for your loss, Erika. I really am. He was a great man.
@@ -56,7 +56,7 @@ I'm sorry for your loss, Erika. I really am. He was a great man.
 
 ===outro===
 {not topic_4:
-Is there anything I can do? #speaking:erika
+Is there anything I can do? #speaking:erika #color:black
 Officially, there's nothing you can do but make peace with his death, I guess. #speaking:npc #portrait:adrian-angry
 But unofficially.... #portrait:adrian-neutral
 Look around. Ask around. You might find something.
