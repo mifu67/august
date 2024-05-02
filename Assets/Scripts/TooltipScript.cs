@@ -28,11 +28,11 @@ public class TooltipScript : MonoBehaviour
         tooltip.SetActive(false);
     }
 
-    public IEnumerator openTooltip(string text)
+    public IEnumerator openTooltip(string text, int seconds=3)
     {
         TooltipText.text = text;
         tooltip.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(seconds);
         tooltip.SetActive(false);
     }
 }

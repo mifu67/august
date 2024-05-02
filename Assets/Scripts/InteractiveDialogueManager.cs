@@ -319,6 +319,10 @@ public class InteractiveDialogueManager : MonoBehaviour
                 } 
                 else 
                 {
+                    if (tutorialMode)
+                    {
+                        StartCoroutine(TooltipScript.Instance.openTooltip("Try typing 'How did August die?' into the dialogue box.", 5));
+                    }
                     prewrittenMode = false;
                     playerTurn = true;
                     response.text = "";
@@ -440,7 +444,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             Messages = routerMessages,
             Temperature = 0.0f,
         });
-        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
+        routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to pollute the context window
         string slot = completionResponse.Choices[0].Message.Content;
         Debug.Log("SLOT:" + slot);
         prewrittenMode = true;
@@ -650,6 +654,7 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
+        // TODO: create (should have popup) and (don't populate messages) tags
         foreach (string tag in currentTags)
         {
             // parse the tag
