@@ -10,6 +10,11 @@ public class TooltipScript : MonoBehaviour
     [SerializeField] private Button closeTooltipButton;
     [SerializeField] private TextMeshProUGUI TooltipText;
 
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip ding;
+
     public static TooltipScript Instance;
 
     private void Awake()
@@ -20,6 +25,7 @@ public class TooltipScript : MonoBehaviour
             return;
         }
         Instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -32,6 +38,7 @@ public class TooltipScript : MonoBehaviour
     {
         TooltipText.text = text;
         tooltip.SetActive(true);
+        audioSource.PlayOneShot(ding);
         yield return new WaitForSeconds(seconds);
         tooltip.SetActive(false);
     }

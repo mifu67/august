@@ -63,7 +63,7 @@ public class MainManager : MonoBehaviour
         }
         if (index == 1)
         {
-            StartCoroutine(TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook."));
+            // StartCoroutine(TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook."));
         }
         if (index == 2)
         {

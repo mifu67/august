@@ -70,6 +70,7 @@ public class InteractiveDialogueManager : MonoBehaviour
     private const string SPEAKING_TAG = "speaking";
     private const string COLOR_TAG = "color";
 
+    private const string TOOLTIP_TAG = "tooltip";
     private void Awake()
     {
 
@@ -321,7 +322,7 @@ public class InteractiveDialogueManager : MonoBehaviour
                 {
                     if (tutorialMode)
                     {
-                        StartCoroutine(TooltipScript.Instance.openTooltip("Try typing 'How did August die?' into the dialogue box.", 5));
+                        StartCoroutine(TooltipScript.Instance.openTooltip("You're the detective! Type anything you want in the dialogue box. For instance, try asking how August died.", 7));
                     }
                     prewrittenMode = false;
                     playerTurn = true;
@@ -359,6 +360,10 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private void UpdateLastTurns(int speaker, string sentence)
     {
+        if (sentence == "") {
+            Debug.Log("Nothing to update");
+            return;
+        }
         string tag = speaker == ERIKA ? "E: " : "N: ";
         string turn = tag + sentence;
         if (lastTurns.Count >= 3)
@@ -686,6 +691,9 @@ public class InteractiveDialogueManager : MonoBehaviour
                     break;
                 case COLOR_TAG:
                     setTextColor(tagValue);
+                    break;
+                case TOOLTIP_TAG:
+                    StartCoroutine(TooltipScript.Instance.openTooltip(tagValue, 10));
                     break;
                 default:
                     Debug.LogWarning("Tag came in but has no handler: " + tag);

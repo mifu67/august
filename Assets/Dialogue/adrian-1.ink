@@ -22,13 +22,15 @@ According to the chief, he committed suicide. #speaking:npc #portrait:adrian-neu
 Suicide? #speaking:erika
 I don't believe it. August wasn't suicidal.
 I didn't want to believe it either. But that's what she told me. #speaking:npc
-(The police chief thinks that it was suicide. That might be important...) #speaking:erika #color:navy
+(The police chief thinks that it was suicide. That might be important...) #speaking:erika #color:navy #tooltip:You can keep track of important information in your notebook.
+(I wonder if he knows anything else about the crime scene?)
 ->END
 
 ===topic_1===
 The only thing that the chief told me is that it was an obvious suicide—gunshot wound to the head with no evidence of another person at the scene. #speaking:npc #portrait:adrian-neutral #color:black
 I haven’t seen her report, so I don’t know anything else.
 The chief thinks that this is an open and shut case, so we’re not investigating it. As his friend… it’s frustrating, to be honest.
+(Huh? Not investigating it? Why not?) #speaking:erika #color:navy
 ->END
 ===topic_2===
 Honestly? No. #speaking:npc #portrait:adrian-neutral #color:black
