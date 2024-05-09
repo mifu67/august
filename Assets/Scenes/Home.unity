@@ -1312,7 +1312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263483075}
   m_Layer: 5
-  m_Name: Empty
+  m_Name: EmptyQuest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3017,7 +3017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 794721009}
   m_Layer: 5
-  m_Name: Empty
+  m_Name: EmptyEvidence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5425,7 +5425,11 @@ MonoBehaviour:
   - {fileID: 1933810516}
   - {fileID: 360715306}
   - {fileID: 21548501}
+  questList:
+  - {fileID: 1980245307}
+  - {fileID: 1971589191}
   emptyEvidence: {fileID: 794721008}
+  emptyQuest: {fileID: 263483074}
 --- !u!1 &1411814250
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,6 +6727,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}
+--- !u!1 &1971589191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7092868993563391198, guid: c16f48e1588c84dfeba43b8f8b1d57b3, type: 3}
+  m_PrefabInstance: {fileID: 1725299427578731361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1980245307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7092868993563391198, guid: c16f48e1588c84dfeba43b8f8b1d57b3, type: 3}
+  m_PrefabInstance: {fileID: 3605891282710993551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1984816653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1340885785856093343, guid: 4feaa10b4d58c4aada5b3048172eb604, type: 3}

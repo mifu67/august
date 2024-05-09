@@ -26,7 +26,9 @@ public class NotebookScript : MonoBehaviour
     // I'm thinking that we can just hardcode some indices
     // Evidence variables here
     [SerializeField] private List<GameObject> discoveredEvidence = new List<GameObject>();
+    [SerializeField] private List<GameObject> questList = new List<GameObject>();
     [SerializeField] private GameObject emptyEvidence;
+    [SerializeField] private GameObject emptyQuest;
 
     private void Awake()
     {
@@ -43,6 +45,13 @@ public class NotebookScript : MonoBehaviour
         {
             clue.SetActive(false);
         }
+
+        emptyQuest.SetActive(true);
+        foreach (GameObject quest in questList)
+        {
+            quest.SetActive(false);
+        }
+
         tabs.Add(notes);
         tabs.Add(profiles);
         tabs.Add(evidence);
@@ -136,19 +145,20 @@ public class NotebookScript : MonoBehaviour
         }
     }
 
+    // change to iEnumerator later
     public void AddQuest(int index) 
     {
-        if (emptyEvidence.activeSelf) {
-            emptyEvidence.SetActive(false);
+        if (emptyQuest.activeSelf) {
+            emptyQuest.SetActive(false);
         }
-        if (!discoveredEvidence[index].activeSelf)
-        {
-            discoveredEvidence[index].SetActive(true);
-        }
+        questList[index].SetActive(true);
+        // surface the new quest indicator for 3 seconds
     }
 
     public void CompleteQuest(int index)
     {
-        // quest index.get component complete. setactive true
+        Debug.Log("Quest completed."); // placeholder
+        // surface an indicator of quest completion
+        // make COMPLETED text visible
     }
 }

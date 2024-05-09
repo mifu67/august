@@ -10,7 +10,7 @@ public class MainManager : MonoBehaviour
     [SerializeField] private TextAsset globalsInkJSON;
     public Story globals;
 
-    // In the future, this would be a list of bools. But for now, this will suffice.
+    // In a fully realized game, this would be a list of bools. But for now, this will suffice.
     public bool mysterySolved = false;
 
     public string lastScene = "";
@@ -57,15 +57,18 @@ public class MainManager : MonoBehaviour
         }
         eventFlags[index] = status;
         // not general, but it's okay at this point
-        if (index == 3)
+        if (index == 3) // IntroDialogueConcluded
         {
             StartCoroutine(TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys."));
+            NotebookScript.Instance.CompleteQuest(0);
+            NotebookScript.Instance.AddQuest(0);
         }
-        if (index == 1)
+        if (index == 1) // TalkedToAdrian
         {
-            // StartCoroutine(TooltipScript.Instance.openTooltip("Tip: you can take down notes about the clues that you investigate in your notebook."));
+            // make items clickable
+            NotebookScript.Instance.AddQuest(1); // Adrian's Intel
         }
-        if (index == 2)
+        if (index == 2) // TalkedToJulian
         {
             Debug.Log("Set Julian flag");
             globals.variablesState["talked_to_julian"] = true;

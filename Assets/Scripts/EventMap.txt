@@ -1,6 +1,10 @@
 IntroSceneLoaded: 0
     - don't load the intro scene if this is true
-TalkedToAdrian: 
+TalkedToAdrian: 1
     - allow click interactions if this is true
-TaledToJulian: 2
+    - activate quest "Suicide? Or Something Else?"
+TalkedToJulian: 2
     - add Julian to conversations if this is true
+IntroDialogueConcluded: 3
+    - surface movement tooltip
+    - activate quest "Adrian's Intel"
