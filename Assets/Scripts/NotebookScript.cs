@@ -167,7 +167,6 @@ public class NotebookScript : MonoBehaviour
     public void CompleteQuest(int index)
     {
         Debug.Log("Quest completed."); // placeholder
-        // surface an indicator of quest completion
-        // make COMPLETED text visible
+        questList[index].GetComponent<Quest>().MarkQuestCompleted();
     }
 }
