@@ -294,6 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4570044702385577209}
   - component: {fileID: 7151507579785165956}
+  - component: {fileID: 2427970078221178407}
   m_Layer: 5
   m_Name: EvidenceEntry
   m_TagString: Untagged
@@ -335,6 +336,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897291647930419315}
   m_CullTransparentMesh: 1
+--- !u!114 &2427970078221178407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897291647930419315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffea2ae61483400a93c4d8a0094d9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDetails: 0
+  detailsIndicator: {fileID: 6060095927061881371}
+  detailsButton: {fileID: 2133331600503384877}
+  details: {fileID: 0}
 --- !u!1 &5435838593993317222
 GameObject:
   m_ObjectHideFlags: 0

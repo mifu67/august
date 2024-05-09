@@ -30,6 +30,7 @@ Or, he was neat, I guess. He's dead now. #portrait1:erika-sad
 (I guess they'll put August on this list.)
 (Three names are highlighted. Karen Wang, Lily Samuelsen, and Anna Arvin.) #portrait1:erika-neutral
 (Hmm.)
+<b>List of names added to evidence.</b> #color:black
 -> END
 =julian
 This is a list of suicides in Larsen over the past six months. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
@@ -43,6 +44,7 @@ Damn. #speaking:speaker2 #portrait2:julian-angry
 Wait, three of these names are highlighted. #portrait2:julian-neutral
 Yeah, I’m just noticing that. Karen Wang, Lily Samuelsen, and Anna Arvin. #speaking:speaker1 #portrait1:erika-neutral
 Interesting.
+<b>List of names added to evidence.</b> #color:black
 -> END 
 
 ===file===
@@ -54,15 +56,15 @@ Interesting.
 =no_julian
 (A case file. I shouldn't look, but... well. I'm going to look.) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy 
 (“Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.”)
-(“Notes: victim suffered from depression. According to mother, she was taking medication and seemed to be getting better. Wang’s mother says her daughter’s suicide was completely unexpected.”)
+(Maybe August was investigating this case? It could be relevant.)
+<b>Police report added to evidence.</b> #color:black
 -> END
 =julian
 This is a case file. We shouldn't look, but— #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 Let's open it. #speaking:speaker2
 “Karen Wang. Age: 25. Cause of death: direct shot to the right temple with a 0.44 caliber pistol. Presumed to be self-inflicted.” #speaking:speaker1
-“Notes: victim suffered from depression. According to mother, she was taking medication and seemed to be getting better. Wang’s mother says her daughter’s suicide was completely unexpected.”
-God damn. Her poor mother. For your daughter to be getting better, and then.... #speaking:speaker2 #portrait2:julian-angry
-Yeah. You'd always be left wondering what went wrong. #speaking:speaker1 #portrait1:erika-sad
+Maybe August was investigating this case? It could be relevant.
+<b>Police report added to evidence.</b> #color:black
 -> END
 
 ===dino===
@@ -128,12 +130,14 @@ Why did he have to f*cking die, Erika?
 }
 =no_julian
 (This must be August's gun. But what is it doing here?) #speaker1:Erika #portrait1:erika-neutral #speaking:speaker1 #color:navy
+<b>Revolver added to evidence.</b> #color:black
 -> END
 =julian
 This must be August's gun. #speaker1:Erika #speaker2:Julian #portrait1:erika-neutral #portrait2:julian-neutral #speaking:speaker1 #color:black
 What is it doing here? I thought he shot himself in the head. #speaking:speaker2 #portrait2:julian-angry
 That's what the police are saying. #speaking:speaker1 #portrait1:erika-sad
 (Hmm....) #portrait1:erika-neutral #color:navy
+<b>Revolver added to evidence.</b> #color:black
 -> END
 
 ===mug===

@@ -12,10 +12,14 @@ public class NotebookScript : MonoBehaviour
     [SerializeField] private Button notesButton;
     [SerializeField] private Button profilesButton;
     [SerializeField] private Button evidenceButton;
+    [SerializeField] private Button questsButton;
     [SerializeField] private GameObject notebook;
     [SerializeField] private GameObject profiles;
     [SerializeField] private GameObject evidence;
+    [SerializeField] private GameObject quests;
     [SerializeField] private GameObject notes;
+
+    private List<GameObject> tabs = new List<GameObject>();
     public static NotebookScript Instance;
     private bool notebookOpen = false;
 
@@ -39,6 +43,10 @@ public class NotebookScript : MonoBehaviour
         {
             clue.SetActive(false);
         }
+        tabs.Add(notes);
+        tabs.Add(profiles);
+        tabs.Add(evidence);
+        tabs.Add(quests);
     }
 
     private void Start()
@@ -49,6 +57,7 @@ public class NotebookScript : MonoBehaviour
         notesButton.onClick.AddListener(OpenNotes);
         profilesButton.onClick.AddListener(OpenProfiles);
         evidenceButton.onClick.AddListener(OpenEvidence);
+        questsButton.onClick.AddListener(OpenQuests);
     }
 
     public bool getNotebookOpen()
@@ -69,23 +78,46 @@ public class NotebookScript : MonoBehaviour
 
     private void OpenNotes()
     {
-        profiles.SetActive(false);
-        evidence.SetActive(false);
         notes.SetActive(true);
+        foreach (GameObject tab in tabs) {
+            if (tab != notes)
+            {
+                tab.SetActive(false); 
+            }
+        }
     }
 
     private void OpenProfiles()
     {
-        notes.SetActive(false);
-        evidence.SetActive(false);
         profiles.SetActive(true);
+        foreach (GameObject tab in tabs) {
+            if (tab != profiles)
+            {
+                tab.SetActive(false); 
+            }
+        }
     }
 
     private void OpenEvidence()
     {
-        notes.SetActive(false);
-        profiles.SetActive(false);
         evidence.SetActive(true);
+        foreach (GameObject tab in tabs) {
+            if (tab != evidence)
+            {
+                tab.SetActive(false); 
+            }
+        }
+    }
+
+    private void OpenQuests()
+    {
+        quests.SetActive(true);
+        foreach (GameObject tab in tabs) {
+            if (tab != quests)
+            {
+                tab.SetActive(false); 
+            }
+        }
     }
 
     public void AddEvidence(int index)
@@ -102,5 +134,21 @@ public class NotebookScript : MonoBehaviour
         {
             discoveredEvidence[index].SetActive(true);
         }
+    }
+
+    public void AddQuest(int index) 
+    {
+        if (emptyEvidence.activeSelf) {
+            emptyEvidence.SetActive(false);
+        }
+        if (!discoveredEvidence[index].activeSelf)
+        {
+            discoveredEvidence[index].SetActive(true);
+        }
+    }
+
+    public void CompleteQuest(int index)
+    {
+        // quest index.get component complete. setactive true
     }
 }
