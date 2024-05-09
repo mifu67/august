@@ -59,14 +59,14 @@ public class MainManager : MonoBehaviour
         // not general, but it's okay at this point
         if (index == 3) // IntroDialogueConcluded
         {
-            StartCoroutine(TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys."));
-            NotebookScript.Instance.CompleteQuest(0);
-            NotebookScript.Instance.AddQuest(0);
+            // StartCoroutine(TooltipScript.Instance.openTooltip("Tip: move with the arrow or WASD keys."));
+            StartCoroutine(NotebookScript.Instance.AddQuest(0)); // Adrian's Intel
         }
         if (index == 1) // TalkedToAdrian
         {
-            // make items clickable
-            NotebookScript.Instance.AddQuest(1); // Adrian's Intel
+            // make items clickable (no action needed here)
+            StartCoroutine(NotebookScript.Instance.AddQuest(1)); // Suicide? Or Something Else?
+            NotebookScript.Instance.CompleteQuest(0);
         }
         if (index == 2) // TalkedToJulian
         {

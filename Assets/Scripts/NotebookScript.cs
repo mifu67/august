@@ -18,6 +18,8 @@ public class NotebookScript : MonoBehaviour
     [SerializeField] private GameObject evidence;
     [SerializeField] private GameObject quests;
     [SerializeField] private GameObject notes;
+    [SerializeField] private GameObject newQuestIconMain; // next to notebook button
+    [SerializeField] private GameObject newQuestIconSecond; // next to quest button
 
     private List<GameObject> tabs = new List<GameObject>();
     public static NotebookScript Instance;
@@ -121,6 +123,10 @@ public class NotebookScript : MonoBehaviour
     private void OpenQuests()
     {
         quests.SetActive(true);
+        if (newQuestIconSecond.activeSelf)
+        {
+            newQuestIconSecond.SetActive(false);
+        }
         foreach (GameObject tab in tabs) {
             if (tab != quests)
             {
@@ -146,13 +152,16 @@ public class NotebookScript : MonoBehaviour
     }
 
     // change to iEnumerator later
-    public void AddQuest(int index) 
+    public IEnumerator AddQuest(int index) 
     {
         if (emptyQuest.activeSelf) {
             emptyQuest.SetActive(false);
         }
+        newQuestIconMain.SetActive(true);
+        newQuestIconSecond.SetActive(true);
         questList[index].SetActive(true);
-        // surface the new quest indicator for 3 seconds
+        yield return new WaitForSeconds(3);
+        newQuestIconMain.SetActive(false);
     }
 
     public void CompleteQuest(int index)
