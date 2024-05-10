@@ -5424,6 +5424,7 @@ MonoBehaviour:
   notes: {fileID: 557372190}
   newQuestIconMain: {fileID: 1352304502}
   newQuestIconSecond: {fileID: 1868334768}
+  chime: {fileID: 8300000, guid: fa43564aa1da24f1cb09f1283fb133ff, type: 3}
   discoveredEvidence:
   - {fileID: 2067715716476407502}
   - {fileID: 1933810516}

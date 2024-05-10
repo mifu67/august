@@ -20,7 +20,10 @@ public class NotebookScript : MonoBehaviour
     [SerializeField] private GameObject notes;
     [SerializeField] private GameObject newQuestIconMain; // next to notebook button
     [SerializeField] private GameObject newQuestIconSecond; // next to quest button
+    private AudioSource audioSource;
 
+    [SerializeField]
+    private AudioClip chime;
     private List<GameObject> tabs = new List<GameObject>();
     public static NotebookScript Instance;
     private bool notebookOpen = false;
@@ -40,6 +43,7 @@ public class NotebookScript : MonoBehaviour
             return;
         }
         Instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
 
         emptyEvidence.SetActive(true);
@@ -151,7 +155,6 @@ public class NotebookScript : MonoBehaviour
         }
     }
 
-    // change to iEnumerator later
     public IEnumerator AddQuest(int index) 
     {
         if (emptyQuest.activeSelf) {
@@ -160,13 +163,14 @@ public class NotebookScript : MonoBehaviour
         newQuestIconMain.SetActive(true);
         newQuestIconSecond.SetActive(true);
         questList[index].SetActive(true);
+        audioSource.PlayOneShot(chime);
         yield return new WaitForSeconds(3);
         newQuestIconMain.SetActive(false);
     }
 
     public void CompleteQuest(int index)
     {
-        Debug.Log("Quest completed."); // placeholder
+        Debug.Log("Quest completed.");
         questList[index].GetComponent<Quest>().MarkQuestCompleted();
     }
 }
