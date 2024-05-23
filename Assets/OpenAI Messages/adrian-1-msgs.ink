@@ -44,5 +44,5 @@ Shocked. But devastated. I don't think it's really set in yet that he's gone. He
 -> END
 
 ===bonus_2===
-Honestly? I can't remember. But that would be a good thing to figure out... hey, shouldn't you know that? #assistant
+August? He's left handed. Hey wait, shouldn't you know that already? #assistant
 -> END

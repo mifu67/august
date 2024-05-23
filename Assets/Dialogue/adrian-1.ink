@@ -83,5 +83,6 @@ Goodbye, Erika.
 -> END
 
 ===bonus_2===
-Honestly? I can't remember. But that would be a good thing to figure out... hey, shouldn't you know that? #speaking:npc #portrait:adrian-neutral
+August? He's left handed. #speaking:npc #portrait:adrian-neutral
+...Hey wait, shouldn't you know that already?
 -> END

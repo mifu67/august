@@ -13,11 +13,13 @@ public class NotebookScript : MonoBehaviour
     [SerializeField] private Button profilesButton;
     [SerializeField] private Button evidenceButton;
     [SerializeField] private Button questsButton;
+    [SerializeField] private Button mapButton;
     [SerializeField] private GameObject notebook;
     [SerializeField] private GameObject profiles;
     [SerializeField] private GameObject evidence;
     [SerializeField] private GameObject quests;
     [SerializeField] private GameObject notes;
+    [SerializeField] private GameObject map;
     [SerializeField] private GameObject newQuestIconMain; // next to notebook button
     [SerializeField] private GameObject newQuestIconSecond; // next to quest button
     private AudioSource audioSource;
@@ -73,6 +75,7 @@ public class NotebookScript : MonoBehaviour
         profilesButton.onClick.AddListener(OpenProfiles);
         evidenceButton.onClick.AddListener(OpenEvidence);
         questsButton.onClick.AddListener(OpenQuests);
+        mapButton.onClick.AddListener(OpenMap);
     }
 
     public bool getNotebookOpen()
@@ -137,6 +140,11 @@ public class NotebookScript : MonoBehaviour
                 tab.SetActive(false); 
             }
         }
+    }
+
+    private void OpenMap()
+    {
+        map.SetActive(true);
     }
 
     public void AddEvidence(int index)
