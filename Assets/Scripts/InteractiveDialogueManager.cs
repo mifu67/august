@@ -95,6 +95,11 @@ public class InteractiveDialogueManager : MonoBehaviour
 
     private void Update()
     {
+        if (MainManager.Instance.EventFlagTriggered(1) && tutorialMode)
+        {
+            tutorialMode = false; // hacky, hopefully this works!
+        }
+
         if (!dialogueIsPlaying)
         {
             return;

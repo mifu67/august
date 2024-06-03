@@ -33,7 +33,7 @@ The chief thinks that this is an open and shut case, so we’re not investigatin
 (Huh? Not investigating it? Why not?) #speaking:erika #color:navy
 ->END
 ===topic_2===
-Honestly? No. #speaking:npc #portrait:adrian-neutral #color:black
+Honestly? I don't know if I believe that he took his own life that night. #speaking:npc #portrait:adrian-neutral #color:black
 I spent at least forty hours a week with this guy. Not once did I ever think he was suicidal.
 But the chief thinks it's suicide, and I can't make any other conclusions without investigation. Which I'm not allowed to do. So my hands are tied. #portrait:adrian-angry
 -> END

@@ -249,8 +249,10 @@ PrefabInstance:
 
         <b>Occupation:</b> Detective
 
-        August''s
-        friend and partner on the force.'
+        <i>RH/black
+        hair/brown eyes/5''9"</i>
+
+        August''s friend and partner on the force.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -274,6 +276,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Case File
       objectReference: {fileID: 0}
+    - target: {fileID: 2412557782505517338, guid: 89dbb602605c248a7b118a963fc83fc7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 99aa45594e9b34bb08571e020b73f041, type: 3}
     - target: {fileID: 2427970078221178407, guid: 89dbb602605c248a7b118a963fc83fc7, type: 3}
       propertyPath: details
       value: 
@@ -1588,6 +1594,10 @@ PrefabInstance:
       propertyPath: m_text
       value: List of names
       objectReference: {fileID: 0}
+    - target: {fileID: 2412557782505517338, guid: 89dbb602605c248a7b118a963fc83fc7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7dd12687f73e04da78b365ae61e56541, type: 3}
     - target: {fileID: 4570044702385577209, guid: 89dbb602605c248a7b118a963fc83fc7, type: 3}
       propertyPath: m_Pivot.x
       value: 3.5
@@ -2943,7 +2953,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734377815}
   m_Enabled: 1
-  m_Alpha: 0.5
+  m_Alpha: 0.7
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -4085,8 +4095,11 @@ PrefabInstance:
 
         <b>Occupation:</b> Detective
 
-        He''s
-        dead.'
+        <i>LH/blond
+        hair/brown eyes/5''11"</i>
+
+        My boyfriend, found dead in Fritz Schlegel
+        Park.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5257,6 +5270,9 @@ PrefabInstance:
       value: '<b>Age:</b> 26
 
         <b>Occupation:</b> Lawyer
+
+        <i>RH/black
+        hair/brown eyes/5''4"</i>
 
         Me.'
       objectReference: {fileID: 0}
@@ -7842,10 +7858,11 @@ PrefabInstance:
         \n\n<b>Details</b>\n- 911 call about unresponsive victim received from ELIZABETH
         LACEY, 25, at 1:37 A.M. on December 9, 2023.\n- Estimated time of death:
         1:00 A.M. Cause of death: gunshot wound to the head from a 0.44 caliber handgun
-        (found at the scene).\n- Markings around the entry wound indicate that the
-        gun was close to or pressed against victim\u2019s right temple when the shot
-        was fired.\n- Tracks in snow indicate that victim was alone. Initial assessment:
-        suicide. No further investigation to be conducted at this time."
+        (found at the scene near victim's right hand).\n- Markings around the entry
+        wound indicate that the gun was close to or pressed against victim\u2019s
+        right temple when the shot was fired.\n- Tracks in snow indicate that victim
+        was alone. Initial assessment: suicide. No further investigation to be conducted
+        at this time."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8327,8 +8344,11 @@ PrefabInstance:
 
         <b>Occupation:</b> Student
 
-        August''s
-        little brother. He''s getting a Master''s in computer science.
+        <i>RH/brown
+        hair/brown eyes/6''0"</i>
+
+        August''s little brother. He''s getting
+        a Master''s in computer science.
 
 '
       objectReference: {fileID: 0}

@@ -45,15 +45,15 @@ It’s okay. Thank you. #speaking:erika
  { topic_1 > 1:
     -> visited
  }
-He came to the bar where I work last night. He was with a younger man. His brother, I think? #speaking:npc
+He came to the bar where I work last night. He was with a younger man. His brother, I think? #speaking:npc #color:black
 He ordered a whiskey on the rocks and left around midnight. #speaking:npc
  -> END
  =visited
- Sorry, that's all I know. I didn't see him that much last night.... #speaking:npc
+ Sorry, that's all I know. I didn't see him that much last night.... #speaking:npc #color:black
  -> END
  
  =topic_2
-Suicidal? I don’t know. I’m sorry, Erika. I work in the back of the house, so I only saw him as he was leaving. #speaking:npc
+Suicidal? I don’t know. I’m sorry, Erika. I work in the back of the house, so I only saw him as he was leaving. #speaking:npc #color:black
 But a guy like that? Young, handsome, and a detective? My hunch is that there’s more to this story than meets the eye. We in the true crime community are definitely trying to figure it out. 
 I'm gonna be talking about this on my podcast this week. Let me know if you want to be interviewed, or if you learn anything that you think could be relevant.
 Uh… okay. Thanks. #speaking:erika

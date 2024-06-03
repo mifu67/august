@@ -116,7 +116,7 @@ I'm so sorry.
 Of course I would have said yes. #speaking:speaker1
 I—
 I wish we could have grown old together.
-But he'll be 27 forever, and in a year, I'll be older than he ever was.
+But he'll be 28 forever, and in a year, I'll be older than he ever was.
 F*ck. I didn't even think about that. #speaking:speaker2 #portrait2:julian-angry
 God damn it. This is so sh*tty.
 Why did he have to f*cking die, Erika?
