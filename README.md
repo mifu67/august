@@ -1,5 +1,7 @@
 # August: a new detective game 
 
+Checkout the writeup [here!](https://github.com/user-attachments/files/23153787/CS191W.Report.docx)
+
 To make requests to the OpenAI API, you need to use your API key and organization name (if applicable). To avoid exposing your API key in your Unity project, you can save it in your device's local storage.
 
 To do this, follow these steps:
