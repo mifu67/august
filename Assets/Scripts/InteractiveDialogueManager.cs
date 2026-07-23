@@ -397,12 +397,12 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-4-1106-preview", 
+            Model = "gpt-4.1", 
             Messages = routerMessages,
             Temperature = 0.0f,
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
-        string slot = completionResponse.Choices[0].Message.Content;
+        string slot = GetFirstMessageContent(completionResponse) ?? "none";
         // Debug.Log("SLOT:" + slot);
         if (slot == "none")
         {
@@ -450,12 +450,20 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-4-1106-preview", 
+            Model = "gpt-4.1", 
             Messages = routerMessages,
             Temperature = 0.0f,
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to pollute the context window
-        string slot = completionResponse.Choices[0].Message.Content;
+        string slot = GetFirstMessageContent(completionResponse);
+        if (slot == null)
+        {
+            currentSentence = "Sorry, could you say that again?";
+            speakerNameText.text = npcName;
+            playerTurn = false;
+            ContinueStory();
+            return;
+        }
         Debug.Log("SLOT:" + slot);
         prewrittenMode = true;
         currentStory.ChoosePathString(slot);
@@ -493,12 +501,12 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-4-1106-preview", // use GPT-4 for router bc it's more powerful
+            Model = "gpt-4.1", // use GPT-4 for router bc it's more powerful
             Messages = routerMessages,
             Temperature = 0.0f,
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
-        string slot = completionResponse.Choices[0].Message.Content;
+        string slot = GetFirstMessageContent(completionResponse) ?? "none";
         // Debug.Log("SLOT: " + slot);
         if (slot != "none")
         {
@@ -525,7 +533,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             conversationMessages.Add(convoInput);
             completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Model = "gpt-3.5-turbo", 
+                Model = "gpt-4.1-mini", 
                 Messages = conversationMessages,
                 Temperature = 0.0f,
             });
@@ -567,12 +575,12 @@ public class InteractiveDialogueManager : MonoBehaviour
         routerMessages.Add(routerInput);
         var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
         {
-            Model = "gpt-3.5-turbo", 
+            Model = "gpt-4.1-mini", 
             Messages = routerMessages,
             Temperature = 0.0f,
         });
         routerMessages.RemoveAt(routerMessages.Count - 1); // pop so as not to polute the context window
-        string routed = completionResponse.Choices[0].Message.Content;
+        string routed = GetFirstMessageContent(completionResponse) ?? "";
         // Debug.Log("ROUTED MESSAGE: " + routed);
         if (routed.Length >= 6 && (routed[..6] == "Reason" || routed[..11] == "Red Herring"))
         {
@@ -611,7 +619,7 @@ public class InteractiveDialogueManager : MonoBehaviour
             conversationMessages.Add(convoInput);
             completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Model = "gpt-3.5-turbo", 
+                Model = "gpt-4.1-mini", 
                 Messages = conversationMessages,
                 Temperature = 0.0f,
             });
@@ -641,6 +649,15 @@ public class InteractiveDialogueManager : MonoBehaviour
         // response.text = currentSentence;
         // Debug.Log(currentSentence);
         StartCoroutine(TypeSentence(currentSentence));
+    }
+
+    private static string GetFirstMessageContent(CreateChatCompletionResponse response)
+    {
+        if (response.Choices == null || response.Choices.Count == 0)
+        {
+            return null;
+        }
+        return response.Choices[0].Message.Content;
     }
 
     private void PopulateMessageList(List<ChatMessage> messageList, string knotName)
@@ -720,4 +737,5 @@ public class InteractiveDialogueManager : MonoBehaviour
         }
     }
 }
+
 
